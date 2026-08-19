@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Larica's Pastel | Cardápio Digital & Pedidos WhatsApp em Caxias do Sul</title>
+    <meta name="description" content="🥟 Larica's Pastel — O pastel que vem do tamanho da sua fome em Caxias do Sul! Pastéis salgados, doces gourmet, combos e pastelina crocante. Peça rápido direto no WhatsApp!">
+    <meta name="keywords" content="Laricas Pastel, Pastel Caxias do Sul, Pastelaria Cruzeiro Caxias, Cardápio Laricas Pastel, Tele entrega Pastel Caxias, Delivery Pastel">
+
+    <!-- PWA Manifest & Theme Color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0B0B0C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="assets/logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=20260819a">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-wrapper" aria-label="Página Inicial Larica's Pastel">
+                <img src="assets/logo.svg" alt="Larica's Pastel" class="brand-logo-img">
+                <h1 class="sr-only">Larica's Pastel - Caxias do Sul</h1>
+            </a>
+
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span id="store-status-text">Aberto Agora • 18:30 às 23:00</span>
+            </div>
+
+            <div class="nav-actions">
+                <a href="proposta.html" class="nav-link-btn" title="Conheça a proposta do site">Proposta</a>
+
+                <!-- Botão Limpar Pedido -->
+                <button type="button" class="cart-clear-btn" id="cart-clear-header" onclick="window.askClearCart()" title="Limpar pedido" style="display:none;" aria-label="Limpar pedido">
+                    <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+                </button>
+
+                <!-- Botão Carrinho Trigger -->
+                <button type="button" class="btn-cart-trigger" id="btn-cart-nav" onclick="window.openCart()" aria-label="Abrir carrinho de pedidos">
+                    <i data-lucide="shopping-bag" style="width:18px; height:18px;"></i>
+                    <span class="cart-label">Carrinho</span>
+                    <span class="cart-total-header" id="cart-total-header">R$ 0,00</span>
+                    <span class="cart-count-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="hero-badge-strip">
+                <i data-lucide="flame" style="width:14px;height:14px;"></i>
+                <span>Massa Artesanal • Frita na Hora</span>
+            </div>
+
+            <h2 class="hero-title">O pastel que vem <span>do tamanho da sua fome!</span></h2>
+            <p class="hero-subtitle">Massa sequinha, super crocante e recheio de verdade do primeiro ao último pedaço. Faça seu pedido em menos de 1 minuto sem complicação.</p>
+
+            <div class="hero-stats-row">
+                <div class="hero-stat-pill">
+                    <i data-lucide="clock" style="width:14px;height:14px;color:var(--primary);"></i>
+                    <span>Entrega Rápida em Caxias</span>
+                </div>
+                <div class="hero-stat-pill">
+                    <i data-lucide="zap" style="width:14px;height:14px;color:var(--accent-green);"></i>
+                    <span>Direto no WhatsApp Oficial</span>
+                </div>
+                <div class="hero-stat-pill">
+                    <i data-lucide="map-pin" style="width:14px;height:14px;color:var(--accent-red);"></i>
+                    <span>Bairro Cruzeiro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toolbar: Busca & Categorias -->
+    <section class="catalog-toolbar-section">
+        <div class="container toolbar-layout">
+            <div class="search-box-wrap">
+                <i data-lucide="search" class="search-icon-inside" style="width:18px;height:18px;"></i>
+                <input type="text" class="search-input" placeholder="Buscar sabor de pastel, combo ou bebida..." oninput="window.handleSearch(event)" aria-label="Buscar produtos">
+            </div>
+
+            <div class="category-scroll-pills">
+                <button class="cat-pill active" data-category="todos">
+                    <i data-lucide="grid" style="width:14px;height:14px;"></i>
+                    <span>Todos os Itens</span>
+                </button>
+                <button class="cat-pill" data-category="promocoes">
+                    <i data-lucide="percent" style="width:14px;height:14px;"></i>
+                    <span>Promoções do Dia</span>
+                </button>
+                <button class="cat-pill" data-category="combos">
+                    <i data-lucide="package" style="width:14px;height:14px;"></i>
+                    <span>Combos Especiais</span>
+                </button>
+                <button class="cat-pill" data-category="salgados">
+                    <i data-lucide="utensils" style="width:14px;height:14px;"></i>
+                    <span>Pastéis Salgados</span>
+                </button>
+                <button class="cat-pill" data-category="doces">
+                    <i data-lucide="heart" style="width:14px;height:14px;"></i>
+                    <span>Pastéis Doces Gourmet</span>
+                </button>
+                <button class="cat-pill" data-category="pastelina">
+                    <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+                    <span>Pastelina Crocante</span>
+                </button>
+                <button class="cat-pill" data-category="bebidas">
+                    <i data-lucide="cup-soda" style="width:14px;height:14px;"></i>
+                    <span>Bebidas Geladas</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Produtos -->
+    <main class="catalog-section">
+        <div class="container">
+            <div class="products-grid" id="products-grid">
+                <!-- Injetado dinamicamente pelo app.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Seção de Diferenciais (Ritmo Alternado Claro) -->
+    <section class="differentials-section">
+        <div class="container">
+            <div class="diff-title-wrap">
+                <h3 class="diff-title">Por que pedir na Larica's?</h3>
+                <p class="diff-subtitle">Qualidade artesanal e o melhor atendimento da Serra Gaúcha</p>
+            </div>
+
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <div class="diff-icon-wrap">
+                        <i data-lucide="award" style="width:26px;height:26px;"></i>
+                    </div>
+                    <h4>Massa de Verdade</h4>
+                    <p>Feita artesanalmente todos os dias. Frita na temperatura exata para ficar sequinha e crocante.</p>
+                </div>
+
+                <div class="diff-card">
+                    <div class="diff-icon-wrap">
+                        <i data-lucide="layers" style="width:26px;height:26px;"></i>
+                    </div>
+                    <h4>Recheio Farto</h4>
+                    <p>Carne selecionada, frango desfiado suculento e Catupiry/Cheddar legítimos do início ao fim.</p>
+                </div>
+
+                <div class="diff-card">
+                    <div class="diff-icon-wrap">
+                        <i data-lucide="zap" style="width:26px;height:26px;"></i>
+                    </div>
+                    <h4>Pedido em 2 Cliques</h4>
+                    <p>Sem aplicativos pesados ou senhas. Você escolhe, monta seu pastel e manda direto no WhatsApp.</p>
+                </div>
+
+                <div class="diff-card">
+                    <div class="diff-icon-wrap">
+                        <i data-lucide="bike" style="width:26px;height:26px;"></i>
+                    </div>
+                    <h4>Entrega Quentinha</h4>
+                    <p>Embalagem térmica que mantém o pastel estalando de crocante até a porta da sua casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/logo.svg" alt="Larica's Pastel" style="height: 52px; margin-bottom: 12px;">
+                    <p>O pastel que vem do tamanho da sua fome em Caxias do Sul - RS.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Atendimento & Pedidos</h4>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/5554996490510" target="_blank" rel="noopener">(54) 99649-0510</a></p>
+                    <p><strong>Horário:</strong> Terça a Domingo • 18:30 às 23:00</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Localização</h4>
+                    <p>Rua Antônio Broilo, 160</p>
+                    <p>Bairro Cruzeiro, Caxias do Sul - RS</p>
+                    <p>CEP 95074-020</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Larica's Pastel. Todos os direitos reservados. Cardápio Digital desenvolvido com tecnologia <a href="proposta.html">Onira Labs</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE CUSTOMIZAÇÃO DE PRODUTO -->
+    <div class="custom-modal-overlay" id="product-modal">
+        <div class="custom-modal-box">
+            <div class="modal-header-img-wrap">
+                <img id="modal-img" src="" alt="Produto" class="modal-header-img">
+                <button class="modal-close-btn" onclick="window.closeProductModal()" aria-label="Fechar modal">
+                    <i data-lucide="x" style="width:18px;height:18px;"></i>
+                </button>
+            </div>
+
+            <div class="modal-scroll-body">
+                <div>
+                    <span class="card-badge" id="modal-badge" style="position:static;display:inline-block;margin-bottom:8px;"></span>
+                    <h3 class="modal-title" id="modal-title">Nome do Pastel</h3>
+                    <p class="modal-desc" id="modal-desc">Descrição do recheio</p>
+                </div>
+
+                <!-- Seção de Tamanhos -->
+                <div id="modal-sizes-section">
+                    <h4 class="modal-section-title">1. Escolha o Tamanho:</h4>
+                    <div class="size-options-grid" id="modal-sizes-list"></div>
+                </div>
+
+                <!-- Seção de Adicionais -->
+                <div id="modal-adicionais-section">
+                    <h4 class="modal-section-title">2. Quer Adicionar Algo a Mais?</h4>
+                    <div class="adds-options-grid" id="modal-adicionais-list"></div>
+                </div>
+
+                <!-- Observação -->
+                <div>
+                    <h4 class="modal-section-title">3. Alguma Observação?</h4>
+                    <textarea class="obs-textarea" id="modal-obs-input" placeholder="Ex: Sem orégano, bem passado, maionese à parte..."></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-confirm-add" onclick="window.addConfiguredProductToCart()">
+                    <span>Adicionar ao Pedido</span>
+                    <span id="modal-total-btn-price">R$ 0,00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER MASTER (PADRÃO CLAEM MASTER ONIRA LABS) -->
+    <div class="cart-overlay" id="cart-overlay" onclick="window.closeCart()"></div>
+    
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de Compras">
+        <div class="cart-header">
+            <div class="cart-header-title-box">
+                <i data-lucide="shopping-bag" style="color:var(--primary); width:20px; height:20px;"></i>
+                <h3 class="cart-header-title">Meu Pedido</h3>
+            </div>
+            <!-- Botão Laranja Continuar Escolhendo -->
+            <button type="button" class="btn-continue-shopping" onclick="window.closeCart()">
+                <span>Continuar Escolhendo</span>
+                <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </button>
+        </div>
+
+        <div class="cart-body">
+            <!-- Mensagem de Carrinho Vazio -->
+            <div class="cart-empty-msg" id="cart-empty-msg">
+                <i data-lucide="shopping-cart" style="width: 48px; height: 48px; color: #475569; margin-bottom: 12px;"></i>
+                <h4 style="color:#FFF; font-size:1.1rem; margin-bottom:6px;">Seu pedido está vazio</h4>
+                <p style="font-size:0.85rem; color:#94A3B8;">Escolha seus pastéis favoritos no cardápio e adicione aqui.</p>
+            </div>
+
+            <!-- Lista de Itens do Pedido (Expansível) -->
+            <div class="cart-items-container" id="cart-items-container"></div>
+
+            <!-- Seção de Finalização e Formulário (Apenas visível se houver itens) -->
+            <div id="cart-footer-section" style="display:none;">
+                
+                <!-- Tipo de Pedido -->
+                <div class="checkout-section-block">
+                    <h4 class="checkout-block-title">Como deseja receber?</h4>
+                    <div class="order-type-toggle">
+                        <button type="button" class="type-toggle-btn active" id="btn-type-delivery" onclick="window.setOrderType('delivery')">
+                            🛵 Entrega (Delivery)
+                        </button>
+                        <button type="button" class="type-toggle-btn" id="btn-type-pickup" onclick="window.setOrderType('pickup')">
+                            🏬 Retirada no Balcão
+                        </button>
+                    </div>
+
+                    <div class="form-group-cart">
+                        <label class="form-label-cart" for="cust-name">Seu Nome Completo:</label>
+                        <input type="text" class="form-input-cart" id="cust-name" placeholder="Ex: Jefferson Motta" required>
+                    </div>
+
+                    <!-- Endereço de Entrega -->
+                    <div id="delivery-address-section">
+                        <div class="form-group-cart" style="margin-top:8px;">
+                            <label class="form-label-cart" for="delivery-zone-select">Bairro em Caxias do Sul:</label>
+                            <select class="form-select-cart" id="delivery-zone-select"></select>
+                        </div>
+
+                        <div class="form-group-cart" style="margin-top:8px;">
+                            <label class="form-label-cart" for="cust-address">Endereço (Rua e Número):</label>
+                            <input type="text" class="form-input-cart" id="cust-address" placeholder="Ex: Rua das Flores, 123">
+                        </div>
+
+                        <div class="form-group-cart" style="margin-top:8px;">
+                            <label class="form-label-cart" for="cust-complement">Complemento / Apto / Ponto de Referência:</label>
+                            <input type="text" class="form-input-cart" id="cust-complement" placeholder="Ex: Apto 402, Bloco B">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forma de Pagamento -->
+                <div class="checkout-section-block" style="margin-top:12px;">
+                    <h4 class="checkout-block-title">Forma de Pagamento</h4>
+                    <div class="payment-options-grid">
+                        <div class="payment-option-card selected" data-payment="pix" onclick="window.setPaymentMethod('pix')">
+                            ⚡ Pix
+                        </div>
+                        <div class="payment-option-card" data-payment="card" onclick="window.setPaymentMethod('card')">
+                            💳 Cartão
+                        </div>
+                        <div class="payment-option-card" data-payment="money" onclick="window.setPaymentMethod('money')">
+                            💵 Dinheiro
+                        </div>
+                    </div>
+
+                    <!-- Box Pix -->
+                    <div class="pix-box" id="pix-payment-box">
+                        <span style="font-size:0.75rem; color:#94A3B8;">Chave Pix Oficial (Telefone):</span>
+                        <span class="pix-key-val">54996490510</span>
+                        <button type="button" class="btn-copy-pix" id="btn-copy-pix" onclick="window.copyPixKey()">
+                            <i data-lucide="copy" style="width:14px;height:14px;"></i>
+                            <span>Copiar Chave Pix</span>
+                        </button>
+                    </div>
+
+                    <!-- Box Dinheiro (Troco) -->
+                    <div class="form-group-cart" id="money-change-box" style="display:none; margin-top:8px;">
+                        <label class="form-label-cart" for="cust-troco">Precisa de troco para quanto?</label>
+                        <input type="text" class="form-input-cart" id="cust-troco" placeholder="Ex: R$ 50,00 (ou deixe em branco se não precisar)">
+                    </div>
+                </div>
+
+                <!-- Resumo dos Valores -->
+                <div class="cart-totals-summary">
+                    <div class="totals-row">
+                        <span>Subtotal dos Itens:</span>
+                        <span id="cart-subtotal-val">R$ 0,00</span>
+                    </div>
+                    <div class="totals-row">
+                        <span>Taxa de Entrega:</span>
+                        <span id="cart-delivery-fee-val">R$ 6,00</span>
+                    </div>
+                    <div class="totals-row final">
+                        <span>Total do Pedido:</span>
+                        <span class="total-emerald" id="cart-final-total-val">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Botão Enviar Pedido no WhatsApp -->
+                <button type="button" class="btn-submit-order-whatsapp" onclick="window.checkoutOrder()">
+                    <i data-lucide="send" style="width:18px;height:18px;"></i>
+                    <span>Enviar Pedido no WhatsApp</span>
+                </button>
+
+                <!-- Assinatura Onira Labs -->
+                <div class="cart-onira-signature">
+                    Tecnologia por <strong>Onira Labs</strong> • Sem Taxas de Marketplace
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- WIDGET FLUTUANTE DE PROPOSTA DO JEFF (.onira-cta) -->
+    <div class="onira-proposal-widget" id="onira-proposal-widget" onclick="window.location.href='proposta.html'" role="button" aria-label="Ver proposta comercial do site">
+        <img src="assets/jeff-avatar.webp" alt="Jefferson Motta - Onira Labs" class="widget-avatar">
+        <div class="widget-text-col">
+            <span class="widget-hook">Gostou deste cardápio?</span>
+            <span class="widget-call">Saiba como funciona meu trabalho</span>
+        </div>
+        <button type="button" class="widget-close-btn" onclick="window.dismissOniraWidget(event)" title="Dispensar aviso" aria-label="Dispensar aviso">
+            <i data-lucide="x" style="width:14px;height:14px;"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js?v=20260819a"></script>
+</body>
+</html>

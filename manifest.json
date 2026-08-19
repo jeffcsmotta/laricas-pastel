@@ -1,0 +1,21 @@
+{
+  "name": "Larica's Pastel | Cardápio Digital & Delivery",
+  "short_name": "Larica's",
+  "description": "Cardápio digital oficial da Larica's Pastel em Caxias do Sul. Pastéis salgados e doces do tamanho da sua fome com pedido rápido via WhatsApp.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0B0B0C",
+  "theme_color": "#F59E0B",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

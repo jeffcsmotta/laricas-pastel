@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial | Larica's Pastel & Onira Labs</title>
+    <meta name="description" content="Proposta comercial de canal próprio para a Larica's Pastel em Caxias do Sul: Canal próprio no WhatsApp sem taxas abusivas e com fluxo muito mais simples que o Contatei.">
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-page: #FAFCFF;
+            --bg-card: #FFFFFF;
+            --text-dark: #0F172A;
+            --text-main: #334155;
+            --text-muted: #64748B;
+
+            --primary: #F59E0B;
+            --primary-hover: #D97706;
+
+            --emerald: #059669;
+            --emerald-light: #ECFDF5;
+
+            --border: #E2E8F0;
+            --font-heading: 'Outfit', -apple-system, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Nav */
+        .proposal-nav {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            height: 38px;
+            width: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: #F1F5F9;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--primary);
+        }
+
+        /* Header Hero */
+        .proposal-header {
+            padding: 44px 0 24px;
+            text-align: center;
+        }
+
+        .badge-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #FEF3C7;
+            border: 1px solid #FDE68A;
+            border-radius: 999px;
+            color: #B45309;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .proposal-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .proposal-title span {
+            color: #D97706;
+        }
+
+        .proposal-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 660px;
+            margin: 0 auto;
+        }
+
+        /* Cards & Content */
+        .card-block {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-block-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Comparativo */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.88rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: #F8FAFC;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge-ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #059669;
+            font-weight: 700;
+        }
+
+        .status-badge-bad {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #DC2626;
+            font-weight: 700;
+        }
+
+        /* Pricing Box */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .pricing-card {
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            background: #FFFBEB;
+            border-color: #FDE68A;
+        }
+
+        .pricing-card h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .price-num {
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .price-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Developer Card (Padrão Onira Labs) */
+        .dev-profile-card {
+            background: #0B0B0C;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 32px;
+            color: #FFFFFF;
+            margin: 32px 0;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .dev-profile-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #F59E0B;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .dev-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dev-avatar-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #F59E0B;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .dev-name {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #FFFFFF;
+        }
+
+        .dev-role {
+            font-size: 0.84rem;
+            color: #94A3B8;
+            margin-top: 2px;
+        }
+
+        .dev-location {
+            font-size: 0.78rem;
+            color: #F59E0B;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .dev-bio {
+            font-size: 0.9rem;
+            color: #CBD5E1;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .dev-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .dev-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #18181D;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .dev-link-btn:hover {
+            border-color: #F59E0B;
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+
+        .dev-studio-signature {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .dev-studio-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .dev-studio-motto {
+            font-size: 0.74rem;
+            color: #64748B;
+            text-align: right;
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+            color: #FFFFFF;
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.45);
+            transition: all 0.25s;
+            animation: pulseFab 2.5s infinite;
+        }
+
+        .floating-whatsapp-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.6);
+        }
+
+        @keyframes pulseFab {
+            0%, 100% { box-shadow: 0 8px 24px rgba(34, 197, 94, 0.45); }
+            50% { box-shadow: 0 8px 30px rgba(34, 197, 94, 0.7); }
+        }
+
+        @media (max-width: 600px) {
+            .dev-profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .dev-location {
+                justify-content: center;
+            }
+            .dev-links-grid {
+                grid-template-columns: 1fr;
+            }
+            .dev-studio-signature {
+                flex-direction: column;
+                text-align: center;
+            }
+            .dev-studio-motto {
+                text-align: center;
+            }
+            .floating-whatsapp-btn span {
+                display: none;
+            }
+            .floating-whatsapp-btn {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="proposal-nav">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo-link">
+                <img src="assets/logo.svg" alt="Larica's Pastel" class="brand-logo-img">
+            </a>
+            <a href="index.html" class="back-link">
+                <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+                <span>Ver Cardápio Ao Vivo</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="proposal-header">
+        <div class="container">
+            <span class="badge-tag">
+                <i data-lucide="zap" style="width:14px;height:14px;"></i>
+                Proposta Exclusiva • Larica's Pastel
+            </span>
+            <h1 class="proposal-title">Um Cardápio Digital <span>Mais Rápido, Simples e Sem Taxas</span></h1>
+            <p class="proposal-subtitle">Substitua plataformas complexas como o Contatei por um canal 100% próprio, instantâneo e conectado diretamente ao WhatsApp da Larica's Pastel.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Bloco 1: O Problema do Fluxo Atual vs Solução Onira -->
+        <div class="card-block">
+            <h2 class="card-block-title">
+                <i data-lucide="scale" style="color:var(--primary); width:22px; height:22px;"></i>
+                Comparativo: Contatei Atual vs. Canal Onira Labs
+            </h2>
+
+            <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:14px;">
+                Hoje, o cliente que clica no link do Instagram da <strong>Larica's Pastel</strong> encontra um sistema com telas intermediárias de fidelidade/login, formulários burocráticos e layout genérico. Com a tecnologia Onira Labs, o cliente entra direto nos pastéis e fecha em 2 cliques.
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Critério</th>
+                        <th>Plataforma Contatei</th>
+                        <th>Canal Próprio Onira Labs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Experiência de Entrada</strong></td>
+                        <td><span class="status-badge-bad">✕ Login / Telas de Fidelidade</span></td>
+                        <td><span class="status-badge-ok">✓ Direto no Cardápio em 1 Clique</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Velocidade de Checkout</strong></td>
+                        <td><span class="status-badge-bad">✕ 5 a 6 telas até o fim</span></td>
+                        <td><span class="status-badge-ok">✓ 2 cliques direto para o WhatsApp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Identidade Visual</strong></td>
+                        <td><span class="status-badge-bad">✕ Padrão genérico de SaaS</span></td>
+                        <td><span class="status-badge-ok">✓ 100% personalizada para a Larica's</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pix Copia e Cola</strong></td>
+                        <td><span class="status-badge-bad">✕ Processo manual</span></td>
+                        <td><span class="status-badge-ok">✓ 1 toque para copiar + Chave no pedido</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Propriedade do Canal</strong></td>
+                        <td><span class="status-badge-bad">✕ Alugado (Preso na plataforma)</span></td>
+                        <td><span class="status-badge-ok">✓ 100% Seu (Código & Domínio próprio)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bloco 2: Como Funciona o Modelo de Investimento -->
+        <div class="card-block">
+            <h2 class="card-block-title">
+                <i data-lucide="coins" style="color:var(--primary); width:22px; height:22px;"></i>
+                Condições Especiais de Implementação (Com Permuta)
+            </h2>
+
+            <p style="font-size:0.9rem; color:var(--text-main);">
+                Para viabilizar uma parceria de longo prazo e apoiar a gastronomia local do Bairro Cruzeiro em Caxias do Sul, estruturamos uma proposta com <strong>parte do pagamento em permuta de pastéis</strong> para consumo do time:
+            </p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Implementação (Pix)</h4>
+                    <div class="price-num">R$ 1.000</div>
+                    <p class="price-desc">50% no início + 50% na entrega e ativação oficial do site.</p>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h4>Permuta Gastronômica</h4>
+                    <div class="price-num">R$ 500</div>
+                    <p class="price-desc">Crédito em pastéis para o time da Onira Labs consumir ao longo do ano.</p>
+                </div>
+
+                <div class="pricing-card">
+                    <h4>Suporte & Hospedagem</h4>
+                    <div class="price-num">R$ 50<span style="font-size:0.9rem;">/mês</span></div>
+                    <p class="price-desc">Hospedagem ultra rápida, certificado de segurança SSL e suporte para preços.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 3: Perfil do Desenvolvedor (Padrão Onira Labs) -->
+        <div class="dev-profile-card">
+            <span class="dev-profile-tag">OLÁ, EU SOU O JEFF</span>
+            
+            <div class="dev-profile-header">
+                <img src="assets/jeff-avatar.webp" alt="Jefferson Motta (Jeff)" class="dev-avatar-img">
+                <div>
+                    <h3 class="dev-name">Jefferson Motta (Jeff)</h3>
+                    <p class="dev-role">Lead Product Designer &amp; Software Architect • Founder Onira Labs</p>
+                    <p class="dev-location">
+                        <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                        Caxias do Sul - RS • Serra Gaúcha
+                    </p>
+                </div>
+            </div>
+
+            <p class="dev-bio">
+                Especialista em canais digitais de alta conversão, arquitetura web ultra rápida e automações de vendas para comércio e gastronomia local na Serra Gaúcha. Criador de soluções que eliminam intermediários e colocam o faturamento direto no bolso do empresário.
+            </p>
+
+            <div class="dev-links-grid">
+                <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener noreferrer" class="dev-link-btn">
+                    <i data-lucide="linkedin" style="width:16px;height:16px;color:#0A66C2;"></i>
+                    <span>Ver LinkedIn Oficial</span>
+                </a>
+                <a href="https://jeffmotta.framer.website" target="_blank" rel="noopener noreferrer" class="dev-link-btn">
+                    <i data-lucide="globe" style="width:16px;height:16px;color:#F59E0B;"></i>
+                    <span>Ver Portfólio do Jeff</span>
+                </a>
+            </div>
+
+            <div class="dev-studio-signature">
+                <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="dev-studio-logo">
+                <div class="dev-studio-motto">
+                    Service Design + Rapid Prototyping + Human-in-the-Loop<br>
+                    <strong>Caxias do Sul - RS • Brasil</strong>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Botão Flutuante de Contato com o Jeff -->
+    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jeff%2C%20vi%20a%20proposta%20do%20site%20da%20Larica%27s%20Pastel%20e%20gostaria%20de%20conversar!" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="floating-whatsapp-btn"
+       aria-label="Falar com o Jeff no WhatsApp">
+        <i data-lucide="message-circle" style="width:20px;height:20px;"></i>
+        <span>Falar com o Jeff</span>
+    </a>
+
+    <script>
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
