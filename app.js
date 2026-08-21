@@ -1061,6 +1061,7 @@ function checkoutOrder() {
 
     const subtotal = cart.reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0);
     const deliveryFee = orderType === 'delivery' ? selectedDeliveryFee : 0;
+    const total = subtotal + deliveryFee;
 
     let msg = `${orderType === 'delivery' ? 'Entrega em domicílio' : 'Retirada no balcão'}
 
@@ -1068,20 +1069,24 @@ function checkoutOrder() {
 
     cart.forEach(item => {
         const itemSum = item.unitPrice * item.quantity;
-        const details = [];
-        if (item.sizeName && item.sizeName !== 'Padrão') details.push(item.sizeName);
-        if (item.adicionais && item.adicionais.length > 0) {
-            details.push(item.adicionais.map(a => a.name).join(', '));
-        }
-        const detailSuffix = details.length > 0 ? ` · ${details.join(' · ')}` : '';
+        const size = (item.sizeName && item.sizeName !== 'Padrão') ? ` · ${item.sizeName}` : '';
 
-        msg += `*${item.quantity}x* ${item.name}${detailSuffix}
+        msg += `*${item.quantity}x* ${item.name}${size}
 `;
-        msg += `R$ ${itemSum.toFixed(2).replace('.', ',')}
+
+        if (item.adicionais && item.adicionais.length > 0) {
+            item.adicionais.forEach(a => {
+                msg += `+ ${a.name}
 `;
-        if (item.obs) msg += `_Obs: ${item.obs}_
+            });
+        }
+        if (item.obs) {
+            msg += `_Obs: ${item.obs}_
 `;
-        msg += `
+        }
+
+        msg += `*R$ ${itemSum.toFixed(2).replace('.', ',')}*
+
 `;
     });
 
@@ -1090,6 +1095,11 @@ function checkoutOrder() {
     if (orderType === 'delivery') {
         msg += deliveryFee > 0 ? `Entrega: R$ ${deliveryFee.toFixed(2).replace('.', ',')}
 ` : `Entrega a combinar
+`;
+        msg += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*
+`;
+    } else {
+        msg += `*Total: R$ ${subtotal.toFixed(2).replace('.', ',')}*
 `;
     }
     msg += `
