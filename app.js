@@ -1056,63 +1056,66 @@ function checkoutOrder() {
     if (paymentMethod === 'money') {
         const trocoInput = document.getElementById('cust-troco');
         const trocoVal = trocoInput ? trocoInput.value.trim() : '';
-        trocoInfo = trocoVal ? ` (Troco para R$ ${trocoVal})` : ' (Não precisa de troco)';
+        trocoInfo = trocoVal ? `troco para R$ ${trocoVal}` : 'sem troco';
     }
 
     const subtotal = cart.reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0);
     const deliveryFee = orderType === 'delivery' ? selectedDeliveryFee : 0;
-    const finalTotal = subtotal + deliveryFee;
 
-    // Montar Mensagem Formatada
-    let msg = `🥟 *NOVO PEDIDO - LARICA'S PASTEL*\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `👤 *Cliente:* ${customerName}\n`;
-    msg += `🛵 *Tipo:* ${orderType === 'delivery' ? 'Entrega (Delivery)' : 'Retirada no Balcão'}\n`;
-    
-    if (orderType === 'delivery') {
-        msg += `📍 *Endereço:* ${customerAddress}\n`;
-        if (customerComplement) msg += `🏢 *Complemento/Ref:* ${customerComplement}\n`;
-        msg += `🗺️ *Região/Bairro:* ${selectedDeliveryZoneName}\n`;
-    } else {
-        msg += `📍 *Retirada:* Rua Antônio Broilo, 160, Cruzeiro\n`;
-    }
-    
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `📋 *ITENS DO PEDIDO:*\n\n`;
+    let msg = `${orderType === 'delivery' ? 'Entrega em domicílio' : 'Retirada no balcão'}
 
-    cart.forEach((item, idx) => {
-        msg += `*${item.quantity}x ${item.name}*`;
-        if (item.sizeName) msg += ` (${item.sizeName})`;
-        msg += ` - R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}\n`;
+`;
 
+    cart.forEach(item => {
+        const itemSum = item.unitPrice * item.quantity;
+        const details = [];
+        if (item.sizeName && item.sizeName !== 'Padrão') details.push(item.sizeName);
         if (item.adicionais && item.adicionais.length > 0) {
-            item.adicionais.forEach(a => {
-                msg += `  └ _+ ${a.name} (R$ ${a.price.toFixed(2).replace('.', ',')})_\n`;
-            });
+            details.push(item.adicionais.map(a => a.name).join(', '));
         }
-        if (item.obs) {
-            msg += `  └ 📝 _Obs: ${item.obs}_\n`;
-        }
-        msg += `\n`;
+        const detailSuffix = details.length > 0 ? ` · ${details.join(' · ')}` : '';
+
+        msg += `*${item.quantity}x* ${item.name}${detailSuffix}
+`;
+        msg += `R$ ${itemSum.toFixed(2).replace('.', ',')}
+`;
+        if (item.obs) msg += `_Obs: ${item.obs}_
+`;
+        msg += `
+`;
     });
 
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `💵 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+    msg += `*Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*
+`;
     if (orderType === 'delivery') {
-        msg += `🛵 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+        msg += deliveryFee > 0 ? `Entrega: R$ ${deliveryFee.toFixed(2).replace('.', ',')}
+` : `Entrega a combinar
+`;
     }
-    msg += `💰 *TOTAL FINAL:* R$ ${finalTotal.toFixed(2).replace('.', ',')}\n`;
-    
-    const paymentNames = {
-        pix: `⚡ Pix (Chave: ${CHAVE_PIX_OFICIAL})`,
-        card: `💳 Cartão de Crédito/Débito (Levar Máquina)`,
-        money: `💵 Dinheiro${trocoInfo}`
-    };
-    msg += `💳 *Forma de Pagamento:* ${paymentNames[paymentMethod]}\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `_Pedido gerado via Cardápio Digital Onira Labs_ 🚀`;
+    msg += `
+`;
 
-    // Redirecionar para o WhatsApp Oficial
+    if (customerName) msg += `*${customerName}*
+`;
+    if (orderType === 'delivery' && customerAddress) {
+        msg += `${customerAddress}${customerComplement ? ` (${customerComplement})` : ''}
+`;
+    }
+
+    if (paymentMethod === 'pix') {
+        msg += `Pagamento em Pix — combinamos a chave por aqui
+`;
+    } else if (paymentMethod === 'money') {
+        msg += `Pagamento em dinheiro — ${trocoInfo || 'sem troco'}
+`;
+    } else {
+        msg += `Pagamento no cartão — favor levar a maquininha
+`;
+    }
+
+    msg += `
+_Enviado pelo site da Larica's Pastelaria_`;
+
     const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
 }
