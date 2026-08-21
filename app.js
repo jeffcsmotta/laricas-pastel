@@ -1063,7 +1063,9 @@ function checkoutOrder() {
     const deliveryFee = orderType === 'delivery' ? selectedDeliveryFee : 0;
     const total = subtotal + deliveryFee;
 
-    let msg = `${orderType === 'delivery' ? 'Entrega em domicílio' : 'Retirada no balcão'}
+    let msg = `_pedido via site by Onira.fly_
+
+${orderType === 'delivery' ? 'Solicitação de Tele-Entrega' : 'Solicitação de Retirada no balcão'}
 
 `;
 
