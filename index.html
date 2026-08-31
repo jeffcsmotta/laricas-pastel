@@ -9,9 +9,9 @@
 
     <!-- PWA Manifest & Theme Color -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0B0B0C">
+    <meta name="theme-color" content="#F8FAFC">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="assets/logo.svg">
 
     <!-- Google Fonts -->
@@ -23,7 +23,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=20260819a">
+    <link rel="stylesheet" href="style.css?v=20260831a">
 </head>
 <body>
 
@@ -43,11 +43,6 @@
             <div class="nav-actions">
                 <a href="proposta.html" class="nav-link-btn" title="Conheça a proposta do site">Proposta</a>
 
-                <!-- Botão Limpar Pedido -->
-                <button type="button" class="cart-clear-btn" id="cart-clear-header" onclick="window.askClearCart()" title="Limpar pedido" style="display:none;" aria-label="Limpar pedido">
-                    <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
-                </button>
-
                 <!-- Botão Carrinho Trigger -->
                 <button type="button" class="btn-cart-trigger" id="btn-cart-nav" onclick="window.openCart()" aria-label="Abrir carrinho de pedidos">
                     <i data-lucide="shopping-bag" style="width:18px; height:18px;"></i>
@@ -59,30 +54,22 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container hero-content">
-            <div class="hero-badge-strip">
-                <i data-lucide="flame" style="width:14px;height:14px;"></i>
-                <span>Massa Artesanal • Frita na Hora</span>
+    <!-- Compact Brand Identity Strip -->
+    <section class="hero-compact-strip">
+        <div class="container hero-strip-layout">
+            <div class="hero-tagline-col">
+                <span class="hero-tagline-badge">
+                    <i data-lucide="flame" style="width:12px;height:12px;"></i> Frita na Hora
+                </span>
+                <span class="hero-tagline-text">O pastel que vem <span>do tamanho da sua fome!</span></span>
             </div>
-
-            <h2 class="hero-title">O pastel que vem <span>do tamanho da sua fome!</span></h2>
-            <p class="hero-subtitle">Massa sequinha, super crocante e recheio de verdade do primeiro ao último pedaço. Faça seu pedido em menos de 1 minuto sem complicação.</p>
-
-            <div class="hero-stats-row">
-                <div class="hero-stat-pill">
-                    <i data-lucide="clock" style="width:14px;height:14px;color:var(--primary);"></i>
-                    <span>Entrega Rápida em Caxias</span>
-                </div>
-                <div class="hero-stat-pill">
-                    <i data-lucide="zap" style="width:14px;height:14px;color:var(--accent-green);"></i>
-                    <span>Direto no WhatsApp Oficial</span>
-                </div>
-                <div class="hero-stat-pill">
-                    <i data-lucide="map-pin" style="width:14px;height:14px;color:var(--accent-red);"></i>
-                    <span>Bairro Cruzeiro</span>
-                </div>
+            <div class="hero-meta-badges">
+                <span class="hero-meta-pill">
+                    <i data-lucide="map-pin" style="width:13px;height:13px;color:var(--primary);"></i> Bairro Cruzeiro
+                </span>
+                <span class="hero-meta-pill">
+                    <i data-lucide="zap" style="width:13px;height:13px;color:var(--accent-green);"></i> Pedido em 2 Toques
+                </span>
             </div>
         </div>
     </section>
@@ -137,12 +124,12 @@
         </div>
     </main>
 
-    <!-- Seção de Diferenciais (Ritmo Alternado Claro) -->
+    <!-- Seção de Diferenciais -->
     <section class="differentials-section">
         <div class="container">
             <div class="diff-title-wrap">
                 <h3 class="diff-title">Por que pedir na Larica's?</h3>
-                <p class="diff-subtitle">Qualidade artesanal e o melhor atendimento da Serra Gaúcha</p>
+                <p class="diff-subtitle">Qualidade artesanal e o melhor atendimento de Caxias do Sul</p>
             </div>
 
             <div class="diff-grid">
@@ -159,7 +146,7 @@
                         <i data-lucide="layers" style="width:26px;height:26px;"></i>
                     </div>
                     <h4>Recheio Farto</h4>
-                    <p>Carne selecionada, frango desfiado suculento e Catupiry/Cheddar legítimos do início ao fim.</p>
+                    <p>Carne selecionada, frango desfiado suculento e Catupiry legítimo do primeiro ao último pedaço.</p>
                 </div>
 
                 <div class="diff-card">
@@ -264,11 +251,19 @@
                 <i data-lucide="shopping-bag" style="color:var(--primary); width:20px; height:20px;"></i>
                 <h3 class="cart-header-title">Meu Pedido</h3>
             </div>
-            <!-- Botão Laranja Continuar Escolhendo -->
-            <button type="button" class="btn-continue-shopping" onclick="window.closeCart()">
-                <span>Continuar Escolhendo</span>
-                <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-            </button>
+            
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button type="button" class="btn-continue-shopping" onclick="window.askClearCart()" title="Limpar pedido" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15); color:#CBD5E1;">
+                    <i data-lucide="trash-2" style="width:13px;height:13px;"></i>
+                    <span>Limpar</span>
+                </button>
+                
+                <!-- Botão Laranja Continuar Escolhendo -->
+                <button type="button" class="btn-continue-shopping" onclick="window.closeCart()">
+                    <span>Fechar</span>
+                    <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+            </div>
         </div>
 
         <div class="cart-body">
@@ -311,17 +306,17 @@
 
                         <div class="form-group-cart" style="margin-top:8px;">
                             <label class="form-label-cart" for="cust-address">Endereço (Rua e Número):</label>
-                            <input type="text" class="form-input-cart" id="cust-address" placeholder="Ex: Rua das Flores, 123">
+                            <input type="text" class="form-input-cart" id="cust-address" placeholder="Ex: Rua Antônio Broilo, 160">
                         </div>
 
                         <div class="form-group-cart" style="margin-top:8px;">
                             <label class="form-label-cart" for="cust-complement">Complemento / Apto / Ponto de Referência:</label>
-                            <input type="text" class="form-input-cart" id="cust-complement" placeholder="Ex: Apto 402, Bloco B">
+                            <input type="text" class="form-input-cart" id="cust-complement" placeholder="Ex: Casa, Apto 201">
                         </div>
                     </div>
                 </div>
 
-                <!-- Forma de Pagamento -->
+                <!-- Forma de Pagamento (Apenas Sinalização sem Chave Pix Exposta) -->
                 <div class="checkout-section-block" style="margin-top:12px;">
                     <h4 class="checkout-block-title">Forma de Pagamento</h4>
                     <div class="payment-options-grid">
@@ -336,18 +331,8 @@
                         </div>
                     </div>
 
-                    <!-- Box Pix -->
-                    <div class="pix-box" id="pix-payment-box">
-                        <span style="font-size:0.75rem; color:#94A3B8;">Chave Pix Oficial (Telefone):</span>
-                        <span class="pix-key-val">54996490510</span>
-                        <button type="button" class="btn-copy-pix" id="btn-copy-pix" onclick="window.copyPixKey()">
-                            <i data-lucide="copy" style="width:14px;height:14px;"></i>
-                            <span>Copiar Chave Pix</span>
-                        </button>
-                    </div>
-
                     <!-- Box Dinheiro (Troco) -->
-                    <div class="form-group-cart" id="money-change-box" style="display:none; margin-top:8px;">
+                    <div class="form-group-cart" id="money-change-box" style="display:none; margin-top:10px;">
                         <label class="form-label-cart" for="cust-troco">Precisa de troco para quanto?</label>
                         <input type="text" class="form-input-cart" id="cust-troco" placeholder="Ex: R$ 50,00 (ou deixe em branco se não precisar)">
                     </div>
@@ -359,7 +344,7 @@
                         <span>Subtotal dos Itens:</span>
                         <span id="cart-subtotal-val">R$ 0,00</span>
                     </div>
-                    <div class="totals-row">
+                    <div class="totals-row" id="delivery-fee-row">
                         <span>Taxa de Entrega:</span>
                         <span id="cart-delivery-fee-val">R$ 6,00</span>
                     </div>
@@ -383,19 +368,25 @@
         </div>
     </aside>
 
-    <!-- WIDGET FLUTUANTE DE PROPOSTA DO JEFF (.onira-cta) -->
-    <div class="onira-proposal-widget" id="onira-proposal-widget" onclick="window.location.href='proposta.html'" role="button" aria-label="Ver proposta comercial do site">
-        <img src="assets/jeff-avatar.webp" alt="Jefferson Motta - Onira Labs" class="widget-avatar">
-        <div class="widget-text-col">
-            <span class="widget-hook">Gostou deste cardápio?</span>
-            <span class="widget-call">Saiba como funciona meu trabalho →</span>
-        </div>
-        <button type="button" class="widget-close-btn" onclick="window.dismissOniraWidget(event)" title="Dispensar aviso" aria-label="Dispensar aviso">
-            <i data-lucide="x" style="width:14px;height:14px;"></i>
+    <!-- WIDGET FLUTUANTE DE PROPOSTA (.onira-cta) -->
+    <div class="onira-cta" id="onira-cta">
+        <a class="onira-cta-link" href="proposta.html" rel="nofollow">
+            <img src="assets/jeff-avatar.webp" alt="Jefferson Motta, Onira Labs" class="onira-cta-avatar" width="38" height="38">
+            <span class="onira-cta-text">
+                <span class="onira-cta-hook">Gostou do site?</span>
+                <span class="onira-cta-call">Saiba como funciona meu trabalho →</span>
+            </span>
+        </a>
+        <button type="button" class="onira-cta-close" id="onira-cta-close" aria-label="Recolher convite" title="Recolher">
+            <i data-lucide="chevron-right"></i>
         </button>
+        <a class="onira-cta-collapsed-pill" href="proposta.html" id="onira-cta-collapsed" aria-label="Ver Proposta">
+            <i data-lucide="briefcase"></i>
+            <span>Compre esse site</span>
+        </a>
     </div>
 
     <!-- Scripts -->
-    <script src="app.js?v=20260819a"></script>
+    <script src="app.js?v=20260831a"></script>
 </body>
 </html>

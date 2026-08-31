@@ -833,12 +833,10 @@ function removeCartItem(cartItemId) {
 
 function askClearCart() {
     if (cart.length === 0) return;
-    if (confirm('Deseja realmente limpar todos os itens do seu pedido?')) {
-        cart = [];
-        saveCartToStorage();
-        updateCartUI();
-        showToast('Pedido limpo com sucesso.');
-    }
+    cart = [];
+    saveCartToStorage();
+    updateCartUI();
+    showToast('Pedido limpo.');
 }
 
 // Atualizar Interface do Carrinho (Drawer Claem Master)
@@ -851,11 +849,9 @@ function updateCartUI() {
     // Badges no Header
     const countBadge = document.getElementById('cart-count');
     const headerTotal = document.getElementById('cart-total-header');
-    const clearBtnHeader = document.getElementById('cart-clear-header');
 
     if (countBadge) countBadge.textContent = totalCount;
     if (headerTotal) headerTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    if (clearBtnHeader) clearBtnHeader.style.display = totalCount > 0 ? 'inline-flex' : 'none';
 
     // Itens no Drawer
     const itemsContainer = document.getElementById('cart-items-container');
@@ -875,30 +871,30 @@ function updateCartUI() {
     if (itemsContainer) {
         itemsContainer.innerHTML = cart.map(item => `
             <div class="cart-item-card">
-                <div class="cart-item-img-wrap">
-                    <img src="${item.img}" alt="${item.name}" class="cart-item-img">
-                </div>
-                <div class="cart-item-details">
-                    <div class="cart-item-header">
+                <div class="cart-item-top">
+                    <div>
                         <h4 class="cart-item-title">${item.name}</h4>
-                        <button class="cart-remove-btn" onclick="removeCartItem('${item.cartItemId}')" aria-label="Remover item">
-                            <i data-lucide="trash" style="width:14px; height:14px;"></i>
-                        </button>
+                        ${item.sizeName ? `<span class="cart-item-size-badge">${item.sizeName}</span>` : ''}
                     </div>
-                    ${item.sizeName ? `<span class="cart-item-size-tag">${item.sizeName}</span>` : ''}
-                    ${item.adicionais && item.adicionais.length > 0 ? `
-                        <div class="cart-item-adds">
-                            ${item.adicionais.map(a => `<span>+ ${a.name} (R$ ${a.price.toFixed(2).replace('.', ',')})</span>`).join('')}
-                        </div>
-                    ` : ''}
-                    ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
-                    <div class="cart-item-bottom">
-                        <div class="cart-qty-selector">
-                            <button class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', -1)" aria-label="Diminuir quantidade">−</button>
-                            <span class="qty-num">${item.quantity}</span>
-                            <button class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', 1)" aria-label="Aumentar quantidade">+</button>
-                        </div>
-                        <span class="cart-item-total-price">R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}</span>
+                    <button type="button" class="qty-btn" onclick="removeCartItem('${item.cartItemId}')" aria-label="Remover item" style="color:#94A3B8;">
+                        <i data-lucide="trash-2" style="width:14px; height:14px;"></i>
+                    </button>
+                </div>
+
+                ${item.adicionais && item.adicionais.length > 0 ? `
+                    <div class="cart-item-adds">
+                        ${item.adicionais.map(a => `<div>+ ${a.name} (R$ ${a.price.toFixed(2).replace('.', ',')})</div>`).join('')}
+                    </div>
+                ` : ''}
+
+                ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
+
+                <div class="cart-item-bottom">
+                    <span class="cart-item-price">R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}</span>
+                    <div class="qty-control-box">
+                        <button type="button" class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', -1)" aria-label="Diminuir">−</button>
+                        <span class="qty-val">${item.quantity}</span>
+                        <button type="button" class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', 1)" aria-label="Aumentar">+</button>
                     </div>
                 </div>
             </div>
@@ -909,14 +905,12 @@ function updateCartUI() {
     const subtotalEl = document.getElementById('cart-subtotal-val');
     const deliveryFeeEl = document.getElementById('cart-delivery-fee-val');
     const finalTotalEl = document.getElementById('cart-final-total-val');
-    const pixTotalEl = document.getElementById('pix-amount-display');
 
     if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
     if (deliveryFeeEl) {
         deliveryFeeEl.textContent = orderType === 'delivery' ? `R$ ${selectedDeliveryFee.toFixed(2).replace('.', ',')}` : 'Grátis (Balcão)';
     }
     if (finalTotalEl) finalTotalEl.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
-    if (pixTotalEl) pixTotalEl.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 
     if (window.lucide) window.lucide.createIcons();
 }
@@ -988,10 +982,7 @@ function setPaymentMethod(method) {
         else m.classList.remove('selected');
     });
 
-    const pixBox = document.getElementById('pix-payment-box');
     const moneyBox = document.getElementById('money-change-box');
-
-    if (pixBox) pixBox.style.display = method === 'pix' ? 'block' : 'none';
     if (moneyBox) moneyBox.style.display = method === 'money' ? 'block' : 'none';
 }
 
@@ -1132,29 +1123,33 @@ _Enviado pelo site da Larica's Pastelaria_`;
     window.open(whatsappUrl, '_blank');
 }
 
-// Widget Flutuante de Proposta Onira Labs
+// FLOATING ONIRA PROPOSAL WIDGET (.onira-cta)
 function initScrollProposalWidget() {
-    const widget = document.getElementById('onira-proposal-widget');
-    if (!widget) return;
+    const cta = document.getElementById('onira-cta');
+    const fechar = document.getElementById('onira-cta-close');
+    if (!cta) return;
 
-    if (localStorage.getItem('laricas_cta_onira') === 'dispensado') {
-        return;
+    if (sessionStorage.getItem('onira_cta_collapsed') === '1') {
+        cta.classList.add('collapsed');
     }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 280) {
-            widget.classList.add('visible');
-        } else {
-            widget.classList.remove('visible');
-        }
-    });
-}
+    if (fechar) {
+        fechar.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            cta.classList.add('collapsed');
+            sessionStorage.setItem('onira_cta_collapsed', '1');
+        });
+    }
 
-function dismissOniraWidget(event) {
-    if (event) event.stopPropagation();
-    const widget = document.getElementById('onira-proposal-widget');
-    if (widget) widget.classList.remove('visible');
-    localStorage.setItem('laricas_cta_onira', 'dispensado');
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        cta.classList.add('scrolling');
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            cta.classList.remove('scrolling');
+        }, 300);
+    }, { passive: true });
 }
 
 // Toast Notifier
