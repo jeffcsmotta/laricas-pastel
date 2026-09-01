@@ -1,1146 +1,1011 @@
 /**
  * Larica's Pastel - Caxias do Sul - RS
  * Cardápio Digital & Sistema de Pedidos Direto no WhatsApp
- * Powered by Onira Labs
+ * Powered by Onira Labs - Design System Master v2
  */
 
-// WhatsApp Oficial da Larica's Pastel (Número Real Verificado)
-const WHATSAPP_PHONE = '5554996490510';
-const CHAVE_PIX_OFICIAL = '54996490510'; // Chave Pix Telefone
+const WHATSAPP_PHONE = '5554992523774';
+const CATALOG_STORAGE_KEY = 'laricas_catalog_v20260901_master';
 
 // Taxas de Entrega por Bairro em Caxias do Sul
 const DELIVERY_ZONES = [
-    { neighborhood: 'Cruzeiro (Bairro da Loja)', fee: 6.00, time: '30-45 min' },
-    { neighborhood: 'Bela Vista', fee: 7.00, time: '35-50 min' },
-    { neighborhood: 'Sagrada Família', fee: 7.00, time: '35-50 min' },
-    { neighborhood: 'Lourdes', fee: 8.00, time: '40-55 min' },
-    { neighborhood: 'Panazzolo', fee: 8.00, time: '40-55 min' },
-    { neighborhood: 'Cristo Redentor', fee: 8.00, time: '40-55 min' },
-    { neighborhood: 'São Leopoldo', fee: 8.00, time: '40-55 min' },
-    { neighborhood: 'Petrópolis', fee: 8.00, time: '40-55 min' },
-    { neighborhood: 'Centro', fee: 9.00, time: '40-55 min' },
-    { neighborhood: 'Rio Branco', fee: 9.00, time: '40-55 min' },
-    { neighborhood: 'Pio X', fee: 10.00, time: '45-60 min' },
-    { neighborhood: 'Santa Catarina', fee: 11.00, time: '45-60 min' },
-    { neighborhood: 'Villagio Iguatemi / Sanvitto', fee: 11.00, time: '45-60 min' },
-    { neighborhood: 'Outro Bairro (Caxias do Sul)', fee: 10.00, time: '45-60 min' }
+    { neighborhood: 'Bairro Cruzeiro (Bairro da Casa)', fee: 7.00, time: '25-40 min' },
+    { neighborhood: 'Bela Vista / Panazzolo', fee: 8.00, time: '25-40 min' },
+    { neighborhood: 'Lourdes / Exposição', fee: 9.00, time: '30-45 min' },
+    { neighborhood: 'Centro / Cristo Redentor', fee: 10.00, time: '30-45 min' },
+    { neighborhood: 'São Pelegrino / Pio X', fee: 11.00, time: '35-50 min' },
+    { neighborhood: 'Sanvitto / Villagio Caxias', fee: 12.00, time: '35-50 min' },
+    { neighborhood: 'Santa Catarina / Universitário', fee: 12.00, time: '35-50 min' },
+    { neighborhood: 'Cinquentenário / Marechal Floriano', fee: 12.00, time: '35-50 min' },
+    { neighborhood: 'Ana Rech / Forqueta', fee: 20.00, time: '50-70 min' },
+    { neighborhood: 'Outro Bairro (Caxias do Sul)', fee: 14.00, time: '40-60 min' }
 ];
 
-// Catálogo de Produtos da Larica's Pastel
-const PRODUCTS = [
-    // === PROMOÇÕES DO DIA ===
+// Catálogo Oficial do Larica's Pastel
+const DEFAULT_PRODUCTS = [
+    // --- MAIS PEDIDOS / PROMOÇÕES ---
     {
-        id: 'promo-1',
-        name: 'Super Dupla M (17cm cada)',
-        category: 'promocoes',
-        desc: '1 Pastel de Frango com Cheddar M (17cm) + 1 Pastel de Carne com Catupiry M (17cm). Crocantes e muito recheados!',
-        badge: 'Promoção do Dia',
-        rating: '5.0',
-        img: 'assets/pastel1.jpg',
-        price: 22.50,
-        sizes: [
-            { name: 'Combo (2x Pastéis M 17cm)', price: 22.50 }
-        ],
-        hasAdicionais: true
+        id: "laricas-001",
+        name: "Pastel Larica's Monstro (30cm)",
+        category: "promocoes",
+        group: "Mais Vendidos",
+        desc: "Carne bovina refogada de primeira, bacon crocante em cubos, queijo mussarela farto, ovos cozidos, milho verde e azeitonas pretas fatiadas.",
+        badge: "O Mais Famoso ⭐",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
+        price: 26.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante Monstro (30cm)", extra: 8.00 }
+            ],
+            addons: [
+                { name: "Catupiry Original", price: 5.00 },
+                { name: "Cheddar Cremoso", price: 4.50 },
+                { name: "Bacon Extra", price: 4.50 }
+            ]
+        }
     },
     {
-        id: 'promo-2',
-        name: 'Combo Família 4 Pastéis M + Guaraná 600ml',
-        category: 'promocoes',
-        desc: '4 Pastéis Médios de 17cm (Carne c/ Catupiry, Carne c/ Cheddar, Frango c/ Catupiry e Frango c/ Cheddar) + 1 Guaraná 600ml geladinho.',
-        badge: 'Mais Pedido',
-        rating: '5.0',
-        img: 'assets/pastel2.jpg',
-        price: 45.00,
-        sizes: [
-            { name: 'Combo 4x Pastéis + Guaraná 600ml', price: 45.00 }
-        ],
-        hasAdicionais: true
-    },
-
-    // === COMBOS ESPECIAIS ===
-    {
-        id: 'combo-1',
-        name: 'Combo Mini: 4 Pastéis Mini (10cm)',
-        category: 'combos',
-        desc: 'Ideal para petiscar ou experimentar sabores! 4 pastéis minis de 10cm com massa artesanal super sequinha e crocante.',
-        badge: 'Mix Degustação',
-        rating: '4.9',
-        img: 'assets/pastel3.jpg',
-        price: 29.90,
-        sizes: [
-            { name: '4x Mini Pastéis 10cm', price: 29.90 }
-        ],
-        hasAdicionais: true
+        id: "laricas-002",
+        name: "Combo Casal da Larica",
+        category: "combos",
+        group: "Mais Vendidos",
+        desc: "2 Pastéis Salgados de 20cm (Carne c/ Queijo ou Frango c/ Catupiry) + 1 Pastel Doce de Chocolate + 1 Refrigerante 2L.",
+        badge: "Melhor Custo-Benefício ⚡",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80",
+        price: 58.00,
+        hasAdicionais: true,
+        options: {
+            doneness: ["Refrigerante: Guaraná 2L", "Refrigerante: Coca-Cola 2L (+R$ 3,00)"]
+        }
     },
     {
-        id: 'combo-2',
-        name: 'Combo Mix Total: 6 Pastéis + Fruki 600ml',
-        category: 'combos',
-        desc: '1 Carne Catupiry + 1 Carne Cheddar + 1 Frango Catupiry + 1 Frango Cheddar + 1 Carne 3 Queijos + 1 Frango 3 Queijos + 1 Fruki 600ml.',
-        badge: 'Super Fome',
-        rating: '5.0',
-        img: 'assets/pastel_carne.png',
-        price: 90.00,
-        sizes: [
-            { name: 'Combo 6x Pastéis M + Fruki 600ml', price: 90.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'combo-3',
-        name: 'Combo Duplo Frango + Guaraná 200ml',
-        category: 'combos',
-        desc: '1 Pastel de Frango com Catupiry M (17cm) + 1 Pastel de Frango com Cheddar M (17cm) + 1 Guaraná 200ml.',
-        badge: 'Especial',
-        rating: '4.9',
-        img: 'assets/pastel_queijo.png',
-        price: 27.50,
-        sizes: [
-            { name: 'Combo 2x Pastéis + Refri 200ml', price: 27.50 }
-        ],
-        hasAdicionais: true
+        id: "laricas-003",
+        name: "Pastel de Costela Gaúcha Desfiada & Mussarela",
+        category: "salgados",
+        group: "Mais Vendidos",
+        desc: "Costela de ripa desfiada e temperada na cerveja preta com generosa camada de queijo mussarela derretido.",
+        badge: "Costela Gaúcha 🍖",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
+        price: 24.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 8.00 }
+            ]
+        }
     },
 
-    // === PASTÉIS SALGADOS ===
+    // --- PASTÉIS SALGADOS ---
     {
-        id: 'salg-1',
-        name: 'Carne com Catupiry',
-        category: 'salgados',
-        desc: 'Carne moída bovina selecionada, refogada no tempero especial da casa com generosa camada de Catupiry cremoso original.',
-        badge: 'Campeão de Vendas',
-        rating: '5.0',
-        img: 'assets/pastel_carne.png',
-        sizes: [
-            { name: 'Médio (17cm)', price: 15.50 },
-            { name: 'Grande (22cm)', price: 18.50 },
-            { name: 'BIG (30cm - Gigante)', price: 31.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-2',
-        name: 'Frango com Catupiry',
-        category: 'salgados',
-        desc: 'Peito de frango desfiado suculento temperado com ervas finas e coberto com Catupiry cremoso legítimo.',
-        badge: 'Clássico da Casa',
-        rating: '4.9',
-        img: 'assets/pastel_queijo.png',
-        sizes: [
-            { name: 'Médio (17cm)', price: 15.50 },
-            { name: 'Grande (22cm)', price: 18.50 },
-            { name: 'BIG (30cm - Gigante)', price: 31.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-3',
-        name: 'Carne com Cheddar',
-        category: 'salgados',
-        desc: 'Carne bovina refogada e temperada com cheddar cremoso derretido de sabor marcante e irresistível.',
-        badge: 'Favorito',
-        rating: '4.9',
-        img: 'assets/pastel1.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 15.50 },
-            { name: 'Grande (22cm)', price: 18.50 },
-            { name: 'BIG (30cm - Gigante)', price: 31.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-4',
-        name: 'Frango com Cheddar e Bacon',
-        category: 'salgados',
-        desc: 'Frango desfiado com cheddar cremoso e cubos de bacon crocantes dourados na hora.',
-        badge: 'Top Recheio',
-        rating: '5.0',
-        img: 'assets/pastel2.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 17.00 },
-            { name: 'Grande (22cm)', price: 20.50 },
-            { name: 'BIG (30cm - Gigante)', price: 33.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-5',
-        name: 'Carne 3 Queijos Nobre',
-        category: 'salgados',
-        desc: 'Carne moída temperada, queijo muçarela derretido, provolone defumado e Catupiry legítimo.',
-        badge: 'Especial',
-        rating: '5.0',
-        img: 'assets/pastel_carne.png',
-        sizes: [
-            { name: 'Médio (17cm)', price: 17.50 },
-            { name: 'Grande (22cm)', price: 21.00 },
-            { name: 'BIG (30cm - Gigante)', price: 34.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-6',
-        name: 'Frango 3 Queijos Nobre',
-        category: 'salgados',
-        desc: 'Frango desfiado suculento com combinação nobre de muçarela, provolone e Catupiry.',
-        badge: 'Muito Recheio',
-        rating: '4.9',
-        img: 'assets/pastel3.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 17.50 },
-            { name: 'Grande (22cm)', price: 21.00 },
-            { name: 'BIG (30cm - Gigante)', price: 34.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-7',
-        name: 'Pizza Tradicional',
-        category: 'salgados',
-        desc: 'Muçarela farta, presunto de primeira, rodelas de tomate fresco e toque especial de orégano.',
-        badge: 'Tradicional',
-        rating: '4.8',
-        img: 'assets/pastel_queijo.png',
-        sizes: [
-            { name: 'Médio (17cm)', price: 15.50 },
-            { name: 'Grande (22cm)', price: 18.50 },
-            { name: 'BIG (30cm - Gigante)', price: 31.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-8',
-        name: 'Calabresa com Queijo & Cebola',
-        category: 'salgados',
-        desc: 'Calabresa especial fatiada e moída, muçarela derretida, cebola suave e orégano.',
-        badge: 'Saboroso',
-        rating: '4.8',
-        img: 'assets/pastel1.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 15.50 },
-            { name: 'Grande (22cm)', price: 18.50 },
-            { name: 'BIG (30cm - Gigante)', price: 31.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-9',
-        name: 'Quatro Queijos Supremo',
-        category: 'salgados',
-        desc: 'Explosão de queijos: Muçarela, Provolone defumado, Parmesão ralado e Catupiry cremoso.',
-        badge: 'Cremoso',
-        rating: '5.0',
-        img: 'assets/pastel_queijo.png',
-        sizes: [
-            { name: 'Médio (17cm)', price: 17.50 },
-            { name: 'Grande (22cm)', price: 21.00 },
-            { name: 'BIG (30cm - Gigante)', price: 34.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-10',
-        name: 'Palmito com Catupiry',
-        category: 'salgados',
-        desc: 'Palmito nobre picadinho, tempero suave com ervas, muçarela e Catupiry cremoso.',
-        badge: 'Leve & Saboroso',
-        rating: '4.8',
-        img: 'assets/pastel2.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 17.00 },
-            { name: 'Grande (22cm)', price: 20.50 },
-            { name: 'BIG (30cm - Gigante)', price: 33.50 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'salg-11',
-        name: 'Strogonoff de Carne Especial',
-        category: 'salgados',
-        desc: 'Iscas de carne bovina macia ao molho strogonoff cremoso com champignon e batata palha crocante.',
-        badge: 'Gourmet',
-        rating: '5.0',
-        img: 'assets/pastel3.jpg',
-        sizes: [
-            { name: 'Médio (17cm)', price: 18.50 },
-            { name: 'Grande (22cm)', price: 22.50 },
-            { name: 'BIG (30cm - Gigante)', price: 36.00 }
-        ],
-        hasAdicionais: true
-    },
-
-    // === PASTÉIS DOCES ===
-    {
-        id: 'doce-1',
-        name: 'Chocolate Preto com Morango',
-        category: 'doces',
-        desc: 'Chocolate preto cremoso de alta qualidade com morangos frescos fatiados na hora.',
-        badge: 'Campeão Doce',
-        rating: '5.0',
-        img: 'assets/pastel_doce.png',
-        sizes: [
-            { name: 'Mini (10cm)', price: 8.00 },
-            { name: 'Médio (17cm)', price: 16.00 },
-            { name: 'Grande (22cm)', price: 19.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'doce-2',
-        name: 'Chocolate Branco com Morango',
-        category: 'doces',
-        desc: 'Creme de chocolate branco aveludado com pedaços de morango natural fresco.',
-        badge: 'Delicioso',
-        rating: '4.9',
-        img: 'assets/doce.jpg',
-        sizes: [
-            { name: 'Mini (10cm)', price: 8.00 },
-            { name: 'Médio (17cm)', price: 16.00 },
-            { name: 'Grande (22cm)', price: 19.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'doce-3',
-        name: 'Nutella com Leite Ninho',
-        category: 'doces',
-        desc: 'A combinação perfeita de Nutella legítima com generosa camada de leite Ninho cremoso.',
-        badge: 'Gourmet Doce',
-        rating: '5.0',
-        img: 'assets/pastel_doce.png',
-        sizes: [
-            { name: 'Mini (10cm)', price: 9.50 },
-            { name: 'Médio (17cm)', price: 18.00 },
-            { name: 'Grande (22cm)', price: 22.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'doce-4',
-        name: 'Banana com Canela e Doce de Leite',
-        category: 'doces',
-        desc: 'Fatias de banana flambadas com canela aromática e doce de leite artesanal cremoso.',
-        badge: 'Clássico',
-        rating: '4.9',
-        img: 'assets/doce.jpg',
-        sizes: [
-            { name: 'Mini (10cm)', price: 8.00 },
-            { name: 'Médio (17cm)', price: 16.00 },
-            { name: 'Grande (22cm)', price: 19.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'doce-5',
-        name: 'Romeu e Julieta',
-        category: 'doces',
-        desc: 'Goiabada cascão cremosa derretida com queijo muçarela salgadinho na medida certa.',
-        badge: 'Tradicional',
-        rating: '4.8',
-        img: 'assets/pastel_doce.png',
-        sizes: [
-            { name: 'Mini (10cm)', price: 8.00 },
-            { name: 'Médio (17cm)', price: 16.00 },
-            { name: 'Grande (22cm)', price: 19.00 }
-        ],
-        hasAdicionais: true
-    },
-    {
-        id: 'doce-6',
-        name: 'Sensação Especial',
-        category: 'doces',
-        desc: 'Chocolate preto derretido, creme de morango aveludado e pedaços de morango.',
-        badge: 'Irresistível',
-        rating: '5.0',
-        img: 'assets/doce.jpg',
-        sizes: [
-            { name: 'Mini (10cm)', price: 8.50 },
-            { name: 'Médio (17cm)', price: 17.00 },
-            { name: 'Grande (22cm)', price: 20.00 }
-        ],
-        hasAdicionais: true
-    },
-
-    // === PASTELINA & PETISCOS ===
-    {
-        id: 'petisco-1',
-        name: 'Pastelina Tradicional Crocante (150g)',
-        category: 'pastelina',
-        desc: 'Tiras sequinhas e super crocantes de massa de pastel frita temperada com sal especial e ervas da casa. Perfeito para petiscar!',
-        badge: 'Petisco da Casa',
-        rating: '4.9',
-        img: 'assets/fritas.jpg',
-        price: 12.00,
-        sizes: [
-            { name: 'Porção 150g', price: 12.00 }
-        ],
-        hasAdicionais: false
-    },
-    {
-        id: 'petisco-2',
-        name: 'Pastelina com Molho Cheddar & Bacon (200g)',
-        category: 'pastelina',
-        desc: 'Tiras de massa de pastel crocante servidas com pote de cheddar cremoso quente e farofa de bacon crocante.',
-        badge: 'Com Molho',
-        rating: '5.0',
-        img: 'assets/fritas.jpg',
+        id: "laricas-004",
+        name: "Pastel de Carne com Queijo",
+        category: "salgados",
+        group: "Salgados",
+        desc: "Carne bovina temperada e refogada com queijo mussarela.",
+        badge: "Clássico 🥩",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
         price: 18.00,
-        sizes: [
-            { name: 'Porção 200g + Pote Cheddar/Bacon', price: 18.00 }
-        ],
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 7.00 }
+            ]
+        }
+    },
+    {
+        id: "laricas-005",
+        name: "Pastel de Frango com Catupiry",
+        category: "salgados",
+        group: "Salgados",
+        desc: "Frango desfiado suculento com Catupiry legítimo e orégano.",
+        badge: "Cremoso 🍗",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
+        price: 19.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 7.00 }
+            ]
+        }
+    },
+    {
+        id: "laricas-006",
+        name: "Pastel Quatro Queijos Especial",
+        category: "salgados",
+        group: "Salgados",
+        desc: "Mussarela, Provolone defumado, Parmesão ralado e Catupiry cremoso.",
+        badge: "Queijo Farto 🧀",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
+        price: 21.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 8.00 }
+            ]
+        }
+    },
+    {
+        id: "laricas-007",
+        name: "Pastel de Coração de Frango na Chapa c/ Queijo",
+        category: "salgados",
+        group: "Salgados",
+        desc: "Coraçõezinhos de frango chapeados no alho e azeite com queijo mussarela derretido.",
+        badge: "Tradição Gaúcha ❤️",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
+        price: 23.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 8.00 }
+            ]
+        }
+    },
+
+    // --- DOCES GOURMET ---
+    {
+        id: "laricas-008",
+        name: "Pastel de Nutella Pura com Morango",
+        category: "doces",
+        group: "Doces",
+        desc: "Nutella cremosa e morangos frescos fatiados dentro da massa crocante açucarada com canela.",
+        badge: "Doce Mais Pedido 🍓",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
+        price: 22.00,
+        hasAdicionais: true,
+        options: {
+            sizes: [
+                { name: "Médio (20cm)", extra: 0 },
+                { name: "Gigante (30cm)", extra: 8.00 }
+            ]
+        }
+    },
+    {
+        id: "laricas-009",
+        name: "Pastel Romeu e Julieta (Goiabada Cascão & Queijo)",
+        category: "doces",
+        group: "Doces",
+        desc: "Goiabada cascão cremosa com farta camada de queijo mussarela derretido.",
+        badge: "Clássico Doce 🍯",
+        rating: "4.8",
+        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
+        price: 18.00,
         hasAdicionais: false
     },
 
-    // === BEBIDAS ===
+    // --- PASTELINA CROCANTE ---
     {
-        id: 'beb-1',
-        name: 'Refrigerante Lata 350ml',
-        category: 'bebidas',
-        desc: 'Coca-Cola Tradicional, Coca Zero, Guaraná Antarctica, Sprite ou Fanta Laranja geladíssima.',
-        badge: 'Geladinho',
-        rating: '4.9',
-        img: 'assets/empanadas.jpeg',
-        price: 6.00,
-        sizes: [
-            { name: 'Lata 350ml', price: 6.00 }
-        ],
+        id: "laricas-010",
+        name: "Pacote de Pastelina Crocante (Açúcar e Canela)",
+        category: "pastelina",
+        group: "Pastelina",
+        desc: "Tirinhas crocantes e douradas de massa de pastel frita, salpicadas com açúcar refinado e canela.",
+        badge: "Snack Crocante 🌟",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
+        price: 10.00,
         hasAdicionais: false
     },
     {
-        id: 'beb-2',
-        name: 'Guaraná Fruki 600ml',
-        category: 'bebidas',
-        desc: 'O autêntico sabor gaúcho de Guaraná Fruki na garrafa de 600ml.',
-        badge: 'Gaúcho',
-        rating: '5.0',
-        img: 'assets/empanadas.jpeg',
-        price: 8.50,
-        sizes: [
-            { name: 'Garrafa 600ml', price: 8.50 }
-        ],
+        id: "laricas-011",
+        name: "Pacote de Pastelina Salgada com Ervas Finas",
+        category: "pastelina",
+        group: "Pastelina",
+        desc: "Tirinhas crocantes de massa de pastel frita sequinha temperadas com sal e mix de ervas finas.",
+        badge: "Aperitivo Perfeito 🥨",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
+        price: 10.00,
         hasAdicionais: false
     },
+
+    // --- BEBIDAS ---
     {
-        id: 'beb-3',
-        name: 'Guaraná Antarctica 600ml',
-        category: 'bebidas',
-        desc: 'Guaraná Antarctica gelado 600ml.',
-        badge: 'Gelado',
-        rating: '4.8',
-        img: 'assets/empanadas.jpeg',
-        price: 8.50,
-        sizes: [
-            { name: 'Garrafa 600ml', price: 8.50 }
-        ],
-        hasAdicionais: false
-    },
-    {
-        id: 'beb-4',
-        name: 'Coca-Cola 2 Litros',
-        category: 'bebidas',
-        desc: 'Garrafa de Coca-Cola 2L para dividir com a galera ou família.',
-        badge: 'Família',
-        rating: '5.0',
-        img: 'assets/empanadas.jpeg',
+        id: "laricas-012",
+        name: "Coca-Cola 2L Gelada",
+        category: "bebidas",
+        group: "Bebidas",
+        desc: "Garrafa 2 Litros gelada.",
+        badge: "Família 🥤",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80",
         price: 14.00,
-        sizes: [
-            { name: 'Garrafa 2L', price: 14.00 }
-        ],
         hasAdicionais: false
     },
     {
-        id: 'beb-5',
-        name: 'Guaraná Fruki 2 Litros',
-        category: 'bebidas',
-        desc: 'Garrafa de Fruki Guaraná 2L geladinha.',
-        badge: 'Favorito RS',
-        rating: '4.9',
-        img: 'assets/empanadas.jpeg',
-        price: 11.00,
-        sizes: [
-            { name: 'Garrafa 2L', price: 11.00 }
-        ],
+        id: "laricas-013",
+        name: "Guaraná Antarctica 2L Gelado",
+        category: "bebidas",
+        group: "Bebidas",
+        desc: "Garrafa 2 Litros gelada.",
+        badge: "Geladão 🍃",
+        rating: "4.9",
+        img: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=700&q=80",
+        price: 12.00,
         hasAdicionais: false
     },
     {
-        id: 'beb-6',
-        name: 'Suco Del Valle Lata 290ml',
-        category: 'bebidas',
-        desc: 'Suco natural sabor Uva ou Pêssego.',
-        badge: 'Suco',
-        rating: '4.8',
-        img: 'assets/empanadas.jpeg',
-        price: 7.00,
-        sizes: [
-            { name: 'Lata 290ml', price: 7.00 }
-        ],
-        hasAdicionais: false
-    },
-    {
-        id: 'beb-7',
-        name: 'Água Mineral 500ml',
-        category: 'bebidas',
-        desc: 'Água mineral límpida com ou sem gás.',
-        badge: 'Água',
-        rating: '4.8',
-        img: 'assets/empanadas.jpeg',
-        price: 4.00,
-        sizes: [
-            { name: 'Garrafa 500ml', price: 4.00 }
-        ],
-        hasAdicionais: false
-    },
-    {
-        id: 'beb-8',
-        name: 'Cerveja Heineken Long Neck 330ml',
-        category: 'bebidas',
-        desc: 'Cerveja puro malte premium estupidamente gelada (Venda proibida para menores de 18 anos).',
-        badge: 'Puro Malte',
-        rating: '5.0',
-        img: 'assets/empanadas.jpeg',
-        price: 11.00,
-        sizes: [
-            { name: 'Long Neck 330ml', price: 11.00 }
-        ],
+        id: "laricas-014",
+        name: "Coca-Cola Lata 350ml",
+        category: "bebidas",
+        group: "Bebidas",
+        desc: "Lata 350ml bem gelada.",
+        badge: "Gelada 🥤",
+        rating: "5.0",
+        img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80",
+        price: 6.00,
         hasAdicionais: false
     }
 ];
 
-// Opcionais / Adicionais para Pastéis
-const ADICIONAIS_LIST = [
-    { id: 'add-catupiry', name: 'Catupiry Original Extra', price: 3.50 },
-    { id: 'add-cheddar', name: 'Cheddar Cremoso Extra', price: 3.50 },
-    { id: 'add-bacon', name: 'Bacon Crocante em Cubos', price: 4.00 },
-    { id: 'add-queijo', name: 'Queijo Muçarela Extra', price: 4.00 },
-    { id: 'add-ovo', name: 'Ovo Frito na Chapa', price: 2.50 },
-    { id: 'add-milho', name: 'Milho Verde Selecionado', price: 2.00 },
-    { id: 'add-azeitona', name: 'Azeitona Fatiada', price: 2.00 },
-    { id: 'add-pimenta', name: 'Pimenta Biquinho Suave', price: 2.00 }
-];
+function getProducts() {
+    const saved = localStorage.getItem(CATALOG_STORAGE_KEY);
+    if (saved) {
+        try {
+            return JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao ler catálogo:', e);
+        }
+    }
+    localStorage.setItem(CATALOG_STORAGE_KEY, JSON.stringify(DEFAULT_PRODUCTS));
+    return DEFAULT_PRODUCTS;
+}
 
-// Estado Global da Aplicação
+let PRODUCTS = getProducts();
+
 let cart = [];
-let selectedCategory = 'todos';
-let activeSearchQuery = '';
-let currentCustomizingProduct = null;
-let currentSelectedSizeIndex = 0;
-let currentCustomAdicionais = [];
-let currentCustomObs = '';
-let orderType = 'delivery'; // 'delivery' | 'pickup'
-let selectedDeliveryFee = 6.00;
-let selectedDeliveryZoneName = 'Cruzeiro (Bairro da Loja)';
-let paymentMethod = 'pix'; // 'pix' | 'card' | 'money'
+let currentCategory = 'todos';
+let searchQuery = '';
+let activeModalProduct = null;
+let modalQuantity = 1;
+let selectedDoneness = '';
+let selectedSizeExtra = 0;
+let selectedSizeName = '';
+let selectedAddons = [];
+let selectedDeliveryType = 'delivery';
+let selectedDeliveryZone = DELIVERY_ZONES[0];
+let selectedPaymentMethod = 'pix';
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     loadCartFromStorage();
-    renderCategories();
-    renderDeliveryZonesSelect();
-    renderProducts();
-    updateCartUI();
-    initScrollProposalWidget();
-    checkStoreStatus();
-
-    // Inicializar ícones Lucide
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
+    renderCatalog();
+    renderDeliveryZones();
+    checkBusinessStatus();
+    setupScrollBehavior();
+    lucide.createIcons();
 });
 
-// Checar Status da Loja (18:30 às 23:00)
-function checkStoreStatus() {
-    const statusDot = document.querySelector('.status-dot');
-    const statusText = document.getElementById('store-status-text');
-    if (!statusText) return;
+function getFilteredProducts() {
+    return PRODUCTS.filter(p => {
+        if (p.isPaused) return false;
+        
+        const matchCategory = (currentCategory === 'todos') ||
+            (currentCategory === 'promocoes' && p.group === 'Mais Vendidos') ||
+            (p.category === currentCategory);
 
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMin = now.getMinutes();
-    const currentTimeInMin = currentHour * 60 + currentMin;
-    const openTimeInMin = 18 * 60 + 30; // 18:30
-    const closeTimeInMin = 23 * 60; // 23:00
+        if (!matchCategory) return false;
 
-    const isOpen = currentTimeInMin >= openTimeInMin && currentTimeInMin < closeTimeInMin;
+        if (searchQuery.trim() !== '') {
+            const q = searchQuery.toLowerCase();
+            const nameMatch = p.name.toLowerCase().includes(q);
+            const descMatch = (p.desc || '').toLowerCase().includes(q);
+            const badgeMatch = (p.badge || '').toLowerCase().includes(q);
+            return nameMatch || descMatch || badgeMatch;
+        }
 
-    if (isOpen) {
-        if (statusDot) statusDot.style.background = '#10B981';
-        statusText.innerHTML = 'Aberto Agora • 18:30 às 23:00';
-    } else {
-        if (statusDot) statusDot.style.background = '#F59E0B';
-        statusText.innerHTML = 'Recebendo Pedidos • Abre às 18:30';
-    }
-}
-
-// Renderizar Categorias no Menu Superior
-function renderCategories() {
-    const navPills = document.querySelectorAll('.cat-pill');
-    navPills.forEach(pill => {
-        pill.addEventListener('click', (e) => {
-            navPills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            selectedCategory = pill.getAttribute('data-category');
-            renderProducts();
-        });
+        return true;
     });
 }
 
-// Filtro de Busca
-function handleSearch(event) {
-    activeSearchQuery = event.target.value.toLowerCase().trim();
-    renderProducts();
-}
-
-// Renderizar Produtos no Grid
-function renderProducts() {
-    const grid = document.getElementById('products-grid');
+function renderCatalog() {
+    const grid = document.getElementById('catalog-grid');
     if (!grid) return;
 
-    let filtered = PRODUCTS.filter(prod => {
-        const matchesCategory = selectedCategory === 'todos' || prod.category === selectedCategory;
-        const matchesSearch = prod.name.toLowerCase().includes(activeSearchQuery) || 
-                              prod.desc.toLowerCase().includes(activeSearchQuery);
-        return matchesCategory && matchesSearch;
-    });
+    const items = getFilteredProducts();
 
-    if (filtered.length === 0) {
+    if (items.length === 0) {
         grid.innerHTML = `
-            <div class="empty-state">
-                <i data-lucide="search-x" style="width: 48px; height: 48px; color: #94A3B8; margin-bottom: 12px;"></i>
+            <div class="empty-catalog-state">
+                <i data-lucide="search-x" style="width:48px;height:48px;color:#DC2626;margin-bottom:12px;"></i>
                 <h3>Nenhum item encontrado</h3>
-                <p>Tente buscar por outro sabor de pastel ou selecione outra categoria acima.</p>
+                <p>Tente buscar por outro sabor ou selecione outra categoria.</p>
+                <button type="button" class="btn-reset-filters" onclick="window.resetFilters()">Ver todo o cardápio</button>
             </div>
         `;
-        if (window.lucide) window.lucide.createIcons();
+        lucide.createIcons();
         return;
     }
 
-    grid.innerHTML = filtered.map(prod => {
-        const basePrice = prod.price || (prod.sizes && prod.sizes[0] ? prod.sizes[0].price : 0);
-        const hasMultipleSizes = prod.sizes && prod.sizes.length > 1;
-        const priceLabel = hasMultipleSizes ? `A partir de <strong>R$ ${basePrice.toFixed(2).replace('.', ',')}</strong>` : `<strong>R$ ${basePrice.toFixed(2).replace('.', ',')}</strong>`;
+    grid.innerHTML = items.map(p => `
+        <article class="product-card" data-id="${p.id}">
+            <div class="card-img-wrapper" onclick="window.openProductModal('${p.id}')">
+                <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+                ${p.badge ? `<span class="badge-tag">${p.badge}</span>` : ''}
+                <div class="rating-pill">
+                    <i data-lucide="star" style="width:12px;height:12px;fill:#F59E0B;stroke:none;"></i>
+                    <span>${p.rating || '5.0'}</span>
+                </div>
+            </div>
 
-        return `
-            <div class="menu-card" data-id="${prod.id}">
-                <div class="card-img-box" onclick="openProductCustomizer('${prod.id}')">
-                    <img src="${prod.img}" alt="${prod.name}" class="card-img" loading="lazy">
-                    <span class="card-badge">${prod.badge}</span>
-                    <div class="card-rating">
-                        <i data-lucide="star" style="width: 13px; height: 13px; fill: #F59E0B; color: #F59E0B;"></i>
-                        <span>${prod.rating}</span>
+            <div class="card-info">
+                <div class="card-header-row" onclick="window.openProductModal('${p.id}')">
+                    <h3 class="product-title">${p.name}</h3>
+                </div>
+                <p class="product-desc" onclick="window.openProductModal('${p.id}')">${p.desc}</p>
+
+                <div class="card-footer-row">
+                    <div class="price-container">
+                        <span class="price-prefix">Valor:</span>
+                        <span class="price-num">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                    </div>
+
+                    ${p.hasAdicionais ? `
+                        <button type="button" class="btn-add-action btn-options" onclick="window.openProductModal('${p.id}')" aria-label="Escolher tamanho e adicionais para ${p.name}">
+                            <i data-lucide="sliders" style="width:15px;height:15px;"></i>
+                            <span>Escolher Opções</span>
+                        </button>
+                    ` : `
+                        <button type="button" class="btn-add-action" onclick="window.quickAddToCart('${p.id}')" aria-label="Adicionar ${p.name} ao pedido">
+                            <i data-lucide="plus" style="width:15px;height:15px;"></i>
+                            <span>+ Adicionar ao Pedido</span>
+                        </button>
+                    `}
+                </div>
+            </div>
+        </article>
+    `).join('');
+
+    lucide.createIcons();
+}
+
+window.filterCategory = function(cat) {
+    currentCategory = cat;
+    document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-category') === cat);
+    });
+    renderCatalog();
+};
+
+window.handleSearch = function(e) {
+    searchQuery = e.target.value;
+    const clearBtn = document.getElementById('btn-clear-search');
+    if (clearBtn) {
+        clearBtn.style.display = searchQuery.length > 0 ? 'flex' : 'none';
+    }
+    renderCatalog();
+};
+
+window.clearSearch = function() {
+    searchQuery = '';
+    const input = document.getElementById('search-input');
+    if (input) input.value = '';
+    const clearBtn = document.getElementById('btn-clear-search');
+    if (clearBtn) clearBtn.style.display = 'none';
+    renderCatalog();
+};
+
+window.resetFilters = function() {
+    searchQuery = '';
+    const input = document.getElementById('search-input');
+    if (input) input.value = '';
+    window.filterCategory('todos');
+};
+
+window.openProductModal = function(id) {
+    const product = PRODUCTS.find(p => p.id === id);
+    if (!product) return;
+
+    activeModalProduct = product;
+    modalQuantity = 1;
+    selectedDoneness = (product.options && product.options.doneness) ? product.options.doneness[0] : '';
+    selectedSizeExtra = 0;
+    selectedSizeName = (product.options && product.options.sizes) ? product.options.sizes[0].name : '';
+    selectedAddons = [];
+
+    const modal = document.getElementById('product-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalBadge = document.getElementById('modal-badge');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalOptionsWrap = document.getElementById('modal-options-wrap');
+    const modalObs = document.getElementById('modal-obs');
+    const qtyNum = document.getElementById('modal-qty-num');
+
+    if (modalImg) modalImg.src = product.img;
+    if (modalBadge) {
+        if (product.badge) {
+            modalBadge.innerText = product.badge;
+            modalBadge.style.display = 'inline-block';
+        } else {
+            modalBadge.style.display = 'none';
+        }
+    }
+    if (modalTitle) modalTitle.innerText = product.name;
+    if (modalDesc) modalDesc.innerText = product.desc;
+    if (modalObs) modalObs.value = '';
+    if (qtyNum) qtyNum.innerText = '1';
+
+    if (modalOptionsWrap) {
+        let html = '';
+
+        if (product.options && product.options.sizes && product.options.sizes.length > 0) {
+            html += `
+                <div class="modal-opt-group">
+                    <div class="opt-group-header">
+                        <h4>Escolha o Tamanho</h4>
+                        <span class="opt-required-tag">Obrigatório</span>
+                    </div>
+                    <div class="opt-list-radios">
+                        ${product.options.sizes.map((s, idx) => `
+                            <label class="opt-radio-row">
+                                <div class="opt-radio-left">
+                                    <input type="radio" name="modal-size" value="${s.extra}" data-name="${s.name}" ${idx === 0 ? 'checked' : ''} onchange="window.handleModalSizeChange(this)">
+                                    <span class="opt-radio-label">${s.name}</span>
+                                </div>
+                                ${s.extra > 0 ? `<span class="opt-price-add">+ R$ ${s.extra.toFixed(2).replace('.', ',')}</span>` : '<span class="opt-price-included">Incluso</span>'}
+                            </label>
+                        `).join('')}
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-top-info" onclick="openProductCustomizer('${prod.id}')">
-                        <h3 class="card-title">${prod.name}</h3>
-                        <p class="card-desc">${prod.desc}</p>
+            `;
+        }
+
+        if (product.options && product.options.doneness && product.options.doneness.length > 0) {
+            html += `
+                <div class="modal-opt-group">
+                    <div class="opt-group-header">
+                        <h4>Preferência</h4>
+                        <span class="opt-required-tag">Obrigatório</span>
                     </div>
-                    
-                    <div class="card-bottom">
-                        <div class="card-price">
-                            <span class="price-val">${priceLabel}</span>
-                            ${hasMultipleSizes ? `<span class="size-count-pill">${prod.sizes.length} tamanhos</span>` : ''}
-                        </div>
-                        <button class="add-btn" onclick="openProductCustomizer('${prod.id}')" aria-label="Adicionar ${prod.name}">
-                            <i data-lucide="plus" style="width:16px; height:16px;"></i>
-                            <span>Pedir</span>
+                    <div class="opt-list-radios">
+                        ${product.options.doneness.map((d, idx) => `
+                            <label class="opt-radio-row">
+                                <div class="opt-radio-left">
+                                    <input type="radio" name="modal-doneness" value="${d}" ${idx === 0 ? 'checked' : ''} onchange="window.handleModalDonenessChange('${d}')">
+                                    <span class="opt-radio-label">${d}</span>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        if (product.options && product.options.addons && product.options.addons.length > 0) {
+            html += `
+                <div class="modal-opt-group">
+                    <div class="opt-group-header">
+                        <h4>Adicionais no Recheio</h4>
+                        <span class="opt-optional-tag">Opcional</span>
+                    </div>
+                    <div class="opt-list-checks">
+                        ${product.options.addons.map((a, idx) => `
+                            <label class="opt-check-row">
+                                <div class="opt-check-left">
+                                    <input type="checkbox" value="${a.name}" data-price="${a.price}" onchange="window.handleModalAddonToggle(this)">
+                                    <span class="opt-check-label">${a.name}</span>
+                                </div>
+                                <span class="opt-price-add">+ R$ ${a.price.toFixed(2).replace('.', ',')}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        modalOptionsWrap.innerHTML = html;
+    }
+
+    updateModalSubtotal();
+
+    if (modal) {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }
+};
+
+window.closeProductModal = function() {
+    const modal = document.getElementById('product-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+    activeModalProduct = null;
+};
+
+window.handleModalSizeChange = function(input) {
+    selectedSizeExtra = parseFloat(input.value) || 0;
+    selectedSizeName = input.getAttribute('data-name') || '';
+    updateModalSubtotal();
+};
+
+window.handleModalDonenessChange = function(doneness) {
+    selectedDoneness = doneness;
+};
+
+window.handleModalAddonToggle = function(checkbox) {
+    const name = checkbox.value;
+    const price = parseFloat(checkbox.getAttribute('data-price')) || 0;
+
+    if (checkbox.checked) {
+        selectedAddons.push({ name, price });
+    } else {
+        selectedAddons = selectedAddons.filter(a => a.name !== name);
+    }
+    updateModalSubtotal();
+};
+
+window.modalQtyInc = function() {
+    modalQuantity++;
+    const qtyNum = document.getElementById('modal-qty-num');
+    if (qtyNum) qtyNum.innerText = modalQuantity;
+    updateModalSubtotal();
+};
+
+window.modalQtyDec = function() {
+    if (modalQuantity > 1) {
+        modalQuantity--;
+        const qtyNum = document.getElementById('modal-qty-num');
+        if (qtyNum) qtyNum.innerText = modalQuantity;
+        updateModalSubtotal();
+    }
+};
+
+function calculateModalItemUnitPrice() {
+    if (!activeModalProduct) return 0;
+    let base = activeModalProduct.price + selectedSizeExtra;
+    const addonsTotal = selectedAddons.reduce((acc, curr) => acc + curr.price, 0);
+    return base + addonsTotal;
+}
+
+function updateModalSubtotal() {
+    const subtotalEl = document.getElementById('modal-subtotal-price');
+    const unitPrice = calculateModalItemUnitPrice();
+    const total = unitPrice * modalQuantity;
+    if (subtotalEl) {
+        subtotalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+}
+
+window.addToCartModal = function() {
+    if (!activeModalProduct) return;
+
+    const obsInput = document.getElementById('modal-obs');
+    const obs = obsInput ? obsInput.value.trim() : '';
+    const unitPrice = calculateModalItemUnitPrice();
+
+    const cartItem = {
+        id: activeModalProduct.id,
+        name: activeModalProduct.name,
+        img: activeModalProduct.img,
+        basePrice: activeModalProduct.price,
+        unitPrice: unitPrice,
+        quantity: modalQuantity,
+        size: selectedSizeName,
+        doneness: selectedDoneness,
+        addons: [...selectedAddons],
+        obs: obs
+    };
+
+    cart.push(cartItem);
+    saveCartToStorage();
+    updateCartUI();
+    window.closeProductModal();
+    showToast(`✓ ${activeModalProduct.name} adicionado ao pedido!`);
+};
+
+window.quickAddToCart = function(id) {
+    const product = PRODUCTS.find(p => p.id === id);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === id && (!item.addons || item.addons.length === 0) && !item.obs && !item.size);
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            img: product.img,
+            basePrice: product.price,
+            unitPrice: product.price,
+            quantity: 1,
+            size: '',
+            doneness: '',
+            addons: [],
+            obs: ''
+        });
+    }
+
+    saveCartToStorage();
+    updateCartUI();
+    showToast(`✓ ${product.name} adicionado!`);
+};
+
+window.cartQtyInc = function(index) {
+    if (cart[index]) {
+        cart[index].quantity += 1;
+        saveCartToStorage();
+        updateCartUI();
+    }
+};
+
+window.cartQtyDec = function(index) {
+    if (cart[index]) {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+        } else {
+            cart.splice(index, 1);
+        }
+        saveCartToStorage();
+        updateCartUI();
+    }
+};
+
+window.removeCartItem = function(index) {
+    if (cart[index]) {
+        cart.splice(index, 1);
+        saveCartToStorage();
+        updateCartUI();
+        showToast(`Item removido.`);
+    }
+};
+
+window.clearCart = function() {
+    if (cart.length === 0) return;
+    if (confirm('Deseja limpar todos os itens do seu pedido?')) {
+        cart = [];
+        saveCartToStorage();
+        updateCartUI();
+        showToast(`Pedido limpo.`);
+    }
+};
+
+window.openCart = function() {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    if (drawer && overlay) {
+        drawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.classList.add('cart-open');
+    }
+};
+
+window.closeCart = function() {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    if (drawer && overlay) {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('cart-open');
+    }
+};
+
+function saveCartToStorage() {
+    localStorage.setItem('laricas_cart', JSON.stringify(cart));
+}
+
+function loadCartFromStorage() {
+    const saved = localStorage.getItem('laricas_cart');
+    if (saved) {
+        try {
+            cart = JSON.parse(saved);
+        } catch (e) {
+            cart = [];
+        }
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const countBadges = document.querySelectorAll('#cart-count, .cart-count-badge');
+    const totalHeaderEl = document.getElementById('cart-total-nav');
+    const floatingBar = document.getElementById('cart-floating-bar');
+    const floatingCount = document.getElementById('floating-bar-count');
+    const floatingTotal = document.getElementById('floating-bar-total');
+
+    const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+
+    countBadges.forEach(el => {
+        if (el) el.innerText = totalQty;
+    });
+
+    const formattedSubtotal = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (totalHeaderEl) totalHeaderEl.innerText = formattedSubtotal;
+
+    if (floatingBar) {
+        if (totalQty > 0) {
+            floatingBar.style.display = 'flex';
+            if (floatingCount) floatingCount.innerText = `${totalQty} ${totalQty === 1 ? 'item' : 'itens'}`;
+            if (floatingTotal) floatingTotal.innerText = formattedSubtotal;
+        } else {
+            floatingBar.style.display = 'none';
+        }
+    }
+
+    renderCartItemsList(subtotal);
+}
+
+function renderCartItemsList(subtotal) {
+    const listContainer = document.getElementById('cart-items-container');
+    const emptyState = document.getElementById('cart-empty-state');
+    const checkoutForm = document.getElementById('cart-checkout-section');
+    const subtotalEl = document.getElementById('cart-summary-subtotal');
+    const feeEl = document.getElementById('cart-summary-fee');
+    const totalEl = document.getElementById('cart-summary-total');
+
+    if (!listContainer) return;
+
+    if (cart.length === 0) {
+        if (emptyState) emptyState.style.display = 'block';
+        if (checkoutForm) checkoutForm.style.display = 'none';
+        listContainer.innerHTML = '';
+        return;
+    }
+
+    if (emptyState) emptyState.style.display = 'none';
+    if (checkoutForm) checkoutForm.style.display = 'block';
+
+    listContainer.innerHTML = cart.map((item, idx) => {
+        const itemTotal = item.unitPrice * item.quantity;
+        return `
+            <div class="cart-item-card">
+                <img src="${item.img}" alt="${item.name}" class="cart-item-thumb" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80';">
+                
+                <div class="cart-item-details">
+                    <div class="cart-item-header">
+                        <h4 class="cart-item-name">${item.name}</h4>
+                        <button type="button" class="btn-remove-item" onclick="window.removeCartItem(${idx})" title="Remover item" aria-label="Remover item">
+                            <i data-lucide="trash-2" style="width:15px;height:15px;"></i>
                         </button>
+                    </div>
+
+                    ${item.size ? `<div class="cart-item-spec"><strong>Tamanho:</strong> ${item.size}</div>` : ''}
+                    ${item.doneness ? `<div class="cart-item-spec"><strong>Opção:</strong> ${item.doneness}</div>` : ''}
+                    
+                    ${item.addons && item.addons.length > 0 ? `
+                        <div class="cart-item-addons-list">
+                            ${item.addons.map(a => `<span>+ ${a.name} (+R$ ${a.price.toFixed(2).replace('.', ',')})</span>`).join('')}
+                        </div>
+                    ` : ''}
+
+                    ${item.obs ? `<div class="cart-item-obs"><em>Obs: ${item.obs}</em></div>` : ''}
+
+                    <div class="cart-item-price-qty-row">
+                        <div class="cart-qty-ctrl">
+                            <button type="button" class="btn-qty-mini" onclick="window.cartQtyDec(${idx})" aria-label="Diminuir">-</button>
+                            <span class="qty-val">${item.quantity}</span>
+                            <button type="button" class="btn-qty-mini" onclick="window.cartQtyInc(${idx})" aria-label="Aumentar">+</button>
+                        </div>
+                        <span class="cart-item-total-price">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
                     </div>
                 </div>
             </div>
         `;
     }).join('');
 
-    if (window.lucide) {
-        window.lucide.createIcons();
+    lucide.createIcons();
+
+    const fee = selectedDeliveryType === 'delivery' ? selectedDeliveryZone.fee : 0;
+    const finalTotal = subtotal + fee;
+
+    if (subtotalEl) subtotalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (feeEl) {
+        feeEl.innerText = selectedDeliveryType === 'delivery' 
+            ? `R$ ${fee.toFixed(2).replace('.', ',')}` 
+            : 'Grátis (Retirada)';
     }
+    if (totalEl) totalEl.innerText = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 }
 
-// Abrir Modal de Customização / Escolha de Tamanho e Adicionais
-function openProductCustomizer(productId) {
-    const product = PRODUCTS.find(p => p.id === productId);
-    if (!product) return;
-
-    currentCustomizingProduct = product;
-    currentSelectedSizeIndex = 0;
-    currentCustomAdicionais = [];
-    currentCustomObs = '';
-
-    const modal = document.getElementById('product-modal');
-    if (!modal) return;
-
-    // Preencher dados do modal
-    document.getElementById('modal-img').src = product.img;
-    document.getElementById('modal-title').textContent = product.name;
-    document.getElementById('modal-desc').textContent = product.desc;
-    document.getElementById('modal-badge').textContent = product.badge;
-
-    // Renderizar Tamanhos
-    const sizeContainer = document.getElementById('modal-sizes-list');
-    if (product.sizes && product.sizes.length > 0) {
-        document.getElementById('modal-sizes-section').style.display = 'block';
-        sizeContainer.innerHTML = product.sizes.map((s, idx) => `
-            <label class="size-option-card ${idx === 0 ? 'selected' : ''}" onclick="selectCustomSize(${idx})">
-                <input type="radio" name="product-size" value="${idx}" ${idx === 0 ? 'checked' : ''} style="display:none;">
-                <div class="size-info">
-                    <span class="size-name">${s.name}</span>
-                    <span class="size-tag">${product.category === 'doces' ? 'Gourmet' : 'Artesanal Crocante'}</span>
-                </div>
-                <span class="size-price">R$ ${s.price.toFixed(2).replace('.', ',')}</span>
-            </label>
-        `).join('');
-    } else {
-        document.getElementById('modal-sizes-section').style.display = 'none';
-    }
-
-    // Renderizar Adicionais
-    const addsSection = document.getElementById('modal-adicionais-section');
-    const addsList = document.getElementById('modal-adicionais-list');
-    if (product.hasAdicionais) {
-        addsSection.style.display = 'block';
-        addsList.innerHTML = ADICIONAIS_LIST.map(add => `
-            <label class="add-option-row">
-                <input type="checkbox" onchange="toggleCustomAdicional('${add.id}', ${add.price})" class="custom-checkbox">
-                <div class="add-name-col">
-                    <span>${add.name}</span>
-                </div>
-                <span class="add-price">+ R$ ${add.price.toFixed(2).replace('.', ',')}</span>
-            </label>
-        `).join('');
-    } else {
-        addsSection.style.display = 'none';
-    }
-
-    // Limpar campo de observação
-    const obsInput = document.getElementById('modal-obs-input');
-    if (obsInput) obsInput.value = '';
-
-    updateModalPriceTotal();
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    if (window.lucide) window.lucide.createIcons();
-}
-
-function closeProductModal() {
-    const modal = document.getElementById('product-modal');
-    if (modal) modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-function selectCustomSize(index) {
-    currentSelectedSizeIndex = index;
-    const cards = document.querySelectorAll('.size-option-card');
-    cards.forEach((c, idx) => {
-        if (idx === index) c.classList.add('selected');
-        else c.classList.remove('selected');
-    });
-    updateModalPriceTotal();
-}
-
-function toggleCustomAdicional(addId, price) {
-    const addObj = ADICIONAIS_LIST.find(a => a.id === addId);
-    if (!addObj) return;
-
-    const existingIdx = currentCustomAdicionais.findIndex(a => a.id === addId);
-    if (existingIdx >= 0) {
-        currentCustomAdicionais.splice(existingIdx, 1);
-    } else {
-        currentCustomAdicionais.push(addObj);
-    }
-    updateModalPriceTotal();
-}
-
-function updateModalPriceTotal() {
-    if (!currentCustomizingProduct) return;
-    let total = 0;
-
-    if (currentCustomizingProduct.sizes && currentCustomizingProduct.sizes[currentSelectedSizeIndex]) {
-        total += currentCustomizingProduct.sizes[currentSelectedSizeIndex].price;
-    } else if (currentCustomizingProduct.price) {
-        total += currentCustomizingProduct.price;
-    }
-
-    currentCustomAdicionais.forEach(a => {
-        total += a.price;
-    });
-
-    const totalEl = document.getElementById('modal-total-btn-price');
-    if (totalEl) {
-        totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-}
-
-// Adicionar do Modal ao Carrinho
-function addConfiguredProductToCart() {
-    if (!currentCustomizingProduct) return;
-
-    const selectedSize = currentCustomizingProduct.sizes ? currentCustomizingProduct.sizes[currentSelectedSizeIndex] : null;
-    const basePrice = selectedSize ? selectedSize.price : (currentCustomizingProduct.price || 0);
-    const addsTotal = currentCustomAdicionais.reduce((sum, a) => sum + a.price, 0);
-    const unitPrice = basePrice + addsTotal;
-
-    const obsInput = document.getElementById('modal-obs-input');
-    const obs = obsInput ? obsInput.value.trim() : '';
-
-    // Gerar Chave Única para o Item Configurado
-    const cartItemId = `${currentCustomizingProduct.id}-${selectedSize ? selectedSize.name : 'std'}-${currentCustomAdicionais.map(a => a.id).sort().join('_')}-${obs}`;
-
-    const existingCartItem = cart.find(item => item.cartItemId === cartItemId);
-
-    if (existingCartItem) {
-        existingCartItem.quantity += 1;
-    } else {
-        cart.push({
-            cartItemId: cartItemId,
-            productId: currentCustomizingProduct.id,
-            name: currentCustomizingProduct.name,
-            sizeName: selectedSize ? selectedSize.name : null,
-            basePrice: basePrice,
-            adicionais: [...currentCustomAdicionais],
-            obs: obs,
-            unitPrice: unitPrice,
-            quantity: 1,
-            img: currentCustomizingProduct.img
-        });
-    }
-
-    saveCartToStorage();
-    updateCartUI();
-    closeProductModal();
-    showToast(`✓ ${currentCustomizingProduct.name} adicionado ao pedido!`);
-}
-
-// Manipulação do Carrinho
-function updateCartQuantity(cartItemId, delta) {
-    const item = cart.find(i => i.cartItemId === cartItemId);
-    if (!item) return;
-
-    item.quantity += delta;
-    if (item.quantity <= 0) {
-        cart = cart.filter(i => i.cartItemId !== cartItemId);
-    }
-
-    saveCartToStorage();
-    updateCartUI();
-}
-
-function removeCartItem(cartItemId) {
-    cart = cart.filter(i => i.cartItemId !== cartItemId);
-    saveCartToStorage();
-    updateCartUI();
-    showToast('Item removido do pedido.');
-}
-
-function askClearCart() {
-    if (cart.length === 0) return;
-    cart = [];
-    saveCartToStorage();
-    updateCartUI();
-    showToast('Pedido limpo.');
-}
-
-// Atualizar Interface do Carrinho (Drawer Claem Master)
-function updateCartUI() {
-    const totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
-    const subtotal = cart.reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0);
-    const deliveryFee = orderType === 'delivery' ? selectedDeliveryFee : 0;
-    const finalTotal = subtotal + deliveryFee;
-
-    // Badges no Header
-    const countBadge = document.getElementById('cart-count');
-    const headerTotal = document.getElementById('cart-total-header');
-
-    if (countBadge) countBadge.textContent = totalCount;
-    if (headerTotal) headerTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-
-    // Itens no Drawer
-    const itemsContainer = document.getElementById('cart-items-container');
-    const emptyMsg = document.getElementById('cart-empty-msg');
-    const footerSection = document.getElementById('cart-footer-section');
-
-    if (cart.length === 0) {
-        if (itemsContainer) itemsContainer.innerHTML = '';
-        if (emptyMsg) emptyMsg.style.display = 'block';
-        if (footerSection) footerSection.style.display = 'none';
-        return;
-    }
-
-    if (emptyMsg) emptyMsg.style.display = 'none';
-    if (footerSection) footerSection.style.display = 'block';
-
-    if (itemsContainer) {
-        itemsContainer.innerHTML = cart.map(item => `
-            <div class="cart-item-card">
-                <div class="cart-item-top">
-                    <div>
-                        <h4 class="cart-item-title">${item.name}</h4>
-                        ${item.sizeName ? `<span class="cart-item-size-badge">${item.sizeName}</span>` : ''}
-                    </div>
-                    <button type="button" class="qty-btn" onclick="removeCartItem('${item.cartItemId}')" aria-label="Remover item" style="color:#94A3B8;">
-                        <i data-lucide="trash-2" style="width:14px; height:14px;"></i>
-                    </button>
-                </div>
-
-                ${item.adicionais && item.adicionais.length > 0 ? `
-                    <div class="cart-item-adds">
-                        ${item.adicionais.map(a => `<div>+ ${a.name} (R$ ${a.price.toFixed(2).replace('.', ',')})</div>`).join('')}
-                    </div>
-                ` : ''}
-
-                ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
-
-                <div class="cart-item-bottom">
-                    <span class="cart-item-price">R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}</span>
-                    <div class="qty-control-box">
-                        <button type="button" class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', -1)" aria-label="Diminuir">−</button>
-                        <span class="qty-val">${item.quantity}</span>
-                        <button type="button" class="qty-btn" onclick="updateCartQuantity('${item.cartItemId}', 1)" aria-label="Aumentar">+</button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // Totais no Drawer
-    const subtotalEl = document.getElementById('cart-subtotal-val');
-    const deliveryFeeEl = document.getElementById('cart-delivery-fee-val');
-    const finalTotalEl = document.getElementById('cart-final-total-val');
-
-    if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    if (deliveryFeeEl) {
-        deliveryFeeEl.textContent = orderType === 'delivery' ? `R$ ${selectedDeliveryFee.toFixed(2).replace('.', ',')}` : 'Grátis (Balcão)';
-    }
-    if (finalTotalEl) finalTotalEl.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
-
-    if (window.lucide) window.lucide.createIcons();
-}
-
-// Abrir e Fechar Gaveta do Carrinho
-function openCart() {
-    const drawer = document.getElementById('cart-drawer');
-    const overlay = document.getElementById('cart-overlay');
-    if (drawer && overlay) {
-        drawer.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeCart() {
-    const drawer = document.getElementById('cart-drawer');
-    const overlay = document.getElementById('cart-overlay');
-    if (drawer && overlay) {
-        drawer.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
-
-// Tipo de Pedido: Delivery vs Retirada
-function setOrderType(type) {
-    orderType = type;
-    const btnDelivery = document.getElementById('btn-type-delivery');
-    const btnPickup = document.getElementById('btn-type-pickup');
-    const deliverySection = document.getElementById('delivery-address-section');
-
-    if (type === 'delivery') {
-        if (btnDelivery) btnDelivery.classList.add('active');
-        if (btnPickup) btnPickup.classList.remove('active');
-        if (deliverySection) deliverySection.style.display = 'block';
-    } else {
-        if (btnPickup) btnPickup.classList.add('active');
-        if (btnDelivery) btnDelivery.classList.remove('active');
-        if (deliverySection) deliverySection.style.display = 'none';
-    }
-
-    updateCartUI();
-}
-
-// Renderizar Zonas de Entrega
-function renderDeliveryZonesSelect() {
-    const select = document.getElementById('delivery-zone-select');
+function renderDeliveryZones() {
+    const select = document.getElementById('delivery-neighborhood-select');
     if (!select) return;
 
-    select.innerHTML = DELIVERY_ZONES.map(z => `
-        <option value="${z.fee}" data-zone="${z.neighborhood}">${z.neighborhood} (+ R$ ${z.fee.toFixed(2).replace('.', ',')})</option>
+    select.innerHTML = DELIVERY_ZONES.map((z, idx) => `
+        <option value="${idx}">
+            ${z.neighborhood} — R$ ${z.fee.toFixed(2).replace('.', ',')} (${z.time})
+        </option>
     `).join('');
-
-    select.addEventListener('change', (e) => {
-        selectedDeliveryFee = parseFloat(e.target.value);
-        const selectedOption = e.target.options[e.target.selectedIndex];
-        selectedDeliveryZoneName = selectedOption.getAttribute('data-zone');
-        updateCartUI();
-    });
 }
 
-// Forma de Pagamento
-function setPaymentMethod(method) {
-    paymentMethod = method;
-    const methods = document.querySelectorAll('.payment-option-card');
-    methods.forEach(m => {
-        if (m.getAttribute('data-payment') === method) m.classList.add('selected');
-        else m.classList.remove('selected');
-    });
+window.handleZoneChange = function(e) {
+    const index = parseInt(e.target.value) || 0;
+    selectedDeliveryZone = DELIVERY_ZONES[index];
+    const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+    renderCartItemsList(subtotal);
+};
 
-    const moneyBox = document.getElementById('money-change-box');
-    if (moneyBox) moneyBox.style.display = method === 'money' ? 'block' : 'none';
-}
+window.selectDeliveryType = function(type) {
+    selectedDeliveryType = type;
+    const btnTele = document.getElementById('btn-type-delivery');
+    const btnRetirada = document.getElementById('btn-type-retirada');
+    const addressBox = document.getElementById('delivery-address-group');
+    const zoneGroup = document.getElementById('delivery-zone-group');
 
-// Copiar Chave Pix
-function copyPixKey() {
-    navigator.clipboard.writeText(CHAVE_PIX_OFICIAL).then(() => {
-        const btn = document.getElementById('btn-copy-pix');
-        if (btn) {
-            const originalText = btn.innerHTML;
-            btn.style.background = '#10B981';
-            btn.style.borderColor = '#10B981';
-            btn.style.color = '#FFFFFF';
-            btn.innerHTML = '<i data-lucide="check" style="width:16px;height:16px;"></i> <span>✓ Chave Pix Copiada!</span>';
-            if (window.lucide) window.lucide.createIcons();
+    if (type === 'delivery') {
+        if (btnTele) btnTele.classList.add('active');
+        if (btnRetirada) btnRetirada.classList.remove('active');
+        if (addressBox) addressBox.style.display = 'block';
+        if (zoneGroup) zoneGroup.style.display = 'block';
+    } else {
+        if (btnTele) btnTele.classList.remove('active');
+        if (btnRetirada) btnRetirada.classList.add('active');
+        if (addressBox) addressBox.style.display = 'none';
+        if (zoneGroup) zoneGroup.style.display = 'none';
+    }
 
-            setTimeout(() => {
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-                btn.innerHTML = originalText;
-                if (window.lucide) window.lucide.createIcons();
-            }, 2500);
-        }
-        showToast('Chave Pix copiada para a área de transferência!');
-    }).catch(() => {
-        prompt('Copie a chave Pix abaixo:', CHAVE_PIX_OFICIAL);
-    });
-}
+    const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+    renderCartItemsList(subtotal);
+};
 
-// Finalizar Pedido e Despachar para WhatsApp
-function checkoutOrder() {
+window.selectPayment = function(method) {
+    selectedPaymentMethod = method;
+    const btnPix = document.getElementById('btn-pay-pix');
+    const btnCard = document.getElementById('btn-pay-cartao');
+    const btnCash = document.getElementById('btn-pay-dinheiro');
+    const cashBox = document.getElementById('cash-change-group');
+
+    [btnPix, btnCard, btnCash].forEach(b => { if (b) b.classList.remove('active'); });
+
+    if (method === 'pix' && btnPix) btnPix.classList.add('active');
+    if (method === 'cartao' && btnCard) btnCard.classList.add('active');
+    if (method === 'dinheiro' && btnCash) {
+        btnCash.classList.add('active');
+        if (cashBox) cashBox.style.display = 'block';
+    } else {
+        if (cashBox) cashBox.style.display = 'none';
+    }
+};
+
+window.sendOrderWhatsApp = function() {
     if (cart.length === 0) {
-        alert('Seu carrinho está vazio. Adicione itens antes de enviar o pedido.');
+        alert('Seu pedido está vazio. Escolha um pastel gigante no cardápio!');
         return;
     }
 
-    const nameInput = document.getElementById('cust-name');
-    const customerName = nameInput ? nameInput.value.trim() : '';
+    const nameInput = document.getElementById('client-name');
+    const addressInput = document.getElementById('client-address');
+    const cashChangeInput = document.getElementById('cash-change-value');
 
-    if (!customerName) {
-        alert('Por favor, informe seu nome para identificarmos o pedido.');
+    const clientName = nameInput ? nameInput.value.trim() : '';
+    if (!clientName) {
+        alert('Por favor, informe seu Nome para identificação na comanda.');
         if (nameInput) nameInput.focus();
         return;
     }
 
-    let customerAddress = '';
-    let customerComplement = '';
-    if (orderType === 'delivery') {
-        const addrInput = document.getElementById('cust-address');
-        const compInput = document.getElementById('cust-complement');
-        customerAddress = addrInput ? addrInput.value.trim() : '';
-        customerComplement = compInput ? compInput.value.trim() : '';
-
-        if (!customerAddress) {
-            alert('Por favor, informe o endereço completo com número e bairro para a entrega.');
-            if (addrInput) addrInput.focus();
+    let clientAddress = '';
+    if (selectedDeliveryType === 'delivery') {
+        clientAddress = addressInput ? addressInput.value.trim() : '';
+        if (!clientAddress) {
+            alert('Por favor, informe o Endereço Completo de entrega (Rua, Número, Apto/Bloco).');
+            if (addressInput) addressInput.focus();
             return;
         }
     }
 
-    let trocoInfo = '';
-    if (paymentMethod === 'money') {
-        const trocoInput = document.getElementById('cust-troco');
-        const trocoVal = trocoInput ? trocoInput.value.trim() : '';
-        trocoInfo = trocoVal ? `troco para R$ ${trocoVal}` : 'sem troco';
+    const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+    const fee = selectedDeliveryType === 'delivery' ? selectedDeliveryZone.fee : 0;
+    const total = subtotal + fee;
+
+    let text = `_pedido via site by Onira.fly_\n\n`;
+
+    if (selectedDeliveryType === 'delivery') {
+        text += `*Solicitação de Tele-Entrega*\n\n`;
+    } else {
+        text += `*Solicitação de Retirada no Balcão*\n\n`;
     }
-
-    const subtotal = cart.reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0);
-    const deliveryFee = orderType === 'delivery' ? selectedDeliveryFee : 0;
-    const total = subtotal + deliveryFee;
-
-    let msg = `_pedido via site by Onira.fly_
-
-${orderType === 'delivery' ? 'Solicitação de Tele-Entrega' : 'Solicitação de Retirada no balcão'}
-
-`;
 
     cart.forEach(item => {
-        const itemSum = item.unitPrice * item.quantity;
-        const size = (item.sizeName && item.sizeName !== 'Padrão') ? ` · ${item.sizeName}` : '';
+        text += `*${item.quantity}x* ${item.name}`;
+        if (item.size) text += ` · ${item.size}`;
+        if (item.doneness) text += ` · ${item.doneness}`;
+        text += `\n`;
 
-        msg += `*${item.quantity}x* ${item.name}${size}
-`;
-
-        if (item.adicionais && item.adicionais.length > 0) {
-            item.adicionais.forEach(a => {
-                msg += `+ ${a.name}
-`;
+        if (item.addons && item.addons.length > 0) {
+            item.addons.forEach(a => {
+                text += `+ ${a.name}\n`;
             });
         }
+
         if (item.obs) {
-            msg += `_Obs: ${item.obs}_
-`;
+            text += `_Obs: ${item.obs}_\n`;
         }
 
-        msg += `*R$ ${itemSum.toFixed(2).replace('.', ',')}*
-
-`;
+        text += `*R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}*\n\n`;
     });
 
-    msg += `*Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*
-`;
-    if (orderType === 'delivery') {
-        msg += deliveryFee > 0 ? `Entrega: R$ ${deliveryFee.toFixed(2).replace('.', ',')}
-` : `Entrega a combinar
-`;
-        msg += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*
-`;
+    text += `*Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*\n`;
+    if (selectedDeliveryType === 'delivery') {
+        text += `Entrega (${selectedDeliveryZone.neighborhood}): R$ ${fee.toFixed(2).replace('.', ',')}\n`;
     } else {
-        msg += `*Total: R$ ${subtotal.toFixed(2).replace('.', ',')}*
-`;
+        text += `Entrega: Retirada no Balcão (Grátis)\n`;
     }
-    msg += `
-`;
+    text += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
 
-    if (customerName) msg += `*${customerName}*
-`;
-    if (orderType === 'delivery' && customerAddress) {
-        msg += `${customerAddress}${customerComplement ? ` (${customerComplement})` : ''}
-`;
+    text += `*${clientName}*\n`;
+    if (selectedDeliveryType === 'delivery') {
+        text += `${clientAddress} — ${selectedDeliveryZone.neighborhood}\n`;
     }
 
-    if (paymentMethod === 'pix') {
-        msg += `Pagamento em Pix — combinamos a chave por aqui
-`;
-    } else if (paymentMethod === 'money') {
-        msg += `Pagamento em dinheiro — ${trocoInfo || 'sem troco'}
-`;
-    } else {
-        msg += `Pagamento no cartão — favor levar a maquininha
-`;
+    if (selectedPaymentMethod === 'pix') {
+        text += `Pagamento em Pix — combinamos a chave por aqui\n`;
+    } else if (selectedPaymentMethod === 'cartao') {
+        text += `Pagamento no cartão — favor trazer a maquininha\n`;
+    } else if (selectedPaymentMethod === 'dinheiro') {
+        const change = cashChangeInput ? cashChangeInput.value.trim() : '';
+        text += change ? `Pagamento em dinheiro — troco para R$ ${change}\n` : `Pagamento em dinheiro — sem necessidade de troco\n`;
     }
 
-    msg += `
-_Enviado pelo site da Larica's Pastelaria_`;
+    text += `\n_Enviado pelo site do Larica's Pastel_`;
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+    const encoded = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encoded}`;
+
     window.open(whatsappUrl, '_blank');
+};
+
+function showToast(message) {
+    let toast = document.getElementById('toast-notification');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        toast.className = 'toast-notification';
+        document.body.appendChild(toast);
+    }
+    toast.innerText = message;
+    toast.classList.add('visible');
+
+    setTimeout(() => {
+        toast.classList.remove('visible');
+    }, 3000);
 }
 
-// FLOATING ONIRA PROPOSAL WIDGET (.onira-cta)
-function initScrollProposalWidget() {
-    const cta = document.getElementById('onira-cta');
-    const fechar = document.getElementById('onira-cta-close');
+function checkBusinessStatus() {
+    const statusTextHeader = document.getElementById('status-text-header');
+    const statusDot = document.querySelector('.status-dot');
+    
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    const timeInMinutes = hour * 60 + minute;
+
+    let isOpen = false;
+    if (day !== 1) { // Ter a Dom 18h30 as 23h30
+        if (timeInMinutes >= 1110 && timeInMinutes <= 1410) isOpen = true;
+    }
+
+    if (statusTextHeader) {
+        if (isOpen) {
+            statusTextHeader.innerText = 'Aberto Agora • 18:30 às 23:30';
+            if (statusDot) statusDot.style.background = '#10B981';
+        } else {
+            statusTextHeader.innerText = 'Aberto Hoje às 18:30 • Faça seu Pedido';
+            if (statusDot) statusDot.style.background = '#DC2626';
+        }
+    }
+}
+
+function setupScrollBehavior() {
+    const cta = document.querySelector('.onira-cta');
     if (!cta) return;
-
-    if (sessionStorage.getItem('onira_cta_collapsed') === '1') {
-        cta.classList.add('collapsed');
-    }
-
-    if (fechar) {
-        fechar.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cta.classList.add('collapsed');
-            sessionStorage.setItem('onira_cta_collapsed', '1');
-        });
-    }
 
     let scrollTimeout;
     window.addEventListener('scroll', () => {
@@ -1148,67 +1013,13 @@ function initScrollProposalWidget() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             cta.classList.remove('scrolling');
-        }, 300);
-    }, { passive: true });
+        }, 350);
+    });
 }
 
-// Toast Notifier
-function showToast(message) {
-    const container = document.getElementById('toast-container') || createToastContainer();
-    const toast = document.createElement('div');
-    toast.className = 'toast-box';
-    toast.textContent = message;
-
-    container.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}
-
-function createToastContainer() {
-    const div = document.createElement('div');
-    div.id = 'toast-container';
-    div.className = 'toast-container';
-    document.body.appendChild(div);
-    return div;
-}
-
-// Persistência no LocalStorage
-function saveCartToStorage() {
-    localStorage.setItem('laricas_cart', JSON.stringify(cart));
-}
-
-function loadCartFromStorage() {
-    try {
-        const saved = localStorage.getItem('laricas_cart');
-        if (saved) {
-            cart = JSON.parse(saved);
-        }
-    } catch (e) {
-        cart = [];
+window.toggleOniraCta = function() {
+    const cta = document.querySelector('.onira-cta');
+    if (cta) {
+        cta.classList.toggle('collapsed');
     }
-}
-
-// Exportar funções globais para os handlers de eventos inline
-window.handleSearch = handleSearch;
-window.openProductCustomizer = openProductCustomizer;
-window.closeProductModal = closeProductModal;
-window.selectCustomSize = selectCustomSize;
-window.toggleCustomAdicional = toggleCustomAdicional;
-window.addConfiguredProductToCart = addConfiguredProductToCart;
-window.updateCartQuantity = updateCartQuantity;
-window.removeCartItem = removeCartItem;
-window.askClearCart = askClearCart;
-window.openCart = openCart;
-window.closeCart = closeCart;
-window.setOrderType = setOrderType;
-window.setPaymentMethod = setPaymentMethod;
-window.copyPixKey = copyPixKey;
-window.checkoutOrder = checkoutOrder;
-window.dismissOniraWidget = dismissOniraWidget;
+};

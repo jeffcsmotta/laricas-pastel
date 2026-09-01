@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proposta Comercial | Larica's Pastel & Onira Labs</title>
-    <meta name="description" content="Proposta comercial de canal próprio para a Larica's Pastel em Caxias do Sul: cardápio interativo de alta velocidade, pedidos diretos no WhatsApp oficial e domínio próprio sem taxas por pedido.">
+    <title>Proposta Comercial | Larica's Pastel &amp; Onira Labs</title>
+    <meta name="description" content="Proposta comercial de canal próprio para o Larica's Pastel em Caxias do Sul: cardápio interativo de alta velocidade, pedidos diretos no WhatsApp oficial e domínio próprio sem taxas por pedido.">
 
-    <!-- Página de proposta restrita a link direto -->
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
 
@@ -26,7 +25,8 @@
             --text-main: #334155;
             --text-muted: #64748B;
 
-            --primary: #0F172A;
+            --primary: #DC2626;
+            --primary-dark: #0F172A;
             --primary-hover: #1E293B;
 
             --accent: #F59E0B;
@@ -60,7 +60,6 @@
             padding: 0 18px;
         }
 
-        /* Nav */
         .proposal-nav {
             background: #FFFFFF;
             border-bottom: 1px solid var(--border);
@@ -104,12 +103,11 @@
         }
 
         .back-link:hover {
-            background: var(--primary);
+            background: var(--primary-dark);
             color: #FFFFFF;
-            border-color: var(--primary);
+            border-color: var(--primary-dark);
         }
 
-        /* Main Hero Hook */
         .offer-hero { padding: 28px 0 20px 0; }
 
         .offer-card-main {
@@ -134,7 +132,7 @@
             letter-spacing: -0.02em;
         }
 
-        .offer-title span { color: #F59E0B; }
+        .offer-title span { color: #DC2626; }
 
         .offer-desc {
             font-size: 1.05rem;
@@ -144,7 +142,6 @@
             line-height: 1.6;
         }
 
-        /* Domain Strip */
         .domain-strip {
             background: var(--emerald-light);
             border: 1.5px solid var(--emerald-border);
@@ -175,23 +172,18 @@
             letter-spacing: -0.01em;
         }
 
-        .domain-price {
-            text-align: right;
-        }
-
+        .domain-price { text-align: right; }
         .domain-price strong {
             font-size: 1.05rem;
             color: #047857;
             display: block;
             font-weight: 800;
         }
-
         .domain-price span {
             font-size: 0.78rem;
             color: #065F46;
         }
 
-        /* Section Card */
         .section-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -213,9 +205,96 @@
             letter-spacing: -0.01em;
         }
 
-        .section-title i { color: #F59E0B; }
+        .section-title i { color: #DC2626; }
 
-        /* Feature Grid */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .num-card {
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .num-big {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--emerald);
+            margin-bottom: 4px;
+        }
+
+        .num-title {
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .num-text {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .benchmark-box {
+            background: #F0FDF4;
+            border: 1.5px solid rgba(5, 150, 105, 0.25);
+            border-radius: 14px;
+            padding: 22px;
+            margin-top: 14px;
+        }
+
+        .benchmark-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #064E3B;
+            margin-bottom: 8px;
+        }
+
+        .benchmark-desc {
+            font-size: 0.88rem;
+            color: #166534;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .benchmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .benchmark-mini-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .benchmark-mini-card small {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .benchmark-mini-card strong {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 900;
+        }
+
         .feature-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -249,193 +328,86 @@
         .feature-box h4 i { color: #059669; }
 
         .feature-box p {
-            font-size: 0.88rem;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        /* Tamanho da Oportunidade */
-        .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .num-card {
-            background: #F8FAFC;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .num-big {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #0F172A;
-            line-height: 1.1;
-            margin-bottom: 6px;
-            letter-spacing: -0.02em;
-        }
-
-        .num-title {
-            font-size: 0.98rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
-
-        .num-text {
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
             line-height: 1.5;
         }
 
-        /* Benchmark Card */
-        .benchmark-box {
-            background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
-            border: 1.5px solid var(--emerald-border);
-            border-radius: 14px;
-            padding: 24px;
-            margin-top: 20px;
-        }
-
-        .benchmark-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-heading);
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #064E3B;
-            margin-bottom: 10px;
-        }
-
-        .benchmark-desc {
-            font-size: 0.9rem;
-            color: #1E293B;
-            line-height: 1.55;
-            margin-bottom: 16px;
-        }
-
-        .benchmark-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            text-align: center;
-        }
-
-        .benchmark-mini-card {
-            background: #FFFFFF;
-            border: 1px solid rgba(5, 150, 105, 0.2);
-            border-radius: 10px;
-            padding: 16px 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .benchmark-mini-card small {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 6px;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        .benchmark-mini-card strong {
-            font-family: var(--font-heading);
-            font-size: 1.35rem;
-            font-weight: 900;
-            display: block;
-        }
-
-        /* Financial Split */
         .financial-split {
             display: grid;
-            grid-template-columns: 1.25fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 18px;
         }
 
         .fin-box-main {
-            background: #FFFFFF;
-            border: 2px solid #0F172A;
+            background: #FFFBEB;
+            border: 1.5px solid rgba(245, 158, 11, 0.4);
             border-radius: 14px;
             padding: 24px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
         }
 
         .fin-label {
             font-size: 0.78rem;
             font-weight: 800;
-            color: #475569;
             text-transform: uppercase;
             letter-spacing: 0.8px;
+            color: #B45309;
             display: block;
+            margin-bottom: 6px;
         }
 
         .fin-total {
             font-family: var(--font-heading);
-            font-size: 1.85rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #D97706;
-            margin: 4px 0 14px 0;
-            letter-spacing: -0.02em;
+            margin-bottom: 14px;
         }
 
         .fin-item {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-            margin-top: 10px;
+            font-size: 0.88rem;
+            color: #78350F;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
 
         .fin-box-upsell {
             background: #FAF5FF;
-            border: 2px solid #9333EA;
+            border: 1.5px solid rgba(168, 85, 247, 0.3);
             border-radius: 14px;
             padding: 24px;
-            position: relative;
-            box-shadow: 0 4px 14px rgba(147, 51, 234, 0.06);
         }
 
         .upsell-tag {
-            position: absolute;
-            top: -12px;
-            right: 16px;
-            background: #9333EA;
-            color: #FFFFFF;
             font-size: 0.72rem;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 999px;
-            letter-spacing: 0.8px;
+            font-weight: 800;
             text-transform: uppercase;
+            color: #7E22CE;
+            display: block;
+            margin-bottom: 4px;
         }
 
         .upsell-total {
             font-family: var(--font-heading);
-            font-size: 1.8rem;
+            font-size: 1.35rem;
             font-weight: 900;
-            color: #7E22CE;
-            margin: 4px 0 10px 0;
+            color: #6B21A8;
+            margin-bottom: 12px;
         }
 
         .upsell-list {
             list-style: none;
-            padding-top: 10px;
-            border-top: 1px solid rgba(147, 51, 234, 0.2);
-            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .upsell-list li {
-            font-size: 0.86rem;
-            color: #4C1D95;
-            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: #581C87;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 6px;
             line-height: 1.4;
         }
 
@@ -445,88 +417,14 @@
             margin-top: 2px;
         }
 
-        /* Consultative Diagnostic CTA */
-        .cta-box {
-            background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
-            color: #FFFFFF;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            margin-bottom: 36px;
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .cta-hook-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 14px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            color: #94A3B8;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 14px;
-        }
-
-        .cta-box h3 {
-            font-size: 1.6rem;
-            color: #FFFFFF;
-            margin-bottom: 12px;
-            font-family: var(--font-heading);
-            font-weight: 900;
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-        }
-
-        .cta-box p {
-            font-size: 0.98rem;
-            color: #CBD5E1;
-            margin-bottom: 26px;
-            max-width: 580px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .btn-wa-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 32px;
-            background: #25D366;
-            color: #FFFFFF;
-            border-radius: 12px;
-            font-family: var(--font-heading);
-            font-weight: 800;
-            font-size: 1.05rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-wa-action:hover {
-            background: #20BA5A;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.55);
-        }
-
-        /* Developer & Studio Profile Container (Onira Labs Master Standard) */
         .dev-profile-card {
             background: #0F172A;
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 16px;
             padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             color: #FFFFFF;
-            text-align: left;
+            margin-top: 24px;
         }
 
         .dev-profile-header {
@@ -547,21 +445,17 @@
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid #059669;
-            box-shadow: 0 0 20px rgba(5, 150, 105, 0.35);
+            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
             display: block;
-        }
-
-        .dev-profile-main-info {
-            flex: 1;
         }
 
         .dev-profile-tag {
             font-size: 0.72rem;
             font-weight: 800;
-            color: #10B981;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 3px;
+            letter-spacing: 0.8px;
+            color: #10B981;
+            margin-bottom: 4px;
         }
 
         .dev-profile-name {
@@ -569,15 +463,14 @@
             font-size: 1.45rem;
             font-weight: 900;
             color: #FFFFFF;
-            margin-bottom: 3px;
-            letter-spacing: -0.01em;
+            line-height: 1.2;
         }
 
         .dev-profile-role {
             font-size: 0.88rem;
             color: #E2E8F0;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-top: 2px;
         }
 
         .dev-profile-city {
@@ -586,23 +479,24 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            margin-top: 4px;
         }
 
         .dev-profile-bio {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid #059669;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            font-style: italic;
             font-size: 0.93rem;
             color: #E2E8F0;
             line-height: 1.6;
             margin-bottom: 24px;
-            border-left: 3px solid #059669;
-            padding: 14px 18px;
-            font-style: italic;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 0 8px 8px 0;
         }
 
         .dev-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 24px;
         }
@@ -610,42 +504,46 @@
         .dev-link-pill {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 18px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 10px;
-            color: #E2E8F0;
+            padding: 12px 16px;
+            color: #FFFFFF;
             text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
         }
 
         .dev-link-pill:hover {
             background: rgba(255, 255, 255, 0.12);
-            border-color: #10B981;
-            color: #FFFFFF;
-            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
         }
 
         .dev-link-icon-box {
-            width: 24px;
-            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 28px;
+            height: 28px;
             flex-shrink: 0;
         }
 
-        .dev-link-ext {
-            margin-left: auto;
-            width: 14px !important;
-            height: 14px !important;
-            color: #64748B;
+        .dev-link-pill span {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Studio Signature Box Ampliado */
+        .dev-link-ext {
+            width: 16px;
+            height: 16px;
+            color: #94A3B8;
+            flex-shrink: 0;
+        }
+
         .studio-signature-box {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 22px;
@@ -661,7 +559,6 @@
             width: auto;
             max-width: 240px;
             object-fit: contain;
-            opacity: 1;
             filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
         }
 
@@ -678,7 +575,6 @@
             color: #64748B;
         }
 
-        /* Floating WhatsApp Button */
         .floating-whatsapp-btn {
             position: fixed;
             bottom: 24px;
@@ -712,18 +608,31 @@
             50% { box-shadow: 0 8px 35px rgba(37, 211, 102, 0.75); }
         }
 
+        .back-text-short { display: none; }
+
         @media (max-width: 640px) {
             .offer-title { font-size: 1.75rem; }
+            .brand-logo-img { height: 28px; max-width: 130px; }
+            .back-link { padding: 6px 10px; font-size: 0.78rem; gap: 4px; }
+            .back-text-full { display: none; }
+            .back-text-short { display: inline; }
             .domain-strip { flex-direction: column; align-items: flex-start; }
             .domain-price { text-align: left; }
             .feature-grid, .financial-split, .numbers-grid, .benchmark-grid { grid-template-columns: 1fr; }
-            .dev-profile-header { flex-direction: column; text-align: center; }
+            .dev-profile-card { padding: 22px 16px; border-radius: 14px; }
+            .dev-profile-header { flex-direction: column; text-align: center; gap: 12px; }
+            .dev-profile-avatar { width: 72px; height: 72px; }
             .dev-profile-city { justify-content: center; }
+            .dev-profile-bio { font-size: 0.86rem; padding: 12px 14px; }
+            .dev-links-grid { grid-template-columns: 1fr; gap: 8px; }
+            .dev-link-pill { padding: 10px 12px; font-size: 0.80rem; }
+            .studio-signature-box { padding-top: 16px; }
+            .studio-logo-img { height: 36px; }
             .floating-whatsapp-btn {
-                bottom: 16px;
-                right: 16px;
+                bottom: 14px;
+                right: 14px;
                 padding: 10px 16px;
-                font-size: 0.85rem;
+                font-size: 0.84rem;
             }
         }
     </style>
@@ -737,32 +646,65 @@
                 <img src="assets/logo.svg" alt="Larica's Pastel Logo" class="brand-logo-img">
             </a>
             <a href="index.html" class="back-link">
-                <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Ver Site de Demonstração
+                <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+                <span class="back-text-full">Ver Site de Demonstração</span>
+                <span class="back-text-short">Ver Site</span>
             </a>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container" style="padding-bottom: 96px;">
 
         <!-- Main Hero Hook -->
         <section class="offer-hero">
             <div class="offer-card-main">
-                <h1 class="offer-title">O Canal Digital Direto da <span>Larica's Pastel</span></h1>
-                <p class="offer-desc">Um cardápio de alta velocidade feito para transformar seguidores e clientes recorrentes em vendas diretas pelo WhatsApp oficial: <strong>(54) 99649-0510</strong> — com posse total da sua audiência e 0% de comissões.</p>
+                <h1 class="offer-title">O Canal Digital Direto do <span>Larica's Pastel</span></h1>
+                <p class="offer-desc">Um cardápio interativo e ultra-rápido para transformar pedidos de pastéis gigantes e clientes fiéis do Cruzeiro em vendas diretas pelo WhatsApp oficial: <strong>(54) 99252-3774</strong> — com posse total da sua audiência e 0% de comissões.</p>
             </div>
         </section>
 
         <!-- Domínio Próprio Oficial -->
         <div class="domain-strip">
             <div>
-                <span class="domain-tag">Domínio Próprio & Ativo Digital da Sua Marca</span>
+                <span class="domain-tag">Domínio Próprio &amp; Ativo Digital da Sua Marca</span>
                 <div class="domain-name">laricaspastel.com.br</div>
             </div>
             <div class="domain-price">
                 <strong>Incluso no Projeto</strong>
-                <span>Registro + Hospedagem Dedicada + SSL HTTPS</span>
+                <span>Registro Oficial + Cloudflare SSL + CDN no RS</span>
             </div>
         </div>
+
+        <!-- Investimento & Condições (Posicionado em Destaque no Início) -->
+        <section class="section-card" id="investimento">
+            <h2 class="section-title"><i data-lucide="badge-dollar-sign"></i> Investimento &amp; Condições</h2>
+
+            <div class="financial-split">
+                <!-- Oferta Principal -->
+                <div class="fin-box-main">
+                    <span class="fin-label">⭐ Oferta Principal • Canal Onira.fly</span>
+                    <div class="fin-total">3x de R$ 800,00</div>
+                    <div class="fin-item">
+                        💵 <strong>Implementação &amp; Setup:</strong> R$ 2.400,00 à vista (Pix) ou parcelado em 3x de R$ 800,00 sem juros.
+                    </div>
+                    <div class="fin-item">
+                        ⚡ <strong>Acompanhamento Mensal &amp; Nuvem:</strong> R$ 120,00/mês — inclui infraestrutura Cloudflare, SSL, domínio próprio, hospedagem de alta velocidade e suporte contínuo para cardápio e preços.
+                    </div>
+                </div>
+
+                <!-- Upsell Enxuto -->
+                <div class="fin-box-upsell">
+                    <span class="upsell-tag">🚀 Acelerador Local</span>
+                    <span class="fin-label" style="color: #7E22CE;">Google Meu Negócio &amp; SEO</span>
+                    <div class="upsell-total">+ R$ 100/mês <small style="font-size:0.75rem; color:#6B21A8; display:block; font-weight:600;">(nos 3 primeiros meses)</small></div>
+                    <ul class="upsell-list">
+                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Otimização completa da ficha no Google Maps.</li>
+                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Posicionamento para termos como "Melhor Pastel Cruzeiro Caxias" e "Pastel Gigante Caxias".</li>
+                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Link direto do canal oficial na vitrine de buscas locais.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <!-- O Tamanho da Oportunidade & Audiência -->
         <section class="section-card">
@@ -772,25 +714,25 @@
                 <div class="num-card">
                     <div class="num-big">100% Próprio</div>
                     <div class="num-title">Posse da Sua Audiência</div>
-                    <div class="num-text">Sua marca, seu domínio e seu contato direto. O cliente pede focado exclusivamente no seu cardápio, sem distrações ou logins desnecessários.</div>
+                    <div class="num-text">Sua marca no domínio oficial <code>laricaspastel.com.br</code>. O cliente pede focado exclusivamente nos pastéis e combos do Larica's, sem concorrentes.</div>
                 </div>
 
                 <div class="num-card">
                     <div class="num-big">0% de Comissão</div>
                     <div class="num-title">Margem Preservada na Recorrência</div>
-                    <div class="num-text">Plataformas de terceiros são úteis para topo de funil. Mas na recompra do cliente semanal, o canal direto retém 100% da margem limpa no seu caixa.</div>
+                    <div class="num-text">Nas recompras de quem já é cliente da casa, o canal próprio retém 100% do lucro no seu caixa, sem taxas de 23% a cada pedido.</div>
                 </div>
 
                 <div class="num-card">
-                    <div class="num-big">6.000+ Fãs</div>
-                    <div class="num-title">Público Que Já Consome</div>
-                    <div class="num-text">A Larica's já possui demanda consolidada no Bairro Cruzeiro e em toda Caxias, pronta para pedir por um canal direto e veloz.</div>
+                    <div class="num-big">4.9★ Estrelas</div>
+                    <div class="num-title">Autoridade no Bairro Cruzeiro</div>
+                    <div class="num-text">Centenas de clientes na Rua Luiz Michielon comprovam a fartura dos pastéis gigantes de 30cm e a qualidade da massa crocante.</div>
                 </div>
 
                 <div class="num-card">
                     <div class="num-big">2 Toques</div>
-                    <div class="num-title">Montagem Instantânea</div>
-                    <div class="num-text">Sem formulários longos ou downloads pesados: o cliente monta o pastel com tamanhos e adicionais e envia formatado direto no WhatsApp.</div>
+                    <div class="num-title">Montagem Ágil de Pedidos</div>
+                    <div class="num-text">O cliente escolhe o tamanho do pastel e adicionais em menos de 1 minuto, enviando a comanda perfeitamente organizada no WhatsApp.</div>
                 </div>
             </div>
 
@@ -798,23 +740,23 @@
             <div class="benchmark-box">
                 <div class="benchmark-header">
                     <i data-lucide="calculator" style="color: #059669; width: 22px; height: 22px;"></i>
-                    <span>Referência de Mercado: Retenção de Margem & Lucro</span>
+                    <span>Referência de Mercado: Retenção de Margem &amp; Lucro no Setor</span>
                 </div>
                 <p class="benchmark-desc">
-                    Os marketplaces cumprem um papel importante na atração de novos clientes. Porém, nas recompras dos clientes fiéis, a comissão média de <strong>20% a 23%</strong> reduz a rentabilidade. A cada <strong>100 pedidos recorrentes</strong> feitos pelo seu canal oficial com ticket médio de <strong>R$ 55,00</strong>, sua operação preserva margem limpa:
+                    No segmento de pastelarias e lanches, o ticket médio por pedido gira em torno de <strong>R$ 55,00</strong>. Em plataformas com comissão de <strong>20% a 23%</strong>, a cada <strong>100 pedidos recorrentes</strong> a operação deixa milhares de reais em taxas. Veja a comparação direta:
                 </p>
                 <div class="benchmark-grid">
                     <div class="benchmark-mini-card">
-                        <small>Fica no caixa em app de terceiro (a cada 100 pedidos)</small>
-                        <strong style="color: #64748B;">R$ 4.290,00</strong>
+                        <small>Fica no caixa em app de terceiro (100 pedidos)</small>
+                        <strong style="color: #64748B;">R$ 4.235,00</strong>
                     </div>
                     <div class="benchmark-mini-card">
                         <small>Fica no caixa no canal próprio Onira.fly</small>
                         <strong style="color: #059669;">R$ 5.500,00</strong>
                     </div>
                     <div class="benchmark-mini-card">
-                        <small>Margem extra preservada todo mês</small>
-                        <strong style="color: #0F172A;">+ R$ 1.210,00</strong>
+                        <small>Margem limpa extra retida todo mês</small>
+                        <strong style="color: #0F172A;">+ R$ 1.265,00</strong>
                     </div>
                 </div>
             </div>
@@ -827,71 +769,29 @@
             <div class="feature-grid">
                 <div class="feature-box">
                     <h4><i data-lucide="utensils"></i> Cardápio Interativo Completo</h4>
-                    <p>Categorias de salgados, doces gourmet, combos e pastelina com tamanhos (M 17cm, G 22cm, BIG 30cm) e adicionais personalizados.</p>
+                    <p>Pastéis salgados tradicionais, gigantes monstro de 30cm, combos casal com refrigerante, pastelina crocante e doces gourmet com fotos reais e seleção ágil de opções.</p>
                 </div>
                 <div class="feature-box">
-                    <h4><i data-lucide="globe"></i> Domínio Próprio da Marca</h4>
-                    <p>Registro oficial <code>laricaspastel.com.br</code>, garantindo autoridade máxima e indexação prioritária nas buscas locais.</p>
+                    <h4><i data-lucide="globe"></i> Domínio Oficial da Marca</h4>
+                    <p>Registro oficial <code>laricaspastel.com.br</code> sob a titularidade dos proprietários, transmitindo autoridade e profissionalismo em todas as redes sociais.</p>
                 </div>
                 <div class="feature-box">
-                    <h4><i data-lucide="message-square"></i> Disparo Direto via WhatsApp</h4>
-                    <p>Pedidos chegam no formato de Comanda Operacional Limpa no WhatsApp oficial da loja, prontos para a fritadeira e entrega.</p>
+                    <h4><i data-lucide="message-square"></i> Comanda Limpa no WhatsApp</h4>
+                    <p>Pedidos chegam perfeitamente formatados no WhatsApp oficial <code>(54) 99252-3774</code>, com itens em negrito, tamanhos, adicionais e endereço prontos para o tacho.</p>
                 </div>
                 <div class="feature-box">
-                    <h4><i data-lucide="truck"></i> Tele-Entrega & Retirada no Balcão</h4>
-                    <p>Seleção automática de bairros de Caxias do Sul (Cruzeiro, Bela Vista, Lourdes, etc.) com taxa exata e cálculo dinâmico.</p>
+                    <h4><i data-lucide="truck"></i> Tele-Entrega &amp; Retirada no Balcão</h4>
+                    <p>Tabela inteligente de taxas por bairro de Caxias do Sul (Cruzeiro, Bela Vista, Panazzolo, Lourdes, Centro, etc.) com cálculo automático instantâneo.</p>
                 </div>
                 <div class="feature-box">
-                    <h4><i data-lucide="zap"></i> Carregamento em 0.5s</h4>
-                    <p>Infraestrutura em nuvem de alta performance que abre instantaneamente em qualquer smartphone sem travar.</p>
+                    <h4><i data-lucide="zap"></i> Carregamento em menos de 0.5s</h4>
+                    <p>Arquitetura Jamstack ultra leve na Edge CDN que abre instantaneamente no Instagram ou no WhatsApp do cliente sem travar e sem exigir download de app.</p>
                 </div>
                 <div class="feature-box">
-                    <h4><i data-lucide="refresh-cw"></i> Acompanhamento & Suporte</h4>
-                    <p>Hospedagem dedicada, certificado SSL e suporte contínuo para atualização de itens, preços e promoções.</p>
+                    <h4><i data-lucide="refresh-cw"></i> Painel do Dono &amp; Suporte White-Glove</h4>
+                    <p>Autonomia total para pausar sabores esgotados e alterar preços em tempo real com PIN/TouchID, somado ao suporte contínuo da Onira Labs.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Investimento & Condições -->
-        <section class="section-card">
-            <h2 class="section-title"><i data-lucide="badge-dollar-sign"></i> Investimento & Condições</h2>
-
-            <div class="financial-split">
-                <!-- Oferta Principal -->
-                <div class="fin-box-main">
-                    <span class="fin-label">⭐ Oferta Principal • Canal Onira.fly</span>
-                    <div class="fin-total">3x de R$ 800,00</div>
-                    <div class="fin-item">
-                        💵 <strong>Implementação & Setup:</strong> R$ 2.400,00 à vista (Pix) ou parcelado em 3x de R$ 800,00 sem juros.
-                    </div>
-                    <div class="fin-item">
-                        ⚡ <strong>Acompanhamento Mensal:</strong> R$ 100,00/mês — inclui servidor em nuvem de alta velocidade, SSL, domínio próprio e suporte contínuo para alteração de cardápio e preços.
-                    </div>
-                </div>
-
-                <!-- Upsell Enxuto -->
-                <div class="fin-box-upsell">
-                    <span class="upsell-tag">🚀 Acelerador Local</span>
-                    <span class="fin-label" style="color: #7E22CE;">Google Meu Negócio & SEO</span>
-                    <div class="upsell-total">+ R$ 100/mês <small style="font-size:0.75rem; color:#6B21A8; display:block; font-weight:600;">(nos 3 primeiros meses)</small></div>
-                    <ul class="upsell-list">
-                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Otimização completa do perfil no Google Maps.</li>
-                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Estruturação de fotos oficiais e categorias de busca.</li>
-                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Palavras-chave locais para captar clientes em Caxias do Sul.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Novo CTA: Diagnóstico e Co-Criação Convidativa -->
-        <section class="cta-box">
-            <span class="cta-hook-badge"><i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Co-Criação & Diagnóstico</span>
-            <h3>Desenhamos essa primeira versão olhando o seu negócio de fora para dentro. Agora, queremos entender sua rotina por dentro.</h3>
-            <p>Ninguém conhece os pastéis mais pedidos, os horários de pico e as particularidades da sua cozinha melhor do que você. Esta demonstração é uma base pronta para ser calibrada. Vamos conversar 10 minutos no WhatsApp para alinharmos os detalhes da sua operação?</p>
-            <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jefferson!%20Vi%20a%20proposta%20do%20Onira.fly%20para%20a%20Larica's%20Pastel%20e%20gostaria%20de%20conversar%20sobre%20o%20canal%20pr%C3%B3prio." target="_blank" rel="noopener noreferrer" class="btn-wa-action">
-                <i data-lucide="message-circle"></i>
-                <span>Conversar com o Jefferson no WhatsApp</span>
-            </a>
         </section>
 
         <!-- Developer & Studio Profile Container (Onira Labs Master Standard) -->
@@ -901,7 +801,7 @@
                     <img src="assets/jeff-avatar.webp" alt="Jefferson Motta" class="dev-profile-avatar" onerror="this.src='../../assets/jeff-avatar.webp'">
                 </div>
                 <div class="dev-profile-main-info">
-                    <div class="dev-profile-tag">SERVICE DESIGN & AI BUSINESS INTELLIGENCE</div>
+                    <div class="dev-profile-tag">SERVICE DESIGN &amp; AI BUSINESS INTELLIGENCE</div>
                     <h3 class="dev-profile-name">Jefferson Motta</h3>
                     <p class="dev-profile-role">Service Designer e A.I Business Intelligence na Onira Labs</p>
                     <p class="dev-profile-city">
@@ -916,7 +816,7 @@
                 "Nosso propósito com o Onira.fly é devolver a autonomia para os negócios gastronômicos locais: o cliente visualiza o cardápio em menos de 1 segundo, monta o pedido em 2 toques e envia direto no WhatsApp oficial. Zero burocracia para quem compra e lucro total no caixa de quem produz."
             </div>
 
-            <!-- Botões Sociais com Ícones Oficiais -->
+            <!-- Botões Sociais -->
             <div class="dev-links-grid">
                 <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
                     <div class="dev-link-icon-box">
@@ -940,7 +840,7 @@
                 </a>
             </div>
 
-            <!-- Assinatura Onira Labs Ampliada com Alta Legibilidade -->
+            <!-- Assinatura Onira Labs -->
             <div class="studio-signature-box">
                 <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img" onerror="this.src='../../logo_onira_branco.png'">
                 <div class="studio-motto">ONIRA.FLY • HIGH CONVERSION DIGITAL CHANNELS</div>
@@ -948,15 +848,14 @@
             </div>
         </div>
 
-        <!-- Developer Signature -->
-        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 32px; margin-bottom: 24px;">
-            <p>Proposta comercial elaborada por <strong>Onira Labs</strong> • Soluções Web & Inteligência de Negócios</p>
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 28px; margin-bottom: 24px;">
+            <p>Proposta comercial elaborada por <strong>Onira Labs</strong> • Engenharia de Negócios Digitais</p>
         </div>
 
     </main>
 
     <!-- Floating WhatsApp Action Button -->
-    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jefferson!%20Vi%20a%20proposta%20do%20Onira.fly%20para%20a%20Larica's%20Pastel%20e%20gostaria%20de%20conversar%20sobre%20o%20canal%20pr%C3%B3prio." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jefferson no WhatsApp">
+    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jefferson!%20Vi%20a%20proposta%20do%20canal%20pr%C3%B3prio%20do%20Larica's%20Pastel%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jefferson no WhatsApp">
         <i data-lucide="message-circle"></i>
         <span>Falar com o Jefferson</span>
     </a>
