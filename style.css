@@ -5,35 +5,51 @@
  */
 
 :root {
-    --primary: #DC2626;            /* Vermelho Carmim Larica's */
-    --primary-hover: #B91C1C;
-    --primary-dark: #991B1B;
-    --primary-light: #FEE2E2;
-    --primary-border: #FECACA;
-    
-    --secondary: #0F172A;          /* Carvão Escuro */
-    --secondary-hover: #1E293B;
+    /* Jamaica Style Vivid Signature Palette */
+    --primary-green: #00E676;       /* Verde Vivo Elétrico */
+    --primary-green-hover: #00FF88;
+    --primary-green-dark: #00B359;
+    --primary-green-glow: rgba(0, 230, 118, 0.4);
+
+    --primary-red: #FF1E27;         /* Vermelho Vivo Intenso */
+    --primary-red-hover: #FF3840;
+    --primary-red-dark: #D60E16;
+    --primary-red-glow: rgba(255, 30, 39, 0.35);
+
+    --accent-yellow: #FBBF24;       /* Amarelo Dourado Vivo */
+    --accent-yellow-hover: #FCD34D;
+    --accent-yellow-dark: #D97706;
+    --accent-yellow-glow: rgba(251, 191, 36, 0.35);
+
+    --primary: var(--primary-green);
+    --primary-hover: var(--primary-green-hover);
+    --primary-dark: var(--primary-green-dark);
+    --primary-light: rgba(0, 230, 118, 0.12);
+    --primary-border: rgba(0, 230, 118, 0.3);
+
+    --secondary: #080C0A;          /* Preto Profundo */
+    --secondary-hover: #121815;
     --secondary-light: #F1F5F9;
 
-    --accent-amber: #D97706;
-    --accent-yellow: #F59E0B;
-    
-    --emerald: #059669;
-    --emerald-light: #10B981;
+    --emerald: #00E676;
+    --emerald-light: #00FF88;
     --emerald-bg: #ECFDF5;
-    --emerald-border: rgba(16, 185, 129, 0.3);
+    --emerald-border: rgba(0, 230, 118, 0.35);
 
-    --bg-page: #F8FAFC;
+    /* Dark Drawer & Cards */
+    --bg-page: #F8FAF8;
     --bg-card: #FFFFFF;
-    --bg-dark-drawer: #0F172A;
-    --bg-dark-card: #1E293B;
-    
-    --text-dark: #0F172A;
+    --bg-dark-drawer: #080C0A;     /* Fundo Dark do Carrinho */
+    --bg-dark-card: #121815;       /* Card Escuro Interno */
+    --bg-dark-surface: #18221D;
+
+    --text-dark: #080C0A;
     --text-main: #334155;
     --text-muted: #64748B;
-    
+
     --border: #E2E8F0;
     --border-light: #F1F5F9;
+    --border-dark: rgba(255, 255, 255, 0.12);
 
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -43,8 +59,10 @@
     --radius-md: 14px;
     --radius-lg: 20px;
     --radius-pill: 9999px;
-    --shadow-soft: 0 4px 16px rgba(15, 23, 42, 0.04);
-    --shadow-hover: 0 10px 24px rgba(15, 23, 42, 0.08);
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.08);
+
+    --jam-stripe: linear-gradient(90deg, #00E676 0%, #FBBF24 50%, #FF1E27 100%);
 }
 
 *, *::before, *::after {
@@ -1782,4 +1800,333 @@ body {
         bottom: 80px;
         right: 16px;
     }
+}
+
+/* Jamaica Style Accents */
+:root {
+    --jam-stripe: linear-gradient(90deg, #10B981 0%, #F59E0B 50%, #EF4444 100%);
+    --jam-green: #10B981;
+    --jam-yellow: #F59E0B;
+    --jam-red: #EF4444;
+}
+
+.brand-wrapper {
+    background: #080C0A;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: inline-flex;
+    align-items: center;
+}
+
+.brand-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Category pills active state with Jamaica vibe */
+.cat-pill.active {
+    background: #080C0A !important;
+    color: #FBBF24 !important;
+    border-color: #10B981 !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Product Card price always emerald */
+.product-price {
+    color: #059669 !important;
+    font-weight: 900 !important;
+}
+
+
+/* ==========================================================
+   USER SPECIFIC OVERRIDES - JAMAICA STYLE VIVID
+   ========================================================== */
+
+/* 1. O Botão do pedido tem que ser verde */
+.btn-cart-trigger {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #00E676 !important;          /* Verde Vivo */
+    color: #080C0A !important;                /* Texto preto de alto contraste */
+    border: 1.5px solid #00E676 !important;
+    padding: 8px 16px !important;
+    border-radius: var(--radius-pill) !important;
+    cursor: pointer !important;
+    font-weight: 900 !important;
+    font-size: 0.88rem !important;
+    box-shadow: 0 4px 16px rgba(0, 230, 118, 0.45) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-cart-trigger:hover {
+    background: #00FF88 !important;
+    border-color: #00FF88 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.6) !important;
+}
+
+.btn-cart-trigger .cart-total-header {
+    background: rgba(8, 12, 10, 0.15) !important;
+    color: #080C0A !important;
+    font-weight: 900 !important;
+}
+
+.btn-cart-trigger .cart-count-badge {
+    background: #080C0A !important;
+    color: #00E676 !important;
+    font-weight: 900 !important;
+    border: 1px solid rgba(0, 230, 118, 0.3) !important;
+}
+
+.cart-floating-bar {
+    background: #00E676 !important;
+    color: #080C0A !important;
+    font-weight: 900 !important;
+    box-shadow: 0 8px 25px rgba(0, 230, 118, 0.5) !important;
+    border: 2px solid #080C0A !important;
+}
+
+.cart-floating-bar .floating-total {
+    color: #080C0A !important;
+    font-weight: 900 !important;
+}
+
+.cart-floating-bar .floating-badge {
+    background: #080C0A !important;
+    color: #00E676 !important;
+}
+
+/* 2. O botão adicionar pedido é preto com texto em verde. E no modo preenchido, sólido. */
+.btn-add-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: #080C0A !important;           /* Preto sólido preenchido */
+    color: #00E676 !important;                /* Texto em verde vivo */
+    border: 1.5px solid #080C0A !important;   /* Borda sólida preta */
+    padding: 8px 16px !important;
+    border-radius: var(--radius-pill) !important;
+    font-size: 0.84rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.3px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-add-action:hover {
+    background: #141C18 !important;
+    color: #00FF88 !important;
+    border-color: #00E676 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 18px rgba(0, 230, 118, 0.3) !important;
+}
+
+.btn-add-action i, .btn-add-action svg {
+    color: #00E676 !important;
+    stroke: #00E676 !important;
+}
+
+/* Modal submit button: Preto sólido com texto em verde vivo */
+.btn-add-modal-submit {
+    background: #080C0A !important;
+    color: #00E676 !important;
+    border: 2px solid #00E676 !important;
+    font-weight: 900 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-add-modal-submit:hover {
+    background: #141C18 !important;
+    color: #00FF88 !important;
+    border-color: #00FF88 !important;
+    box-shadow: 0 8px 22px rgba(0, 230, 118, 0.4) !important;
+}
+
+/* 3. O carrinho em cores dark fundo, botão amarelo para os select e detalhes */
+.cart-drawer {
+    background: #080C0A !important;           /* Dark fundo */
+    border-left: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+}
+
+.cart-header {
+    background: #040605 !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.cart-header-title {
+    color: #FFFFFF !important;
+}
+
+.cart-header-title i {
+    color: #00E676 !important;
+}
+
+.cart-item-card {
+    background: #121815 !important;           /* Card dark interno */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.cart-item-name {
+    color: #FFFFFF !important;
+}
+
+.cart-item-spec {
+    color: #94A3B8 !important;
+}
+
+/* Botão amarelo para os SELECT e DETALHES */
+.type-pill, .pay-pill {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    color: #CBD5E1 !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 800 !important;
+    transition: all 0.2s ease !important;
+}
+
+.type-pill:hover, .pay-pill:hover {
+    border-color: #FBBF24 !important;
+    color: #FBBF24 !important;
+    background: rgba(251, 191, 36, 0.08) !important;
+}
+
+/* Estado selecionado/ativo: BOTÃO AMARELO VIVO */
+.type-pill.active, .pay-pill.active {
+    background: #FBBF24 !important;           /* Amarelo vivo */
+    border-color: #F59E0B !important;
+    color: #080C0A !important;                /* Texto preto de alto contraste */
+    font-weight: 900 !important;
+    box-shadow: 0 4px 14px rgba(251, 191, 36, 0.4) !important;
+    transform: translateY(-1px) !important;
+}
+
+.type-pill.active i, .pay-pill.active i {
+    color: #080C0A !important;
+}
+
+/* Inputs e Selects no Carrinho Dark com foco em Amarelo */
+.form-select, .form-input {
+    background: #121815 !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+.form-select:focus, .form-input:focus {
+    border-color: #FBBF24 !important;         /* Destaque em Amarelo */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.25) !important;
+    outline: none !important;
+}
+
+.form-select option {
+    background: #121815 !important;
+    color: #FFFFFF !important;
+}
+
+/* Detalhes de itens no carrinho com Amarelo Vivo */
+.cart-item-addons-list {
+    color: #FBBF24 !important;                /* Detalhes em amarelo */
+    font-weight: 700 !important;
+}
+
+.cart-qty-ctrl {
+    background: #040605 !important;
+    border: 1.5px solid rgba(251, 191, 36, 0.35) !important;
+}
+
+.cart-qty-btn {
+    color: #FBBF24 !important;                /* Botões de quantidade em amarelo */
+    font-weight: 900 !important;
+}
+
+.cart-qty-val {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+}
+
+.cart-item-total-price {
+    color: #00E676 !important;                /* Preço verde vivo */
+    font-weight: 900 !important;
+}
+
+/* Sumário e Botão de WhatsApp */
+.cart-summary-box {
+    background: #121815 !important;
+    border: 1px solid rgba(251, 191, 36, 0.25) !important;
+}
+
+.cart-summary-line {
+    color: #CBD5E1 !important;
+}
+
+.summary-total-row {
+    border-top: 1px dashed rgba(255, 255, 255, 0.15) !important;
+}
+
+.summary-total-row .lbl {
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+}
+
+.summary-total-row .val {
+    color: #00E676 !important;                /* Total verde vivo */
+    font-weight: 900 !important;
+    font-size: 1.3rem !important;
+}
+
+.btn-checkout-whatsapp {
+    background: #00E676 !important;           /* Verde vivo no botão de finalizar */
+    color: #080C0A !important;                /* Texto preto forte */
+    font-weight: 900 !important;
+    font-size: 1.05rem !important;
+    box-shadow: 0 8px 24px rgba(0, 230, 118, 0.45) !important;
+    border: 2px solid #00E676 !important;
+}
+
+.btn-checkout-whatsapp:hover {
+    background: #00FF88 !important;
+    border-color: #00FF88 !important;
+    box-shadow: 0 10px 28px rgba(0, 230, 118, 0.6) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 4. Vermelho vivo & Badges */
+.badge-tag-danger, .badge-red-vivid {
+    background: #FF1E27 !important;           /* Vermelho vivo */
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+}
+
+.btn-item-remove {
+    color: #FF1E27 !important;
+}
+
+.btn-item-remove:hover {
+    background: rgba(255, 30, 39, 0.15) !important;
+}
+
+/* Modal Detalhes: Selects e opções com Amarelo Vivo */
+.opt-radio-row.selected, .opt-check-row.selected {
+    background: rgba(251, 191, 36, 0.12) !important;
+    border-color: #FBBF24 !important;
+}
+
+.opt-radio-row.selected .opt-radio-title,
+.opt-check-row.selected .opt-check-title {
+    color: #D97706 !important;
+    font-weight: 800 !important;
+}
+
+.product-price {
+    color: #00B359 !important;
+    font-weight: 900 !important;
 }

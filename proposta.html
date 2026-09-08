@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposta Comercial | Larica's Pastel &amp; Onira Labs</title>
-    <meta name="description" content="Proposta comercial de canal próprio para o Larica's Pastel em Caxias do Sul: cardápio interativo de alta velocidade, pedidos diretos no WhatsApp oficial e domínio próprio sem taxas por pedido.">
+    <meta name="description" content="Proposta comercial de canal próprio para o Larica's Pastel em Caxias do Sul: cardápio interativo Jamaica Style, pedidos diretos no WhatsApp oficial e domínio próprio sem taxas por pedido.">
 
+    <!-- Página de proposta comercial restrita a link direto -->
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
+    <meta name="theme-color" content="#080C0A">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,23 +21,38 @@
 
     <style>
         :root {
-            --bg-page: #F8FAFC;
+            /* Jamaica Style Signature Palette (Verde, Amarelo, Vermelho, Preto) */
+            --jam-green: #00E676;
+            --jam-green-neon: #00E676;
+            --jam-green-dark: #065F46;
+            --jam-green-bg: #ECFDF5;
+            --jam-green-border: rgba(16, 185, 129, 0.35);
+
+            --jam-yellow: #FBBF24;
+            --jam-yellow-bright: #FBBF24;
+            --jam-yellow-light: #FEF3C7;
+            --jam-yellow-dark: #B45309;
+            --jam-yellow-border: rgba(245, 158, 11, 0.35);
+
+            --jam-red: #FF1E27;
+            --jam-red-dark: #DC2626;
+            --jam-red-light: #FEE2E2;
+            --jam-red-border: rgba(239, 68, 68, 0.35);
+
+            --jam-black: #080C0A;
+            --jam-card-dark: #121815;
+            --jam-dark-border: rgba(255, 255, 255, 0.09);
+
+            /* Jamaica Tricolor Gradient */
+            --jam-stripe: linear-gradient(90deg, #00E676 0%, #FBBF24 50%, #FF1E27 100%);
+            --jam-glow: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.18) 0%, rgba(245, 158, 11, 0.12) 50%, rgba(239, 68, 68, 0.08) 100%);
+
+            /* Page Base */
+            --bg-page: #F8FAF8;
             --bg-card: #FFFFFF;
-            --text-dark: #0F172A;
+            --text-dark: #0A0F0D;
             --text-main: #334155;
             --text-muted: #64748B;
-
-            --primary: #DC2626;
-            --primary-dark: #0F172A;
-            --primary-hover: #1E293B;
-
-            --accent: #F59E0B;
-            --accent-light: #FEF3C7;
-
-            --emerald: #059669;
-            --emerald-light: #ECFDF5;
-            --emerald-border: rgba(5, 150, 105, 0.35);
-
             --border: #E2E8F0;
             --border-light: #F1F5F9;
 
@@ -53,6 +70,16 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Top Jamaica Bar Accent */
+        .jamaica-top-stripe {
+            height: 4px;
+            width: 100%;
+            background: var(--jam-stripe);
+            position: sticky;
+            top: 0;
+            z-index: 101;
+        }
+
         .container {
             width: 100%;
             max-width: 780px;
@@ -60,13 +87,15 @@
             padding: 0 18px;
         }
 
+        /* Nav */
         .proposal-nav {
             background: #FFFFFF;
             border-bottom: 1px solid var(--border);
-            padding: 14px 0;
+            padding: 12px 0;
             position: sticky;
-            top: 0;
+            top: 4px;
             z-index: 100;
+            backdrop-filter: blur(8px);
         }
 
         .nav-wrapper {
@@ -75,56 +104,161 @@
             justify-content: space-between;
         }
 
-        .brand-logo-link {
-            display: flex;
+        .brand-logo-pill {
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            background: var(--jam-black);
+            padding: 6px 14px 6px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .brand-logo-pill:hover {
+            transform: scale(1.02);
         }
 
         .brand-logo-img {
             height: 38px;
             width: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .brand-pill-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-pill-name {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-pill-name span {
+            color: var(--jam-green-neon);
+        }
+
+        .brand-pill-sub {
+            font-size: 0.70rem;
+            color: var(--jam-yellow-bright);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
         }
 
         .back-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--text-dark);
             padding: 8px 16px;
             background: #F1F5F9;
+            border-radius: 9999px;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-dark);
-            font-size: 0.85rem;
-            font-weight: 700;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .back-link:hover {
-            background: var(--primary-dark);
+            background: var(--jam-black);
             color: #FFFFFF;
-            border-color: var(--primary-dark);
+            border-color: var(--jam-black);
         }
 
-        .offer-hero { padding: 28px 0 20px 0; }
+        .back-text-short { display: none; }
+
+        /* Offer Hero (Jamaica Style Dark Aesthetic) */
+        .offer-hero {
+            padding: 24px 0 18px 0;
+        }
 
         .offer-card-main {
-            background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
+            background: var(--jam-black);
             color: #FFFFFF;
-            border-radius: 20px;
-            padding: 42px 32px;
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+            border-radius: 24px;
+            padding: 44px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .offer-card-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--jam-stripe);
+        }
+
+        .hero-glow-bg {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 460px;
+            height: 260px;
+            background: var(--jam-glow);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo-center {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-logo-center img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .hero-badge-jamaica {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: var(--jam-green-neon);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
         }
 
         .offer-title {
             font-family: var(--font-heading);
-            font-size: 2.25rem;
+            font-size: 2.3rem;
             font-weight: 900;
             line-height: 1.2;
             color: #FFFFFF;
@@ -132,50 +266,73 @@
             letter-spacing: -0.02em;
         }
 
-        .offer-title span { color: #DC2626; }
+        .offer-title .hl-green { color: var(--jam-green-neon); }
+        .offer-title .hl-yellow { color: var(--jam-yellow-bright); }
+        .offer-title .hl-red { color: var(--jam-red); }
 
         .offer-desc {
             font-size: 1.05rem;
             color: #CBD5E1;
-            max-width: 640px;
+            max-width: 650px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
+        .offer-desc strong {
+            color: #FFFFFF;
+        }
+
+        /* Domain Strip */
         .domain-strip {
-            background: var(--emerald-light);
-            border: 1.5px solid var(--emerald-border);
-            border-radius: 14px;
+            background: #FFFFFF;
+            border: 1.5px solid var(--jam-green);
+            border-radius: 16px;
             padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
             margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .domain-strip::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--jam-stripe);
         }
 
         .domain-tag {
             font-size: 0.76rem;
-            color: #047857;
+            color: var(--jam-green-dark);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .domain-name {
             font-family: var(--font-heading);
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: #064E3B;
             letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .domain-price { text-align: right; }
         .domain-price strong {
             font-size: 1.05rem;
-            color: #047857;
+            color: var(--jam-green-dark);
             display: block;
             font-weight: 800;
         }
@@ -184,13 +341,14 @@
             color: #065F46;
         }
 
+        /* Section Cards */
         .section-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 18px;
+            padding: 32px 28px;
             margin-bottom: 24px;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+            box-shadow: 0 4px 18px rgba(10, 15, 13, 0.03);
         }
 
         .section-title {
@@ -201,12 +359,349 @@
             margin-bottom: 22px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             letter-spacing: -0.01em;
         }
 
-        .section-title i { color: #DC2626; }
+        .title-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--jam-black);
+            color: var(--jam-yellow-bright);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
+        /* Financial Section */
+        .financial-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 18px;
+        }
+
+        .fin-box-main {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            border: 2px solid var(--jam-yellow);
+            border-radius: 16px;
+            padding: 26px;
+            position: relative;
+        }
+
+        .fin-box-main::before {
+            content: 'MELHOR RETORNO';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--jam-black);
+            color: var(--jam-yellow-bright);
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+
+        .fin-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--jam-yellow-dark);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .fin-total {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #92400E;
+            margin-bottom: 14px;
+            line-height: 1.1;
+        }
+
+        .fin-total small {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #B45309;
+        }
+
+        .fin-item {
+            font-size: 0.90rem;
+            color: #78350F;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .fin-box-upsell {
+            background: #F8FAFC;
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .upsell-tag {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #0369A1;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .upsell-total {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #0C4A6E;
+            margin-bottom: 12px;
+        }
+
+        .upsell-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upsell-list li {
+            font-size: 0.82rem;
+            color: #334155;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .upsell-list li i {
+            color: var(--jam-green);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Scraped Catalog Showcase Grid */
+        .catalog-showcase-header {
+            margin-bottom: 18px;
+        }
+
+        .catalog-showcase-header p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .badge-scraped-origin {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #F1F5F9;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .products-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .product-visual-card {
+            background: #FFFFFF;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product-visual-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--jam-green);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.12);
+        }
+
+        .prod-img-wrap {
+            width: 100%;
+            height: 120px;
+            background: #F1F5F9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prod-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .product-visual-card:hover .prod-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .prod-badge-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(8, 12, 10, 0.85);
+            backdrop-filter: blur(4px);
+            color: var(--jam-yellow-bright);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .prod-info-box {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .prod-name {
+            font-family: var(--font-heading);
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .prod-desc-snippet {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .prod-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 6px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .prod-price {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--jam-green-dark);
+        }
+
+        .prod-status-ready {
+            font-size: 0.68rem;
+            color: #059669;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Triad Comparison Table */
+        .comparison-wrapper {
+            margin-top: 20px;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background: #FFFFFF;
+        }
+
+        .comp-table {
+            width: 100%;
+            min-width: 580px;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.86rem;
+        }
+
+        .swipe-hint {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--jam-yellow-dark);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .swipe-hint { display: flex; }
+        }
+
+        .comp-table th {
+            padding: 14px 16px;
+            background: #F8FAFC;
+            font-weight: 800;
+            color: var(--text-dark);
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .comp-table th.highlight-col {
+            background: var(--jam-black);
+            color: #FFFFFF;
+            border-bottom: 1.5px solid var(--jam-green);
+        }
+
+        .comp-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-main);
+        }
+
+        .comp-table tr:last-child td { border-bottom: none; }
+
+        .comp-table td.highlight-col {
+            background: rgba(16, 185, 129, 0.04);
+            font-weight: 700;
+            color: var(--text-dark);
+            border-left: 1px solid rgba(16, 185, 129, 0.2);
+            border-right: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .badge-check {
+            color: var(--jam-green);
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-x {
+            color: var(--jam-red);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Numbers Grid */
         .numbers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -217,21 +712,37 @@
         .num-card {
             background: #F8FAFC;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .num-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--jam-green);
+        }
+
+        .num-card:nth-child(2)::before { background: var(--jam-yellow); }
+        .num-card:nth-child(3)::before { background: var(--jam-red); }
+        .num-card:nth-child(4)::before { background: var(--jam-green); }
 
         .num-big {
             font-family: var(--font-heading);
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 900;
-            color: var(--emerald);
+            color: var(--text-dark);
             margin-bottom: 4px;
         }
 
         .num-title {
             font-weight: 800;
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             color: var(--text-dark);
             margin-bottom: 6px;
         }
@@ -242,9 +753,10 @@
             line-height: 1.5;
         }
 
+        /* Benchmark Box */
         .benchmark-box {
             background: #F0FDF4;
-            border: 1.5px solid rgba(5, 150, 105, 0.25);
+            border: 1.5px solid var(--jam-green-border);
             border-radius: 14px;
             padding: 22px;
             margin-top: 14px;
@@ -253,9 +765,9 @@
         .benchmark-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 1.02rem;
             color: #064E3B;
             margin-bottom: 8px;
         }
@@ -291,10 +803,11 @@
 
         .benchmark-mini-card strong {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 900;
         }
 
+        /* Included Features Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -325,7 +838,7 @@
             gap: 8px;
         }
 
-        .feature-box h4 i { color: #059669; }
+        .feature-box h4 i { color: var(--jam-green); }
 
         .feature-box p {
             font-size: 0.84rem;
@@ -333,98 +846,27 @@
             line-height: 1.5;
         }
 
-        .financial-split {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 18px;
-        }
-
-        .fin-box-main {
-            background: #FFFBEB;
-            border: 1.5px solid rgba(245, 158, 11, 0.4);
-            border-radius: 14px;
-            padding: 24px;
-        }
-
-        .fin-label {
-            font-size: 0.78rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #B45309;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .fin-total {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            font-weight: 900;
-            color: #D97706;
-            margin-bottom: 14px;
-        }
-
-        .fin-item {
-            font-size: 0.88rem;
-            color: #78350F;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .fin-box-upsell {
-            background: #FAF5FF;
-            border: 1.5px solid rgba(168, 85, 247, 0.3);
-            border-radius: 14px;
-            padding: 24px;
-        }
-
-        .upsell-tag {
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #7E22CE;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .upsell-total {
-            font-family: var(--font-heading);
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: #6B21A8;
-            margin-bottom: 12px;
-        }
-
-        .upsell-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .upsell-list li {
-            font-size: 0.8rem;
-            color: #581C87;
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-            line-height: 1.4;
-        }
-
-        .upsell-list li i {
-            color: #9333EA;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
+        /* Developer & Studio Profile */
         .dev-profile-card {
-            background: #0F172A;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            background: var(--jam-black);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 34px;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35);
             color: #FFFFFF;
             margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dev-profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--jam-stripe);
         }
 
         .dev-profile-header {
@@ -440,58 +882,56 @@
         }
 
         .dev-profile-avatar {
-            width: 84px;
-            height: 84px;
-            border-radius: 12px;
+            width: 88px;
+            height: 88px;
+            border-radius: 14px;
             object-fit: cover;
-            border: 2px solid #059669;
-            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+            border: 2px solid var(--jam-green);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
             display: block;
         }
 
         .dev-profile-tag {
             font-size: 0.72rem;
             font-weight: 800;
+            color: var(--jam-yellow-bright);
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: #10B981;
             margin-bottom: 4px;
         }
 
         .dev-profile-name {
             font-family: var(--font-heading);
-            font-size: 1.45rem;
+            font-size: 1.6rem;
             font-weight: 900;
-            color: #FFFFFF;
-            line-height: 1.2;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
 
         .dev-profile-role {
-            font-size: 0.88rem;
-            color: #E2E8F0;
-            font-weight: 600;
-            margin-top: 2px;
+            font-size: 0.90rem;
+            color: #94A3B8;
+            margin-bottom: 4px;
         }
 
         .dev-profile-city {
-            font-size: 0.78rem;
-            color: #94A3B8;
+            font-size: 0.80rem;
+            color: #CBD5E1;
             display: flex;
             align-items: center;
-            gap: 4px;
-            margin-top: 4px;
+            gap: 6px;
         }
 
         .dev-profile-bio {
-            background: rgba(255, 255, 255, 0.04);
-            border-left: 3px solid #059669;
-            border-radius: 0 8px 8px 0;
-            padding: 14px 18px;
-            font-style: italic;
-            font-size: 0.93rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px 18px;
+            font-size: 0.90rem;
             color: #E2E8F0;
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
+            font-style: italic;
         }
 
         .dev-links-grid {
@@ -504,150 +944,136 @@
         .dev-link-pill {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
+            justify-content: space-between;
             padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             color: #FFFFFF;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             transition: all 0.2s ease;
         }
 
         .dev-link-pill:hover {
             background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: translateY(-1px);
+            border-color: var(--jam-green);
         }
 
         .dev-link-icon-box {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            flex-shrink: 0;
-        }
-
-        .dev-link-pill span {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dev-link-ext {
-            width: 16px;
-            height: 16px;
-            color: #94A3B8;
-            flex-shrink: 0;
+            gap: 10px;
         }
 
         .studio-signature-box {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 22px;
+            padding-top: 20px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
         }
 
         .studio-logo-img {
-            height: 44px;
+            height: 42px;
             width: auto;
-            max-width: 240px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            margin-bottom: 8px;
+            opacity: 0.95;
         }
 
         .studio-motto {
-            font-size: 0.82rem;
-            color: #CBD5E1;
-            letter-spacing: 1.2px;
+            font-size: 0.74rem;
             font-weight: 800;
+            color: var(--jam-yellow-bright);
+            letter-spacing: 1px;
             text-transform: uppercase;
+            margin-bottom: 2px;
         }
 
         .studio-location {
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             color: #64748B;
         }
 
+        /* Floating WhatsApp Button */
         .floating-whatsapp-btn {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #25D366;
-            color: #FFFFFF;
-            padding: 12px 22px;
-            border-radius: 9999px;
-            display: flex;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-family: inherit;
-            font-size: 0.92rem;
-            font-weight: 800;
+            gap: 10px;
+            background: #00E676;
+            color: #080C0A;
+            padding: 13px 22px;
+            border-radius: 9999px;
+            font-size: 0.94rem;
+            font-weight: 900;
             text-decoration: none;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
-            z-index: 9999;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            animation: waPulse 2.5s infinite ease-in-out;
+            box-shadow: 0 10px 25px rgba(0, 230, 118, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 2px solid #080C0A;
         }
 
         .floating-whatsapp-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
-            background: #20BA5A;
-            color: #FFFFFF;
+            background: #00FF88;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0, 230, 118, 0.7);
         }
 
-        @keyframes waPulse {
-            0%, 100% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45); }
-            50% { box-shadow: 0 8px 35px rgba(37, 211, 102, 0.75); }
+        .floating-whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(37, 211, 102, 0.6);
         }
 
-        .back-text-short { display: none; }
-
-        @media (max-width: 640px) {
-            .offer-title { font-size: 1.75rem; }
-            .brand-logo-img { height: 28px; max-width: 130px; }
-            .back-link { padding: 6px 10px; font-size: 0.78rem; gap: 4px; }
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .offer-card-main { padding: 34px 20px; }
+            .offer-title { font-size: 1.85rem; }
+            .hero-logo-center img { max-width: 170px; }
+            .domain-strip { flex-direction: column; text-align: center; gap: 8px; }
+            .domain-price { text-align: center; }
+            .domain-name { justify-content: center; font-size: 1.25rem; }
+            .products-visual-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid, .financial-split, .numbers-grid, .benchmark-grid { grid-template-columns: 1fr; }
+            .dev-profile-card { padding: 24px 18px; }
+            .dev-profile-header { flex-direction: column; text-align: center; gap: 14px; }
+            .dev-profile-city { justify-content: center; }
+            .dev-links-grid { grid-template-columns: 1fr; }
             .back-text-full { display: none; }
             .back-text-short { display: inline; }
-            .domain-strip { flex-direction: column; align-items: flex-start; }
-            .domain-price { text-align: left; }
-            .feature-grid, .financial-split, .numbers-grid, .benchmark-grid { grid-template-columns: 1fr; }
-            .dev-profile-card { padding: 22px 16px; border-radius: 14px; }
-            .dev-profile-header { flex-direction: column; text-align: center; gap: 12px; }
-            .dev-profile-avatar { width: 72px; height: 72px; }
-            .dev-profile-city { justify-content: center; }
-            .dev-profile-bio { font-size: 0.86rem; padding: 12px 14px; }
-            .dev-links-grid { grid-template-columns: 1fr; gap: 8px; }
-            .dev-link-pill { padding: 10px 12px; font-size: 0.80rem; }
-            .studio-signature-box { padding-top: 16px; }
-            .studio-logo-img { height: 36px; }
+        }
+
+        @media (max-width: 480px) {
+            .products-visual-grid { grid-template-columns: 1fr; }
+            .offer-title { font-size: 1.6rem; }
+            .section-card { padding: 24px 18px; }
             .floating-whatsapp-btn {
                 bottom: 14px;
                 right: 14px;
-                padding: 10px 16px;
-                font-size: 0.84rem;
+                padding: 11px 18px;
+                font-size: 0.86rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Jamaica Top Stripe -->
+    <div class="jamaica-top-stripe"></div>
+
     <!-- Header Nav -->
     <nav class="proposal-nav">
         <div class="container nav-wrapper">
-            <a href="index.html" class="brand-logo-link" aria-label="Voltar para a demonstração do site">
-                <img src="assets/logo.svg" alt="Larica's Pastel Logo" class="brand-logo-img">
+            <a href="index.html" class="brand-logo-pill" aria-label="Larica's Pastel - Voltar para a demonstração">
+                <img src="assets/logo.png" alt="Larica's Pastel Logo" class="brand-logo-img">
+                <div class="brand-pill-text">
+                    <span class="brand-pill-name">LARICA'S <span>PASTEL</span></span>
+                    <span class="brand-pill-sub">Caxias do Sul • Canal Oficial</span>
+                </div>
             </a>
             <a href="index.html" class="back-link">
                 <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
-                <span class="back-text-full">Ver Site de Demonstração</span>
+                <span class="back-text-full">Ver Demonstração do Site</span>
                 <span class="back-text-short">Ver Site</span>
             </a>
         </div>
@@ -655,52 +1081,259 @@
 
     <main class="container" style="padding-bottom: 96px;">
 
-        <!-- Main Hero Hook -->
+        <!-- Main Hero Hook (Jamaica Style Dark Theme) -->
         <section class="offer-hero">
             <div class="offer-card-main">
-                <h1 class="offer-title">O Canal Digital Direto do <span>Larica's Pastel</span></h1>
-                <p class="offer-desc">Um cardápio interativo e ultra-rápido para transformar pedidos de pastéis gigantes e clientes fiéis do Cruzeiro em vendas diretas pelo WhatsApp oficial: <strong>(54) 99252-3774</strong> — com posse total da sua audiência e 0% de comissões.</p>
+                <div class="hero-glow-bg"></div>
+                <div class="hero-content-layer">
+                    <div class="hero-badge-jamaica">
+                        <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+                        <span>Identidade Visual Jamaica Style • Alta Conversão</span>
+                    </div>
+
+                    <div class="hero-logo-center">
+                        <img src="assets/logo.png" alt="Logo Oficial Larica's Pastel">
+                    </div>
+
+                    <h1 class="offer-title">
+                        O Canal Digital Oficial do <span class="hl-green">Larica's</span> <span class="hl-yellow">Pastel</span>
+                    </h1>
+
+                    <p class="offer-desc">
+                        Um cardápio interativo e ultra-rápido personalizado com a autêntica <strong>energia verde, amarela e vermelha</strong> da sua marca. Projetado para transformar a fome de pastéis gigantes do Bairro Cruzeiro em pedidos diretos no WhatsApp oficial: <strong>(54) 99649-0510</strong> — com retenção de <strong>100% da sua margem de lucro</strong>.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- Domínio Próprio Oficial -->
         <div class="domain-strip">
             <div>
-                <span class="domain-tag">Domínio Próprio &amp; Ativo Digital da Sua Marca</span>
-                <div class="domain-name">laricaspastel.com.br</div>
+                <span class="domain-tag">Domínio Próprio &amp; Ativo Digital Exclusivo</span>
+                <div class="domain-name">
+                    <i data-lucide="globe" style="width:20px;height:20px;color:var(--jam-green);"></i>
+                    laricaspastel.com.br
+                </div>
             </div>
             <div class="domain-price">
-                <strong>Incluso no Projeto</strong>
-                <span>Registro Oficial + Cloudflare SSL + CDN no RS</span>
+                <strong>Incluso no Setup</strong>
+                <span>Registro Oficial • Cloudflare SSL • CDN Ultra-rápido no RS</span>
             </div>
         </div>
 
-        <!-- Investimento & Condições (Posicionado em Destaque no Início) -->
+        <!-- Vitrine do Cardápio Real Raspado de contatei.com.br/loja/laricaspastel -->
+        <section class="section-card" id="cardapio-real">
+            <div class="catalog-showcase-header">
+                <div class="badge-scraped-origin">
+                    <i data-lucide="database" style="width:13px;height:13px;color:var(--jam-green);"></i>
+                    <span>Dados Raspados de contatei.com.br/loja/laricaspastel</span>
+                </div>
+                <h2 class="section-title" style="margin-bottom:8px;">
+                    <span class="title-icon-box"><i data-lucide="utensils" style="width:18px;height:18px;"></i></span>
+                    Seus Produtos &amp; Fotos Já Mapeados no Onira.fly
+                </h2>
+                <p>
+                    Extraímos a estrutura real do seu cardápio com os combos campeões de vendas, pastéis salgados de 17cm a 30cm, pastéis doces gourmet e bebidas geladas. O seu cliente encontra tudo organizado em categorias instantâneas:
+                </p>
+            </div>
+
+            <!-- Grid de Produtos com Fotos Reais -->
+            <div class="products-visual-grid">
+                <!-- Produto 1 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/combo_dupla_m.jpg" alt="Combo Dupla 17cm Larica's">
+                        <span class="prod-badge-tag">Mais Pedido 🔥</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">Combo Dupla 17cm</div>
+                        <div class="prod-desc-snippet">1 Frango c/ Cheddar M + 1 Carne c/ Catupiry M (17cm cada).</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">R$ 22,50</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/combo_4pasteis_guarana.jpg" alt="4 Pastéis Médio + 1 Guaraná 600ml">
+                        <span class="prod-badge-tag">Família 🥤</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">4 Pastéis M + Fruki 600ml</div>
+                        <div class="prod-desc-snippet">Carne c/ Catupiry, Carne c/ Cheddar, Frango c/ Catupiry e Frango c/ Cheddar.</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">R$ 45,00</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/combo_mini_4.jpg" alt="Combo Mini 4 Pastéis">
+                        <span class="prod-badge-tag">Petisco 🥟</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">Combo Mini (4 de 10cm)</div>
+                        <div class="prod-desc-snippet">4 pastéis mini de 10cm sequinhos e crocantes.</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">R$ 29,90</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/pastel_salgado_m.jpg" alt="Pastéis Salgados M Larica's">
+                        <span class="prod-badge-tag">Salgados M 🧀</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">Pastéis Salgados M (17cm)</div>
+                        <div class="prod-desc-snippet">Carne, Frango, 3 Queijos, Pizza, Bolonhesa, BBQ e mais de 25 sabores.</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">a partir de R$ 15,50</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 5 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/pastel_salgado_big.jpg" alt="Pastéis Salgados BIG Larica's">
+                        <span class="prod-badge-tag">Gigante 30cm 👑</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">Pastéis BIG (30cm Fartos)</div>
+                        <div class="prod-desc-snippet">O famoso pastel gigante do tamanho da fome do cliente da serra gaúcha.</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">a partir de R$ 31,50</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 6 -->
+                <div class="product-visual-card">
+                    <div class="prod-img-wrap">
+                        <img src="assets/pastel_doce_mini.jpg" alt="Pastéis Doces Gourmet">
+                        <span class="prod-badge-tag">Doces Gourmet 🍫</span>
+                    </div>
+                    <div class="prod-info-box">
+                        <div class="prod-name">Pastéis Doces (Mini a G)</div>
+                        <div class="prod-desc-snippet">Nega Maluca, Prestígio, MM's, Ouro Branco, Sonho de Valsa, Charge e Oreo.</div>
+                        <div class="prod-price-row">
+                            <span class="prod-price">a partir de R$ 8,00</span>
+                            <span class="prod-status-ready"><i data-lucide="check" style="width:12px;height:12px;"></i> Pronto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparativo: Contatei Atual vs iFood vs Onira.fly -->
+        <section class="section-card">
+            <h2 class="section-title">
+                <span class="title-icon-box"><i data-lucide="scale" style="width:18px;height:18px;"></i></span>
+                Por Que Evoluir para um Canal Próprio?
+            </h2>
+
+            <div class="swipe-hint">
+                <i data-lucide="chevrons-right" style="width:14px;height:14px;"></i>
+                <span>Deslize para o lado para ver o comparativo completo</span>
+            </div>
+            <div class="comparison-wrapper">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>Recurso / Diferencial</th>
+                            <th>Plataforma Atual (Contatei)</th>
+                            <th>iFood Marketplace</th>
+                            <th class="highlight-col">Canal Próprio Onira.fly ⭐</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Domínio Oficial</strong></td>
+                            <td><span class="badge-x"><i data-lucide="x" style="width:14px;height:14px;"></i> contatei.com.br/loja/...</span></td>
+                            <td><span class="badge-x"><i data-lucide="x" style="width:14px;height:14px;"></i> ifood.com.br/...</span></td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> laricaspastel.com.br</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa por Pedido</strong></td>
+                            <td>Mensalidade de software</td>
+                            <td><span class="badge-x"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> 20% a 23% da sua receita</span></td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> 0% de comissão</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Identidade &amp; Cores</strong></td>
+                            <td>Template genérico padrão</td>
+                            <td>Layout padrão do iFood</td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> Jamaica Style 100% sob medida</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Destino do Pedido</strong></td>
+                            <td>WhatsApp / Painel</td>
+                            <td>Aplicativo fechado</td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> Comanda limpa no seu WhatsApp</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Velocidade Mobile</strong></td>
+                            <td>Lento / Redirecionamentos</td>
+                            <td>Pesado / Concorrentes</td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> Carregamento em menos de 1s</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Posse da Audiência</strong></td>
+                            <td>Depende da plataforma</td>
+                            <td>O cliente é do iFood</td>
+                            <td class="highlight-col"><span class="badge-check"><i data-lucide="check" style="width:14px;height:14px;"></i> 100% sua lista e seu cliente</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Investimento & Condições -->
         <section class="section-card" id="investimento">
-            <h2 class="section-title"><i data-lucide="badge-dollar-sign"></i> Investimento &amp; Condições</h2>
+            <h2 class="section-title">
+                <span class="title-icon-box"><i data-lucide="badge-dollar-sign" style="width:18px;height:18px;"></i></span>
+                Investimento &amp; Condições
+            </h2>
 
             <div class="financial-split">
                 <!-- Oferta Principal -->
                 <div class="fin-box-main">
-                    <span class="fin-label">⭐ Oferta Principal • Canal Onira.fly</span>
-                    <div class="fin-total">3x de R$ 800,00</div>
+                    <span class="fin-label">⭐ Oferta Principal • Canal Onira.fly Master</span>
+                    <div class="fin-total">3x de R$ 800,00 <small>ou R$ 2.400 à vista</small></div>
                     <div class="fin-item">
                         💵 <strong>Implementação &amp; Setup:</strong> R$ 2.400,00 à vista (Pix) ou parcelado em 3x de R$ 800,00 sem juros.
                     </div>
                     <div class="fin-item">
-                        ⚡ <strong>Acompanhamento Mensal &amp; Nuvem:</strong> R$ 120,00/mês — inclui infraestrutura Cloudflare, SSL, domínio próprio, hospedagem de alta velocidade e suporte contínuo para cardápio e preços.
+                        ⚡ <strong>Acompanhamento Mensal &amp; Nuvem:</strong> R$ 100,00/mês — inclui infraestrutura Cloudflare, SSL, manutenção do domínio <code>laricaspastel.com.br</code>, hospedagem de alta velocidade e suporte contínuo para cardápio e preços.
+                    </div>
+                    <div class="fin-item" style="margin-bottom:0; font-weight:700; color:#065F46;">
+                        🛡️ <strong>Garantia de Entrega:</strong> O site entra no ar em até 5 dias úteis pronto para faturar.
                     </div>
                 </div>
 
                 <!-- Upsell Enxuto -->
                 <div class="fin-box-upsell">
-                    <span class="upsell-tag">🚀 Acelerador Local</span>
-                    <span class="fin-label" style="color: #7E22CE;">Google Meu Negócio &amp; SEO</span>
-                    <div class="upsell-total">+ R$ 100/mês <small style="font-size:0.75rem; color:#6B21A8; display:block; font-weight:600;">(nos 3 primeiros meses)</small></div>
+                    <div>
+                        <span class="upsell-tag">🚀 Acelerador Local</span>
+                        <span class="fin-label" style="color: #0369A1;">Google Meu Negócio &amp; SEO Local</span>
+                        <div class="upsell-total">+ R$ 100/mês <small style="font-size:0.75rem; color:#0369A1; display:block; font-weight:600;">(nos 3 primeiros meses)</small></div>
+                    </div>
                     <ul class="upsell-list">
-                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Otimização completa da ficha no Google Maps.</li>
+                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Otimização completa da ficha no Google Maps para o Bairro Cruzeiro.</li>
                         <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Posicionamento para termos como "Melhor Pastel Cruzeiro Caxias" e "Pastel Gigante Caxias".</li>
-                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Link direto do canal oficial na vitrine de buscas locais.</li>
+                        <li><i data-lucide="check-circle-2" style="width:16px; height:16px;"></i> Botão de pedido apontando direto para o seu canal oficial <code>laricaspastel.com.br</code>.</li>
                     </ul>
                 </div>
             </div>
@@ -708,55 +1341,58 @@
 
         <!-- O Tamanho da Oportunidade & Audiência -->
         <section class="section-card">
-            <h2 class="section-title"><i data-lucide="trending-up"></i> O Tamanho da Oportunidade</h2>
+            <h2 class="section-title">
+                <span class="title-icon-box"><i data-lucide="trending-up" style="width:18px;height:18px;"></i></span>
+                O Tamanho da Oportunidade
+            </h2>
 
             <div class="numbers-grid">
                 <div class="num-card">
-                    <div class="num-big">100% Próprio</div>
+                    <div class="num-big" style="color: var(--jam-green);">100% Próprio</div>
                     <div class="num-title">Posse da Sua Audiência</div>
-                    <div class="num-text">Sua marca no domínio oficial <code>laricaspastel.com.br</code>. O cliente pede focado exclusivamente nos pastéis e combos do Larica's, sem concorrentes.</div>
+                    <div class="num-text">Sua marca no domínio oficial <code>laricaspastel.com.br</code>. O cliente pede focado exclusivamente nos pastéis e combos do Larica's, sem anúncios concorrentes.</div>
                 </div>
 
                 <div class="num-card">
-                    <div class="num-big">0% de Comissão</div>
+                    <div class="num-big" style="color: var(--jam-yellow-dark);">0% de Comissão</div>
                     <div class="num-title">Margem Preservada na Recorrência</div>
-                    <div class="num-text">Nas recompras de quem já é cliente da casa, o canal próprio retém 100% do lucro no seu caixa, sem taxas de 23% a cada pedido.</div>
+                    <div class="num-text">Nas recompras de quem já conhece seu pastel, o canal próprio retém 100% do lucro no seu caixa, sem sangrar 23% a cada pedido.</div>
                 </div>
 
                 <div class="num-card">
-                    <div class="num-big">4.9★ Estrelas</div>
+                    <div class="num-big" style="color: var(--jam-red);">4.9★ Estrelas</div>
                     <div class="num-title">Autoridade no Bairro Cruzeiro</div>
-                    <div class="num-text">Centenas de clientes na Rua Luiz Michielon comprovam a fartura dos pastéis gigantes de 30cm e a qualidade da massa crocante.</div>
+                    <div class="num-text">Clientes na Rua Luiz Michielon e bairros vizinhos já adoram a fartura dos pastéis gigantes de 30cm e a crocância da massa artesanal.</div>
                 </div>
 
                 <div class="num-card">
-                    <div class="num-big">2 Toques</div>
+                    <div class="num-big" style="color: var(--jam-green);">2 Toques</div>
                     <div class="num-title">Montagem Ágil de Pedidos</div>
-                    <div class="num-text">O cliente escolhe o tamanho do pastel e adicionais em menos de 1 minuto, enviando a comanda perfeitamente organizada no WhatsApp.</div>
+                    <div class="num-text">O cliente seleciona tamanho, adicionais e refrigerante em menos de 1 minuto, enviando a comanda perfeitamente formatada no WhatsApp.</div>
                 </div>
             </div>
 
-            <!-- Simulação / Benchmark de Mercado -->
+            <!-- Simulação de Retenção de Margem -->
             <div class="benchmark-box">
                 <div class="benchmark-header">
                     <i data-lucide="calculator" style="color: #059669; width: 22px; height: 22px;"></i>
-                    <span>Referência de Mercado: Retenção de Margem &amp; Lucro no Setor</span>
+                    <span>Simulação de Retenção de Lucro (100 Pedidos Recorrentes)</span>
                 </div>
                 <p class="benchmark-desc">
-                    No segmento de pastelarias e lanches, o ticket médio por pedido gira em torno de <strong>R$ 55,00</strong>. Em plataformas com comissão de <strong>20% a 23%</strong>, a cada <strong>100 pedidos recorrentes</strong> a operação deixa milhares de reais em taxas. Veja a comparação direta:
+                    No segmento de pastelarias e lanches na serra, o ticket médio por pedido gira em torno de <strong>R$ 55,00</strong>. Em plataformas com comissão de <strong>23%</strong>, a cada <strong>100 pedidos recorrentes</strong> a operação perde mais de <strong>R$ 1.200,00 em taxas</strong>:
                 </p>
                 <div class="benchmark-grid">
                     <div class="benchmark-mini-card">
-                        <small>Fica no caixa em app de terceiro (100 pedidos)</small>
+                        <small>No iFood (após 23% de taxa)</small>
                         <strong style="color: #64748B;">R$ 4.235,00</strong>
                     </div>
                     <div class="benchmark-mini-card">
-                        <small>Fica no caixa no canal próprio Onira.fly</small>
+                        <small>No Canal Próprio Onira.fly (0% taxa)</small>
                         <strong style="color: #059669;">R$ 5.500,00</strong>
                     </div>
                     <div class="benchmark-mini-card">
-                        <small>Margem limpa extra retida todo mês</small>
-                        <strong style="color: #0F172A;">+ R$ 1.265,00</strong>
+                        <small>Lucro Extra no Seu Caixa / Mês</small>
+                        <strong style="color: var(--text-dark);">+ R$ 1.265,00</strong>
                     </div>
                 </div>
             </div>
@@ -764,32 +1400,40 @@
 
         <!-- O Que Está Incluído -->
         <section class="section-card">
-            <h2 class="section-title"><i data-lucide="layers"></i> O Que Está Incluído</h2>
+            <h2 class="section-title">
+                <span class="title-icon-box"><i data-lucide="layers" style="width:18px;height:18px;"></i></span>
+                O Que Está Incluído no Projeto
+            </h2>
 
             <div class="feature-grid">
                 <div class="feature-box">
-                    <h4><i data-lucide="utensils"></i> Cardápio Interativo Completo</h4>
-                    <p>Pastéis salgados tradicionais, gigantes monstro de 30cm, combos casal com refrigerante, pastelina crocante e doces gourmet com fotos reais e seleção ágil de opções.</p>
+                    <h4><i data-lucide="palette"></i> Identidade Visual Jamaica Style</h4>
+                    <p>Cores oficiais do Larica's (verde neon, amarelo pastel e vermelho vivo com contraste escuro), tipografia moderna e visual apetitoso.</p>
                 </div>
+
                 <div class="feature-box">
-                    <h4><i data-lucide="globe"></i> Domínio Oficial da Marca</h4>
-                    <p>Registro oficial <code>laricaspastel.com.br</code> sob a titularidade dos proprietários, transmitindo autoridade e profissionalismo em todas as redes sociais.</p>
+                    <h4><i data-lucide="shopping-bag"></i> Cardápio Completo &amp; Adicionais</h4>
+                    <p>Categorias dinâmicas com combos da noite, pastéis salgados M/G/BIG, doces e bebidas com seletor de adicionais e observações.</p>
                 </div>
+
                 <div class="feature-box">
-                    <h4><i data-lucide="message-square"></i> Comanda Limpa no WhatsApp</h4>
-                    <p>Pedidos chegam perfeitamente formatados no WhatsApp oficial <code>(54) 99252-3774</code>, com itens em negrito, tamanhos, adicionais e endereço prontos para o tacho.</p>
+                    <h4><i data-lucide="send"></i> Comanda Limpa no WhatsApp Oficial</h4>
+                    <p>O cliente finaliza o pedido e a comanda cai no <strong>(54) 99649-0510</strong> com itens, adicionais, endereço de entrega e forma de pagamento.</p>
                 </div>
+
                 <div class="feature-box">
-                    <h4><i data-lucide="truck"></i> Tele-Entrega &amp; Retirada no Balcão</h4>
-                    <p>Tabela inteligente de taxas por bairro de Caxias do Sul (Cruzeiro, Bela Vista, Panazzolo, Lourdes, Centro, etc.) com cálculo automático instantâneo.</p>
+                    <h4><i data-lucide="zap"></i> Carregamento Instantâneo &amp; PWA</h4>
+                    <p>O cliente pode salvar o ícone do Larica's na tela inicial do celular como um aplicativo nativo, sem ocupar memória e abrindo em milissegundos.</p>
                 </div>
+
                 <div class="feature-box">
-                    <h4><i data-lucide="zap"></i> Carregamento em menos de 0.5s</h4>
-                    <p>Arquitetura Jamstack ultra leve na Edge CDN que abre instantaneamente no Instagram ou no WhatsApp do cliente sem travar e sem exigir download de app.</p>
+                    <h4><i data-lucide="shield-check"></i> Domínio Próprio &amp; SSL Cloudflare</h4>
+                    <p>Configuração completa de <code>laricaspastel.com.br</code> com certificado de segurança HTTPS e proteção contra quedas.</p>
                 </div>
+
                 <div class="feature-box">
-                    <h4><i data-lucide="refresh-cw"></i> Painel do Dono &amp; Suporte White-Glove</h4>
-                    <p>Autonomia total para pausar sabores esgotados e alterar preços em tempo real com PIN/TouchID, somado ao suporte contínuo da Onira Labs.</p>
+                    <h4><i data-lucide="headset"></i> Suporte Onira Labs White-Glove</h4>
+                    <p>Alterações de valores, inclusão de novos pastéis promocionais e apoio técnico contínuo direto no WhatsApp.</p>
                 </div>
             </div>
         </section>
@@ -805,15 +1449,15 @@
                     <h3 class="dev-profile-name">Jefferson Motta</h3>
                     <p class="dev-profile-role">Service Designer e A.I Business Intelligence na Onira Labs</p>
                     <p class="dev-profile-city">
-                        <i data-lucide="map-pin" style="width: 14px; height: 14px; color: #10B981;"></i>
-                        Caxias do Sul - Serra Gaúcha
+                        <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--jam-green);"></i>
+                        Caxias do Sul • Serra Gaúcha
                     </p>
                 </div>
             </div>
 
             <!-- Citação do Manifesto Onira.fly -->
             <div class="dev-profile-bio">
-                "Nosso propósito com o Onira.fly é devolver a autonomia para os negócios gastronômicos locais: o cliente visualiza o cardápio em menos de 1 segundo, monta o pedido em 2 toques e envia direto no WhatsApp oficial. Zero burocracia para quem compra e lucro total no caixa de quem produz."
+                "Nosso propósito com o Onira.fly é devolver a soberania para os negócios gastronômicos de Caxias do Sul. O cliente abre o cardápio em menos de 1 segundo, monta o pastel dos sonhos em 2 toques e manda direto no WhatsApp da cozinha. Zero intermediários e lucro 100% no caixa de quem trabalha."
             </div>
 
             <!-- Botões Sociais -->
@@ -823,10 +1467,11 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2">
                             <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.66 1.67 1.67 0 0 0 1.67-1.66A1.66 1.66 0 0 0 7.83 6.2Z"/>
                         </svg>
+                        <span>LinkedIn: <strong>/in/jeff-motta</strong></span>
                     </div>
-                    <span>LinkedIn: <strong>/in/jeff-motta</strong></span>
-                    <i data-lucide="external-link" class="dev-link-ext"></i>
+                    <i data-lucide="external-link" style="width:16px;height:16px;color:#94A3B8;"></i>
                 </a>
+
                 <a href="https://jeffmotta.framer.website" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
                     <div class="dev-link-icon-box">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -834,17 +1479,17 @@
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
+                        <span>Portfólio: <strong>jeffmotta.framer.website</strong></span>
                     </div>
-                    <span>Portfólio: <strong>jeffmotta.framer.website</strong></span>
-                    <i data-lucide="external-link" class="dev-link-ext"></i>
+                    <i data-lucide="external-link" style="width:16px;height:16px;color:#94A3B8;"></i>
                 </a>
             </div>
 
             <!-- Assinatura Onira Labs -->
             <div class="studio-signature-box">
-                <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img" onerror="this.src='../../logo_onira_branco.png'">
+                <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img" onerror="this.src='../../assets/logo_onira_branco.png'">
                 <div class="studio-motto">ONIRA.FLY • HIGH CONVERSION DIGITAL CHANNELS</div>
-                <div class="studio-location">Caxias do Sul - Serra Gaúcha • Brasil</div>
+                <div class="studio-location">Caxias do Sul • Serra Gaúcha • Brasil</div>
             </div>
         </div>
 
@@ -855,8 +1500,8 @@
     </main>
 
     <!-- Floating WhatsApp Action Button -->
-    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jefferson!%20Vi%20a%20proposta%20do%20canal%20pr%C3%B3prio%20do%20Larica's%20Pastel%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jefferson no WhatsApp">
-        <i data-lucide="message-circle"></i>
+    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jefferson!%20Vi%20a%20proposta%20do%20canal%20pr%C3%B3prio%20do%20Larica's%20Pastel%20(Jamaica%20Style)%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jefferson no WhatsApp">
+        <i data-lucide="message-circle" style="width:20px;height:20px;"></i>
         <span>Falar com o Jefferson</span>
     </a>
 

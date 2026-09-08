@@ -4,8 +4,8 @@
  * Powered by Onira Labs - Design System Master v2
  */
 
-const WHATSAPP_PHONE = '5554992523774';
-const CATALOG_STORAGE_KEY = 'laricas_catalog_v20260901_master';
+const WHATSAPP_PHONE = '5554996490510';
+const CATALOG_STORAGE_KEY = 'laricas_catalog_v20260908_jamaica';
 
 // Taxas de Entrega por Bairro em Caxias do Sul
 const DELIVERY_ZONES = [
@@ -23,232 +23,285 @@ const DELIVERY_ZONES = [
 
 // Catálogo Oficial do Larica's Pastel
 const DEFAULT_PRODUCTS = [
-    // --- MAIS PEDIDOS / PROMOÇÕES ---
     {
-        id: "laricas-001",
-        name: "Pastel Larica's Monstro (30cm)",
-        category: "promocoes",
-        group: "Mais Vendidos",
-        desc: "Carne bovina refogada de primeira, bacon crocante em cubos, queijo mussarela farto, ovos cozidos, milho verde e azeitonas pretas fatiadas.",
-        badge: "O Mais Famoso ⭐",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 26.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante Monstro (30cm)", extra: 8.00 }
-            ],
-            addons: [
-                { name: "Catupiry Original", price: 5.00 },
-                { name: "Cheddar Cremoso", price: 4.50 },
-                { name: "Bacon Extra", price: 4.50 }
-            ]
-        }
+        "id": "laricas-combo-01",
+        "name": "Combo Dupla 17cm (Frango Cheddar + Carne Catupiry)",
+        "category": "promocoes",
+        "group": "Combos da Noite",
+        "desc": "1 Pastel de Frango com Cheddar M + 1 Pastel de Carne com Catupiry M (17cm cada). Massa artesanal dourada e crocante.",
+        "price": 22.5,
+        "badge": "Mais Pedido 🔥",
+        "img": "assets/combo_dupla_m.jpg"
     },
     {
-        id: "laricas-002",
-        name: "Combo Casal da Larica",
-        category: "combos",
-        group: "Mais Vendidos",
-        desc: "2 Pastéis Salgados de 20cm (Carne c/ Queijo ou Frango c/ Catupiry) + 1 Pastel Doce de Chocolate + 1 Refrigerante 2L.",
-        badge: "Melhor Custo-Benefício ⚡",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80",
-        price: 58.00,
-        hasAdicionais: true,
-        options: {
-            doneness: ["Refrigerante: Guaraná 2L", "Refrigerante: Coca-Cola 2L (+R$ 3,00)"]
-        }
+        "id": "laricas-combo-02",
+        "name": "Combo Família: 4 Pastéis Médios + Fruki Guaraná 600ml",
+        "category": "promocoes",
+        "group": "Combos da Noite",
+        "desc": "4 pastéis de 17cm (Carne c/ Catupiry, Carne c/ Cheddar, Frango c/ Catupiry e Frango c/ Cheddar) + 1 Fruki Guaraná 600ml geladinho.",
+        "price": 45.0,
+        "badge": "Super Combo 🥤",
+        "img": "assets/combo_4pasteis_guarana.jpg"
     },
     {
-        id: "laricas-003",
-        name: "Pastel de Costela Gaúcha Desfiada & Mussarela",
-        category: "salgados",
-        group: "Mais Vendidos",
-        desc: "Costela de ripa desfiada e temperada na cerveja preta com generosa camada de queijo mussarela derretido.",
-        badge: "Costela Gaúcha 🍖",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 24.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 8.00 }
-            ]
-        }
-    },
-
-    // --- PASTÉIS SALGADOS ---
-    {
-        id: "laricas-004",
-        name: "Pastel de Carne com Queijo",
-        category: "salgados",
-        group: "Salgados",
-        desc: "Carne bovina temperada e refogada com queijo mussarela.",
-        badge: "Clássico 🥩",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 18.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 7.00 }
-            ]
-        }
+        "id": "laricas-combo-03",
+        "name": "Combo Mini: 4 Pastéis Mini de 10cm",
+        "category": "promocoes",
+        "group": "Combos da Noite",
+        "desc": "4 pastéis mini de 10cm sequinhos e bem recheados. O petisco ideal para começar a noite.",
+        "price": 29.9,
+        "badge": "Petisco 🥟",
+        "img": "assets/combo_mini_4.jpg"
     },
     {
-        id: "laricas-005",
-        name: "Pastel de Frango com Catupiry",
-        category: "salgados",
-        group: "Salgados",
-        desc: "Frango desfiado suculento com Catupiry legítimo e orégano.",
-        badge: "Cremoso 🍗",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 19.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 7.00 }
-            ]
-        }
+        "id": "laricas-combo-04",
+        "name": "Combo Mix Total: 6 Pastéis Médios + Fruki 600ml",
+        "category": "promocoes",
+        "group": "Combos da Noite",
+        "desc": "1 Carne Catupiry, 1 Carne Cheddar, 1 Frango Catupiry, 1 Frango Cheddar, 1 Carne 3 Queijos, 1 Frango 3 Queijos + Fruki 600ml.",
+        "price": 90.0,
+        "badge": "Para a Galera 👑",
+        "img": "assets/combo_mix_total.jpg"
     },
     {
-        id: "laricas-006",
-        name: "Pastel Quatro Queijos Especial",
-        category: "salgados",
-        group: "Salgados",
-        desc: "Mussarela, Provolone defumado, Parmesão ralado e Catupiry cremoso.",
-        badge: "Queijo Farto 🧀",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 21.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 8.00 }
-            ]
-        }
+        "id": "laricas-combo-05",
+        "name": "Combo Frango Duplo 17cm + Guaraná 200ml",
+        "category": "promocoes",
+        "group": "Combos da Noite",
+        "desc": "1 Pastel de Frango com Catupiry + 1 Pastel de Frango com Cheddar + 1 Guaraná 200ml bem gelado.",
+        "price": 27.5,
+        "badge": "Duo Frango 🍗",
+        "img": "assets/combo_frango_duplo.jpg"
     },
     {
-        id: "laricas-007",
-        name: "Pastel de Coração de Frango na Chapa c/ Queijo",
-        category: "salgados",
-        group: "Salgados",
-        desc: "Coraçõezinhos de frango chapeados no alho e azeite com queijo mussarela derretido.",
-        badge: "Tradição Gaúcha ❤️",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80",
-        price: 23.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 8.00 }
-            ]
-        }
-    },
-
-    // --- DOCES GOURMET ---
-    {
-        id: "laricas-008",
-        name: "Pastel de Nutella Pura com Morango",
-        category: "doces",
-        group: "Doces",
-        desc: "Nutella cremosa e morangos frescos fatiados dentro da massa crocante açucarada com canela.",
-        badge: "Doce Mais Pedido 🍓",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
-        price: 22.00,
-        hasAdicionais: true,
-        options: {
-            sizes: [
-                { name: "Médio (20cm)", extra: 0 },
-                { name: "Gigante (30cm)", extra: 8.00 }
-            ]
-        }
+        "id": "laricas-salgado-m-01",
+        "name": "01 - Pastel de Carne com Catupiry M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Carne bovina de primeira refogada artesanalmente com Catupiry cremoso e massa crocante.",
+        "price": 16.0,
+        "badge": "Clássico ⭐",
+        "img": "assets/pastel_salgado_m.jpg"
     },
     {
-        id: "laricas-009",
-        name: "Pastel Romeu e Julieta (Goiabada Cascão & Queijo)",
-        category: "doces",
-        group: "Doces",
-        desc: "Goiabada cascão cremosa com farta camada de queijo mussarela derretido.",
-        badge: "Clássico Doce 🍯",
-        rating: "4.8",
-        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
-        price: 18.00,
-        hasAdicionais: false
-    },
-
-    // --- PASTELINA CROCANTE ---
-    {
-        id: "laricas-010",
-        name: "Pacote de Pastelina Crocante (Açúcar e Canela)",
-        category: "pastelina",
-        group: "Pastelina",
-        desc: "Tirinhas crocantes e douradas de massa de pastel frita, salpicadas com açúcar refinado e canela.",
-        badge: "Snack Crocante 🌟",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
-        price: 10.00,
-        hasAdicionais: false
+        "id": "laricas-salgado-m-02",
+        "name": "02 - Pastel de Carne com Mussarela M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Carne moída suculenta com mussarela derretida puxando fio na massa crocante.",
+        "price": 17.0,
+        "badge": "Top 1 🧀",
+        "img": "assets/pastel_salgado_m.jpg"
     },
     {
-        id: "laricas-011",
-        name: "Pacote de Pastelina Salgada com Ervas Finas",
-        category: "pastelina",
-        group: "Pastelina",
-        desc: "Tirinhas crocantes de massa de pastel frita sequinha temperadas com sal e mix de ervas finas.",
-        badge: "Aperitivo Perfeito 🥨",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=700&q=80",
-        price: 10.00,
-        hasAdicionais: false
-    },
-
-    // --- BEBIDAS ---
-    {
-        id: "laricas-012",
-        name: "Coca-Cola 2L Gelada",
-        category: "bebidas",
-        group: "Bebidas",
-        desc: "Garrafa 2 Litros gelada.",
-        badge: "Família 🥤",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80",
-        price: 14.00,
-        hasAdicionais: false
+        "id": "laricas-salgado-m-05",
+        "name": "05 - Pastel de Carne com Cheddar M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Carne moída temperada na medida certa com queijo cheddar cremoso.",
+        "price": 16.0,
+        "badge": "",
+        "img": "assets/pastel_salgado_m.jpg"
     },
     {
-        id: "laricas-013",
-        name: "Guaraná Antarctica 2L Gelado",
-        category: "bebidas",
-        group: "Bebidas",
-        desc: "Garrafa 2 Litros gelada.",
-        badge: "Geladão 🍃",
-        rating: "4.9",
-        img: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=700&q=80",
-        price: 12.00,
-        hasAdicionais: false
+        "id": "laricas-salgado-m-08",
+        "name": "08 - Pastel de Carne, Bacon e Mussarela M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Carne moída, cubos crocantes de bacon e queijo mussarela derretido.",
+        "price": 20.0,
+        "badge": "Farto 🥓",
+        "img": "assets/pastel_salgado_m.jpg"
     },
     {
-        id: "laricas-014",
-        name: "Coca-Cola Lata 350ml",
-        category: "bebidas",
-        group: "Bebidas",
-        desc: "Lata 350ml bem gelada.",
-        badge: "Gelada 🥤",
-        rating: "5.0",
-        img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80",
-        price: 6.00,
-        hasAdicionais: false
+        "id": "laricas-salgado-m-22",
+        "name": "22 - Pastel de Frango com Catupiry M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Peito de frango desfiado suculento com Catupiry original cremoso.",
+        "price": 16.0,
+        "badge": "Favorito 🍗",
+        "img": "assets/pastel_salgado_m.jpg"
+    },
+    {
+        "id": "laricas-salgado-m-24",
+        "name": "24 - Pastel de Frango, Bacon e Cheddar M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Frango desfiado bem temperado, bacon defumado crocante e cheddar farto.",
+        "price": 20.0,
+        "badge": "",
+        "img": "assets/pastel_salgado_m.jpg"
+    },
+    {
+        "id": "laricas-salgado-m-30",
+        "name": "30 - Pastel 3 Queijos M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Combinação irresistível de Queijo Mussarela, Cheddar e Catupiry.",
+        "price": 17.0,
+        "badge": "Vegetariano 🧀",
+        "img": "assets/pastel_salgado_m.jpg"
+    },
+    {
+        "id": "laricas-salgado-m-36",
+        "name": "36 - Pastel Pizza Especial M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Presunto selecionado, queijo mussarela farto, tomate fatiado e orégano chileno.",
+        "price": 19.0,
+        "badge": "",
+        "img": "assets/pastel_salgado_m.jpg"
+    },
+    {
+        "id": "laricas-salgado-m-47",
+        "name": "47 - Pastel BBQ Carne Especial M (17cm)",
+        "category": "salgados",
+        "group": "Salgados 17cm",
+        "desc": "Carne moída de primeira, bacon defumado, queijo cheddar farto e cebola roxa marinada.",
+        "price": 25.0,
+        "badge": "Gourmet 🥩",
+        "img": "assets/pastel_salgado_m.jpg"
+    },
+    {
+        "id": "laricas-salgado-g",
+        "name": "Pastel Salgado G (22cm Fartos)",
+        "category": "salgados",
+        "group": "Tamanho Grande (22cm)",
+        "desc": "Pastel grande de 22cm no seu sabor favorito (Carne, Frango, Queijos ou Especiais).",
+        "price": 18.5,
+        "badge": "22cm 📏",
+        "img": "assets/pastel_salgado_g.jpg"
+    },
+    {
+        "id": "laricas-salgado-big",
+        "name": "Pastel Salgado BIG Gigante (30cm)",
+        "category": "salgados",
+        "group": "Gigantes (30cm)",
+        "desc": "O lendário pastel gigante de 30cm do Larica's! Farto do começo ao fim, recheio pesado para matar qualquer fome.",
+        "price": 31.5,
+        "badge": "Monstro 30cm 👑",
+        "img": "assets/pastel_salgado_big.jpg"
+    },
+    {
+        "id": "laricas-doce-51",
+        "name": "51 - Pastel de Banana com Canela M (17cm)",
+        "category": "doces",
+        "group": "Doces Especiais",
+        "desc": "Fatias de banana fresca, leite condensado farto e canela aromática.",
+        "price": 17.0,
+        "badge": "Clássico 🍌",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-54",
+        "name": "54 - Pastel de Chocolate Preto Tradicional M (17cm)",
+        "category": "doces",
+        "group": "Doces Especiais",
+        "desc": "Muito chocolate preto cremoso derretido na massa sequinha e polvilhado de açúcar.",
+        "price": 16.0,
+        "badge": "Mais Pedido 🍫",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-56",
+        "name": "56 - Pastel Nega Maluca M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Deliciosa combinação de chocolate preto cremoso com queijo mussarela derretido.",
+        "price": 19.0,
+        "badge": "Gourmet ✨",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-58",
+        "name": "58 - Pastel Prestígio M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Coco ralado úmido misturado com chocolate preto derretido abundante.",
+        "price": 20.0,
+        "badge": "Prestígio 🥥",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-60",
+        "name": "60 - Pastel de MM's com Chocolate M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Confeitos crocantes de MM's coloridos afundados no chocolate preto cremoso.",
+        "price": 20.0,
+        "badge": "Kids & Fun 🍬",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-62",
+        "name": "62 - Pastel Ouro Branco M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Bombom Ouro Branco original picado com chocolate branco cremoso.",
+        "price": 20.0,
+        "badge": "Top Doce 🏆",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-66",
+        "name": "66 - Pastel Oreo com Chocolate Preto M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Biscoito Oreo em pedaços com muito chocolate preto cremoso.",
+        "price": 20.0,
+        "badge": "",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-72",
+        "name": "72 - Pastel Morango Moreno M (17cm)",
+        "category": "doces",
+        "group": "Doces Gourmet",
+        "desc": "Morangos frescos em pedaços com calda rica de chocolate preto derretido.",
+        "price": 20.0,
+        "badge": "Sensação 🍓",
+        "img": "assets/pastel_doce_m.jpg"
+    },
+    {
+        "id": "laricas-doce-mini",
+        "name": "Pastel Doce Mini (10cm)",
+        "category": "doces",
+        "group": "Doces Mini",
+        "desc": "Mini pastel doce de 10cm nos sabores tradicionais. A sobremesa perfeita.",
+        "price": 8.0,
+        "badge": "Sobremesa 🧁",
+        "img": "assets/pastel_doce_mini.jpg"
+    },
+    {
+        "id": "laricas-bebida-01",
+        "name": "Fruki Guaraná 600ml",
+        "category": "bebidas",
+        "group": "Refrigerantes Gelados",
+        "desc": "O guaraná mais tradicional do Rio Grande do Sul, geladíssimo na garrafa de 600ml.",
+        "price": 7.0,
+        "badge": "Gaúcho 💚",
+        "img": "assets/refrigerantes.jpg"
+    },
+    {
+        "id": "laricas-bebida-02",
+        "name": "Coca-Cola 200ml",
+        "category": "bebidas",
+        "group": "Refrigerantes Gelados",
+        "desc": "Garrafinha pet individual 200ml estupidamente gelada.",
+        "price": 4.0,
+        "badge": "",
+        "img": "assets/refrigerantes.jpg"
+    },
+    {
+        "id": "laricas-bebida-03",
+        "name": "Coca-Cola 2 Litros",
+        "category": "bebidas",
+        "group": "Refrigerantes Família",
+        "desc": "Garrafa de 2 litros perfeita para acompanhar combos e pedidos em família.",
+        "price": 16.0,
+        "badge": "Família 🥤",
+        "img": "assets/refrigerantes.jpg"
     }
 ];
 
