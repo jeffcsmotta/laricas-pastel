@@ -2130,3 +2130,110 @@ body {
     color: #00B359 !important;
     font-weight: 900 !important;
 }
+
+/* ==========================================================================
+   WIDGET FLUTUANTE DA PROPOSTA ONIRA (.onira-cta) — AZUL INSTITUCIONAL MASTER
+   ========================================================================== */
+.onira-cta {
+    position: fixed;
+    bottom: 20px;
+    left: 16px;
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px 8px 8px;
+    background: linear-gradient(145deg, #09192E 0%, #061224 100%) !important;
+    border: 1px solid rgba(56, 116, 203, 0.4) !important;
+    border-radius: 999px !important;
+    text-decoration: none !important;
+    z-index: 900;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(16px);
+    transition: all 0.25s ease;
+}
+
+.onira-cta:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 116, 203, 0.75) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(10, 102, 194, 0.45) !important;
+}
+
+.onira-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50% !important;
+    border: 2px solid #0A66C2 !important;
+    box-shadow: 0 0 14px rgba(10, 102, 194, 0.5) !important;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.onira-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.onira-hook {
+    font-family: 'JetBrains Mono', monospace, -apple-system, sans-serif !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    color: #38BDF8 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+}
+
+.onira-call {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.onira-price-label {
+    font-size: 0.78rem !important;
+    color: #94A3B8 !important;
+}
+
+.onira-price-label strong {
+    color: #F8FAFC !important;
+}
+
+.onira-link-text {
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+}
+
+.onira-link-text::after {
+    content: ' →';
+    color: #38BDF8;
+    font-weight: 800;
+}
+
+/* Ajuste quando a barra móvel de pedido está ativa no mobile */
+body.has-cart-bar .onira-cta {
+    bottom: 84px !important;
+}
+
+@media (max-width: 640px) {
+    .onira-cta {
+        display: flex !important;
+        padding: 6px 12px 6px 6px !important;
+        max-width: 195px !important;
+        gap: 8px !important;
+    }
+    .onira-cta .onira-price-label {
+        display: none !important;
+    }
+    .onira-cta .onira-hook {
+        font-size: 0.62rem !important;
+    }
+    .onira-cta .onira-link-text {
+        font-size: 0.72rem !important;
+    }
+    .onira-avatar {
+        width: 34px !important;
+        height: 34px !important;
+    }
+}
+

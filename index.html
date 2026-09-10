@@ -352,7 +352,7 @@
                     <label class="checkout-group-title">
                         <i data-lucide="user" style="width:16px;height:16px;"></i> Identificação na Comanda
                     </label>
-                    <input type="text" id="client-name" class="form-input" placeholder="Seu Nome Completo" required>
+                    <input type="text" id="client-name" class="form-input" placeholder="Seu Nome Completo (Opcional)">
                     
                     <div id="delivery-address-group" style="margin-top: 10px;">
                         <input type="text" id="client-address" class="form-input" placeholder="Rua, Número, Apto / Bloco, Ponto de Referência">
@@ -422,23 +422,17 @@
         </div>
     </div>
 
-    <!-- Floating Proposal Widget (.onira-cta) -->
-    <div class="onira-cta">
-        <a href="proposta.html" class="onira-cta-link" title="Saiba como funciona meu trabalho">
-            <img src="assets/jeff-avatar.webp" alt="Jefferson Motta - Onira Labs" class="onira-cta-avatar" onerror="this.src='../../assets/jeff-avatar.webp';">
-            <div class="onira-cta-text-wrap">
-                <span class="onira-cta-hook">Gostou do site?</span>
-                <span class="onira-cta-call">Saiba como funciona meu trabalho &rarr;</span>
-            </div>
-        </a>
-        <button type="button" class="onira-cta-close" onclick="window.toggleOniraCta()" title="Recolher tag" aria-label="Recolher tag">
-            <i data-lucide="x" style="width:14px;height:14px;"></i>
-        </button>
-        <div class="onira-cta-collapsed-tag" onclick="window.toggleOniraCta()">
-            <i data-lucide="briefcase" style="width:14px;height:14px;"></i>
-            <span>💼 Compre esse site</span>
+    <!-- Widget Proposta Comercial Onira (.onira-cta) — Padrão Master Onira.fly -->
+    <a href="proposta.html" class="onira-cta" id="onira-floating-cta" title="Ver proposta comercial do site">
+        <img src="assets/jeff-avatar.webp" alt="Jefferson Motta" class="onira-avatar" onerror="this.src='../../assets/jeff-avatar.webp';">
+        <div class="onira-text-col">
+            <span class="onira-hook">Gostou deste cardápio digital?</span>
+            <span class="onira-call">
+                <span class="onira-price-label">A partir de <strong>3x R$ 800</strong></span>
+                <span class="onira-link-text">Ver Proposta &rarr;</span>
+            </span>
         </div>
-    </div>
+    </a>
 
     <!-- Script Application -->
     <script src="app.js?v=20260901e"></script>

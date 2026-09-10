@@ -928,7 +928,7 @@ window.selectPayment = function(method) {
 
 window.sendOrderWhatsApp = function() {
     if (cart.length === 0) {
-        alert('Seu pedido está vazio. Escolha um pastel gigante no cardápio!');
+        showToast('Seu pedido está vazio. Escolha um item no cardápio!');
         return;
     }
 
@@ -936,21 +936,11 @@ window.sendOrderWhatsApp = function() {
     const addressInput = document.getElementById('client-address');
     const cashChangeInput = document.getElementById('cash-change-value');
 
-    const clientName = nameInput ? nameInput.value.trim() : '';
-    if (!clientName) {
-        alert('Por favor, informe seu Nome para identificação na comanda.');
-        if (nameInput) nameInput.focus();
-        return;
-    }
+    const clientName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Cliente';
 
     let clientAddress = '';
     if (selectedDeliveryType === 'delivery') {
-        clientAddress = addressInput ? addressInput.value.trim() : '';
-        if (!clientAddress) {
-            alert('Por favor, informe o Endereço Completo de entrega (Rua, Número, Apto/Bloco).');
-            if (addressInput) addressInput.focus();
-            return;
-        }
+        clientAddress = (addressInput && addressInput.value.trim()) ? addressInput.value.trim() : 'Endereço: A combinar no WhatsApp';
     }
 
     const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
