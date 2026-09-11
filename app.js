@@ -330,13 +330,11 @@ let selectedSizeExtra = 0;
 let selectedSizeName = '';
 let selectedAddons = [];
 let selectedDeliveryType = 'delivery';
-let selectedDeliveryZone = DELIVERY_ZONES[0];
 let selectedPaymentMethod = 'pix';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCartFromStorage();
     renderCatalog();
-    renderDeliveryZones();
     checkBusinessStatus();
     setupScrollBehavior();
     lucide.createIcons();
@@ -854,53 +852,29 @@ function renderCartItemsList(subtotal) {
 
     lucide.createIcons();
 
-    const fee = selectedDeliveryType === 'delivery' ? selectedDeliveryZone.fee : 0;
-    const finalTotal = subtotal + fee;
-
     if (subtotalEl) subtotalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
     if (feeEl) {
         feeEl.innerText = selectedDeliveryType === 'delivery' 
-            ? `R$ ${fee.toFixed(2).replace('.', ',')}` 
-            : 'Grátis (Retirada)';
+            ? 'A confirmar com atendente' 
+            : 'Grátis (Retirada no Balcão)';
     }
-    if (totalEl) totalEl.innerText = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+    if (totalEl) totalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 }
-
-function renderDeliveryZones() {
-    const select = document.getElementById('delivery-neighborhood-select');
-    if (!select) return;
-
-    select.innerHTML = DELIVERY_ZONES.map((z, idx) => `
-        <option value="${idx}">
-            ${z.neighborhood} — R$ ${z.fee.toFixed(2).replace('.', ',')} (${z.time})
-        </option>
-    `).join('');
-}
-
-window.handleZoneChange = function(e) {
-    const index = parseInt(e.target.value) || 0;
-    selectedDeliveryZone = DELIVERY_ZONES[index];
-    const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
-    renderCartItemsList(subtotal);
-};
 
 window.selectDeliveryType = function(type) {
     selectedDeliveryType = type;
     const btnTele = document.getElementById('btn-type-delivery');
     const btnRetirada = document.getElementById('btn-type-retirada');
     const addressBox = document.getElementById('delivery-address-group');
-    const zoneGroup = document.getElementById('delivery-zone-group');
 
     if (type === 'delivery') {
         if (btnTele) btnTele.classList.add('active');
         if (btnRetirada) btnRetirada.classList.remove('active');
         if (addressBox) addressBox.style.display = 'block';
-        if (zoneGroup) zoneGroup.style.display = 'block';
     } else {
         if (btnTele) btnTele.classList.remove('active');
         if (btnRetirada) btnRetirada.classList.add('active');
         if (addressBox) addressBox.style.display = 'none';
-        if (zoneGroup) zoneGroup.style.display = 'none';
     }
 
     const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
@@ -944,8 +918,6 @@ window.sendOrderWhatsApp = function() {
     }
 
     const subtotal = cart.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
-    const fee = selectedDeliveryType === 'delivery' ? selectedDeliveryZone.fee : 0;
-    const total = subtotal + fee;
 
     let text = `_pedido via site by Onira.fly_\n\n`;
 
@@ -974,26 +946,26 @@ window.sendOrderWhatsApp = function() {
         text += `*R$ ${(item.unitPrice * item.quantity).toFixed(2).replace('.', ',')}*\n\n`;
     });
 
-    text += `*Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*\n`;
+    text += `*Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}*\n`;
     if (selectedDeliveryType === 'delivery') {
-        text += `Entrega (${selectedDeliveryZone.neighborhood}): R$ ${fee.toFixed(2).replace('.', ',')}\n`;
+        text += `*Taxa de Tele:* Custo a confirmar com atendente\n`;
     } else {
-        text += `Entrega: Retirada no Balcão (Grátis)\n`;
+        text += `*Entrega:* Retirada no Balcão (Grátis)\n`;
     }
-    text += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+    text += `*Total dos Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*\n\n`;
 
-    text += `*${clientName}*\n`;
+    text += `*Cliente:* ${clientName}\n`;
     if (selectedDeliveryType === 'delivery') {
-        text += `${clientAddress} — ${selectedDeliveryZone.neighborhood}\n`;
+        text += `*Endereço:* ${clientAddress}\n`;
     }
 
     if (selectedPaymentMethod === 'pix') {
-        text += `Pagamento em Pix — combinamos a chave por aqui\n`;
+        text += `*Pagamento:* Pix — combinamos a chave por aqui\n`;
     } else if (selectedPaymentMethod === 'cartao') {
-        text += `Pagamento no cartão — favor trazer a maquininha\n`;
+        text += `*Pagamento:* Cartão — favor trazer a maquininha\n`;
     } else if (selectedPaymentMethod === 'dinheiro') {
         const change = cashChangeInput ? cashChangeInput.value.trim() : '';
-        text += change ? `Pagamento em dinheiro — troco para R$ ${change}\n` : `Pagamento em dinheiro — sem necessidade de troco\n`;
+        text += change ? `*Pagamento:* Dinheiro — troco para R$ ${change}\n` : `*Pagamento:* Dinheiro — sem necessidade de troco\n`;
     }
 
     text += `\n_Enviado pelo site do Larica's Pastel_`;

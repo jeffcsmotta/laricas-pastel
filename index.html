@@ -339,15 +339,6 @@
                     </div>
                 </div>
 
-                <div class="checkout-group" id="delivery-zone-group">
-                    <label for="delivery-neighborhood-select" class="checkout-group-title">
-                        <i data-lucide="map-pin" style="width:16px;height:16px;"></i> Bairro em Caxias do Sul
-                    </label>
-                    <select id="delivery-neighborhood-select" class="form-select" onchange="window.handleZoneChange(event)">
-                        <!-- Injetado via app.js -->
-                    </select>
-                </div>
-
                 <div class="checkout-group">
                     <label class="checkout-group-title">
                         <i data-lucide="user" style="width:16px;height:16px;"></i> Identificação na Comanda
@@ -355,7 +346,7 @@
                     <input type="text" id="client-name" class="form-input" placeholder="Seu Nome Completo (Opcional)">
                     
                     <div id="delivery-address-group" style="margin-top: 10px;">
-                        <input type="text" id="client-address" class="form-input" placeholder="Rua, Número, Apto / Bloco, Ponto de Referência">
+                        <input type="text" id="client-address" class="form-input" placeholder="Rua, Número, Bairro, Apto / Ponto de Referência">
                     </div>
                 </div>
 
@@ -389,11 +380,11 @@
                         <strong id="cart-summary-subtotal">R$ 0,00</strong>
                     </div>
                     <div class="summary-line">
-                        <span>Taxa de Entrega</span>
-                        <strong id="cart-summary-fee">R$ 8,00</strong>
+                        <span>Tele-Entrega</span>
+                        <strong id="cart-summary-fee" style="color: var(--accent-amber);">A confirmar com atendente</strong>
                     </div>
                     <div class="summary-line total-line">
-                        <span>Total do Pedido</span>
+                        <span>Total dos Itens</span>
                         <strong class="total-price-emerald" id="cart-summary-total">R$ 0,00</strong>
                     </div>
                 </div>
@@ -435,7 +426,7 @@
     </a>
 
     <!-- Script Application -->
-    <script src="app.js?v=20260901e"></script>
+    <script src="app.js?v=20260911_v2"></script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(err => console.log('SW falhou:', err));
